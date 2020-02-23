@@ -67,11 +67,11 @@ buildscript {
 
 #  
   
-### 목차
-#### - [IFrame API]()
-#### - [Enetity에서 Setter]()
-#### - [생성자와 Builder 패턴]()
-#### - [기타]()
+# 목차
+### - [IFrame API]()
+### - [Enetity에서 Setter]()
+### - [생성자와 Builder 패턴]()
+### - [기타]()
 - [ORM과 JPA란]()
 
 #
@@ -171,8 +171,8 @@ Example.builder())
 ```
 
 # 
-# 기타
-### - ORM과 JPA이란
+### 기타
+#### - ORM과 JPA이란
 - ORM : Object-relational mapping(객체 관계 매핑)
   - 객체는 객체대로 설계하고, 관계형 데이터베이스는 관계형 데이터베이스대로 설계
   - ORM 프레임워크가 중간에서 매핑
