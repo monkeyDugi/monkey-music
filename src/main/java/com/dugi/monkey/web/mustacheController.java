@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class IndexController {
+public class mustacheController {
     private final DailyChartsService dailyChartsService;
 
     @GetMapping("/charts/daily")

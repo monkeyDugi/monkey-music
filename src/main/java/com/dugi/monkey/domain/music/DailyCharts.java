@@ -16,10 +16,13 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-public class DailyChart {
+public class DailyCharts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private int rank;
 
     @Column(nullable = false)
     private String videoId;
@@ -40,7 +43,8 @@ public class DailyChart {
     private LocalDate modifyDate;
 
     @Builder
-    public DailyChart(String videoId, String title, String singer, String image) {
+    public DailyCharts(int rank, String videoId, String title, String singer, String image) {
+        this.rank = rank;
         this.videoId = videoId;
         this.title = title;
         this.singer = singer;

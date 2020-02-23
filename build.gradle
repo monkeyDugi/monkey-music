@@ -1,0 +1,51 @@
+// 프로젝트의 플로그인 의존성 관리
+buildscript {
+    // ext : 전역변수라는 의미
+    // springBootVersion : 2.1.7.REALESE를 전역 변수로 사용
+    // classpath : spring-boot-gradle-plugin의 2.1.7.REALESE를 의존성으로 받음
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 위에서 선언한 플로그인 의존성들을 적용할 것인지 결정
+// 자바와 스프링부트를 사용하기 위해서는 필수로 필요한 플로그인들임!!
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+// 스프링부트 의전성 관리를 해주는 플러그인으로써 꼭 추가해야 함
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.dugi.moneky'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    // 간단하게 라이브러리 업로드가 가능하다고 함
+    // jscener()
+}
+
+dependencies {
+    // 스프링부트 main에서 사용하는 컴파일
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') // 1. 스프링부트용 Spring Data Jpa 인터페이스
+                                                                    // 2. 스프링부트 버전에 맞춰 자동으로 JPA 관련 라이브러리들의 버전 관리
+                                                                    // 3. JPA 구현체인 Hibernate를 직접 사용하지 않는데,
+                                                                    // 4. 새로운 구현체가 나올 시 교체가 어렵고, 저장소를 관겨형에서 MongoDB로 바꾸기 어렵다.
+                                                                    // 5. Spring Data Jpa를 사용하면 위의 내용이 교체 되어도 바꿀 것이 없다.
+    compile('com.h2database:h2') // 1. 인메모리 관계형 데이터베이스
+                                // 2. 설치없이 프로젝트 의존성으로 관리 가능
+                                // 3. 메모리에서 실행되기 때문에 애플리케이션 재시작 시 초기화가 되기 때문에 테스트용으로 많이 사용
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    // 스프링부트 test에서 사용하는 컴파일
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

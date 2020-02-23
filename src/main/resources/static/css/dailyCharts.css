@@ -1,0 +1,57 @@
+.container {
+    width: 800px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table .rank-td {
+    padding-right: 0;
+    padding-left: 0;
+    width: 70px;
+    text-align: center;
+}
+
+.table .img-td {
+    padding-right: 10;
+    padding-left: 0;
+    width: 50px;
+}
+
+.table .play-td {
+    width: 60px;
+}
+
+.table .play-btn {
+    border: 0;
+    background-color: white;
+    outline: none;
+}
+
+.table .play-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.table td img {
+    width: 50px;
+    height: 50px;
+}
+
+footer nav {
+    border: solid 1px rgb(200, 200, 200);
+    border-width: 1px 0px;
+}
+
+.head-interval {
+    height: 60px;
+}
+
+.footer-interval {
+    height: 40px;
+}
+
+.iframe-div {
+    text-align: center;
+}
