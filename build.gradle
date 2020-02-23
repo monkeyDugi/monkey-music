@@ -46,6 +46,8 @@ dependencies {
                                 // 2. 설치없이 프로젝트 의존성으로 관리 가능
                                 // 3. 메모리에서 실행되기 때문에 애플리케이션 재시작 시 초기화가 되기 때문에 테스트용으로 많이 사용
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile 'org.jsoup:jsoup:1.12.2'
+    compile 'org.json:json:20171018'
     // 스프링부트 test에서 사용하는 컴파일
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
