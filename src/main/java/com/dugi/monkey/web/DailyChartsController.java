@@ -1,7 +1,7 @@
 package com.dugi.monkey.web;
 
 import com.dugi.monkey.domain.music.service.DailyChartsService;
-import com.dugi.monkey.web.dto.DailyChartsResponseDto;
+import com.dugi.monkey.web.dto.ResponseDailyChartsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,7 @@ public class DailyChartsController {
     private final DailyChartsService dailyChartsService;
 
     @GetMapping("api/charts/daily")
-    public List<DailyChartsResponseDto> list() {
+    public List<ResponseDailyChartsDto> list() {
         return dailyChartsService.findAll();
     }
 }
