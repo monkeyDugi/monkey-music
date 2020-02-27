@@ -13,8 +13,6 @@ public class mustacheController {
 
     @GetMapping("/charts/daily")
     public String dailyCharts(Model model) {
-//        model.addAttribute("dailyCharts", dailyChartsService.findAllDesc());
-
         return "dailyCharts";
     }
 }
