@@ -5,13 +5,13 @@ import lombok.Getter;
 
 @Getter
 public class RequestMelonCrowlingDto {
-    private int rank;
+    private String rank;
     private String title;
     private String singer;
     private String image;
 
     @Builder
-    public RequestMelonCrowlingDto(int rank, String title, String singer, String image) {
+    public RequestMelonCrowlingDto(String rank, String title, String singer, String image) {
         this.rank = rank;
         this.title = title;
         this.singer = singer;

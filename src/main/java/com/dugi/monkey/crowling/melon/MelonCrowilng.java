@@ -1,5 +1,6 @@
 package com.dugi.monkey.crowling.melon;
 
+import com.dugi.monkey.crowling.youtube.YoutubeSearchAPI;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MelonCrowilng {
-    public String melonData() {
-        String url = "https://www.melon.com/chart/day/index.htm";
+
+    public List<RequestMelonCrowlingDto> melonCrowilng() {
+//        String url = "https://www.melon.com/chart/day/index.htm";
+        String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         Document doc = null;
 
         try {
@@ -20,23 +23,30 @@ public class MelonCrowilng {
             ex.printStackTrace();
         }
 
-        Elements titels = doc.select("div.ellipsis>span>a");
+        Elements melons = doc.select("div.service_list_song>table>tbody>tr");
 
-        List<String> songs = new ArrayList<>();
-        int x = 0;
-        String song = "";
-        for (Element e : titels) {
-            song += e.text();
-            x++;
+        List<RequestMelonCrowlingDto> requestMelonCrowlingDtoList = new ArrayList<>();
+        String rank;
+        String title;
+        String singer;
+        String image;
 
-            if (x > 1) {
-                songs.add(song);
-                x = 0;
-                song = "";
-            }
+        for (Element melon : melons) {
+            rank = melon.select("span.rank").text();
+            title = melon.select("div.wrap_song_info>div.rank01>span>a").text();
+            singer = melon.select("div.wrap_song_info>div.rank02>span>a").text();
+            image = melon.select("div>a.image_typeAll>img").attr("src");
+
+            requestMelonCrowlingDtoList.add(RequestMelonCrowlingDto.builder()
+                                            .rank(rank)
+                                            .title(title)
+                                            .singer(singer)
+                                            .image(image)
+                                            .build());
+
+            System.out.println(rank + title + singer + image);
         }
 
-        System.out.println(songs.get(0));
-        return "ddd";
+        return requestMelonCrowlingDtoList;
     }
 }
