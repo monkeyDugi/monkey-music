@@ -22,15 +22,15 @@ public class DailyCharts {
     private Long id;
 
     @Column(nullable = false)
-    private int rank;
+    private String rank;
 
     @Column(nullable = false)
     private String videoId;
 
-    @Column(nullable = false, length = 40)
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private String singer;
 
     @Column(nullable = false)
@@ -43,7 +43,7 @@ public class DailyCharts {
     private LocalDate modifyDate;
 
     @Builder
-    public DailyCharts(int rank, String videoId, String title, String singer, String image) {
+    public DailyCharts(String rank, String videoId, String title, String singer, String image) {
         this.rank = rank;
         this.videoId = videoId;
         this.title = title;
