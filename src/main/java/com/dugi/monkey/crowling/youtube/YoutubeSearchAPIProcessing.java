@@ -1,5 +1,6 @@
 package com.dugi.monkey.crowling.youtube;
 
+import com.dugi.monkey.crowling.melon.RequestMelonCrowlingDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,36 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class YoutubeSearchAPIProcessing extends YoutubeSearchAPI{
-    public List<RequestYoutubeAPIDto> searchDataProcessing() {
+
+    public List<RequestYoutubeAPIDto> searchDataProcessing(List<RequestMelonCrowlingDto> requestMelonCrowlingDtoList) {
+
         List<RequestYoutubeAPIDto> requestYoutubeAPIDtoLIst = new ArrayList<>();
 
         try
         {
-            String jsonString = searchData();
-            JSONObject jsonObject = new JSONObject(jsonString);
-            JSONArray items = jsonObject.getJSONArray("items");
-
-            for(int i = 0; i < items.length(); i++) {
-                JSONObject item = items.getJSONObject(i);
-
+            for(int i = 0; i < 1; i++) {
+                String jsonString = youtubeSearchAPI(requestMelonCrowlingDtoList.get(i));
+                JSONObject jsonObject = new JSONObject(jsonString);
+                JSONArray items = jsonObject.getJSONArray("items");
+                JSONObject item = items.getJSONObject(0);
                 JSONObject id = item.getJSONObject("id");
                 String videoId = id.getString("videoId");
 
-                JSONObject snippet = item.getJSONObject("snippet");
-
-                String title = snippet.getString("title");
-
-                JSONObject thumbnails = snippet.getJSONObject("thumbnails");
-
-                JSONObject defaul = thumbnails.getJSONObject("default");
-
-                String image = defaul.getString("url");
-
                 requestYoutubeAPIDtoLIst.add(RequestYoutubeAPIDto.builder()
-                                            .videoId(videoId)
-                                            .title(title)
-                                            .image(image)
-                                            .build());
+                        .videoId(videoId)
+                        .build());
             }
         } catch (JSONException e) {
             e.printStackTrace();
