@@ -25,7 +25,7 @@ public class DailyChartsRepositoryTest {
     @Test
     public void 일간차트_불러오기() {
         // given
-        int rank = 12;
+        String rank = "12";
         String videoId = "UuV2BmJ1p_I";
         String title = "아무노래";
         String singer = "지코";
