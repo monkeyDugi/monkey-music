@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class ResponseDailyChartsDto {
-    private int rank;
+    private String rank;
     private String videoId;
     private String title;
     private String singer;
