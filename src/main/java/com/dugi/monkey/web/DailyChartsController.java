@@ -4,6 +4,7 @@ import com.dugi.monkey.domain.music.service.DailyChartsService;
 import com.dugi.monkey.web.dto.ResponseDailyChartsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,5 +18,10 @@ public class DailyChartsController {
     @GetMapping("api/charts/daily")
     public List<ResponseDailyChartsDto> list() {
         return dailyChartsService.findAll();
+    }
+
+    @GetMapping("test/1")
+    public void save() {
+        dailyChartsService.save();
     }
 }

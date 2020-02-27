@@ -1,5 +1,7 @@
 package com.dugi.monkey.domain.music.service;
 
+import com.dugi.monkey.crowling.MelonYoutubeCombination;
+import com.dugi.monkey.crowling.RequestDailyChartsDto;
 import com.dugi.monkey.domain.music.DailyChartsRepository;
 import com.dugi.monkey.web.dto.ResponseDailyChartsDto;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +23,17 @@ public class DailyChartsService {
                                     .map(ResponseDailyChartsDto::new) // map을 통해 DailyChartsListResponseDto로 변환 -> List 반환
                                                                       // .map(DailyChars의 -> new DailyChartsListResponseDto(DailyChars의))와 같음
                                     .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void save() {
+        MelonYoutubeCombination melonYoutubeCombination = new MelonYoutubeCombination();
+        List<RequestDailyChartsDto> requestDailyChartsDto = melonYoutubeCombination.dailyCharts();
+
+        dailyChartsRepository.deleteAll();
+
+        for(int i = 0; i < requestDailyChartsDto.size(); i++) {
+            dailyChartsRepository.save(requestDailyChartsDto.get(i).toEntity());
+        }
     }
 }
