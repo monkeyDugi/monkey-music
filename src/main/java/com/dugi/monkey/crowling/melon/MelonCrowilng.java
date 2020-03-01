@@ -13,7 +13,6 @@ import java.util.List;
 public class MelonCrowilng {
 
     public List<RequestMelonCrowlingDto> melonCrowilng() {
-//        String url = "https://www.melon.com/chart/day/index.htm";
         String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         Document doc = null;
 
