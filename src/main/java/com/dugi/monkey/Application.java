@@ -1,6 +1,6 @@
 package com.dugi.monkey;
 
-import com.dugi.monkey.scheduler.SchedulerTest;
+import com.dugi.monkey.scheduler.DailyChartsScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
     @Autowired
-    private SchedulerTest scheduler;
+    private DailyChartsScheduler scheduler;
 
     public static void main(String[] args) {
         // SpringApplication.run : 내장 WAS(톰캣)
