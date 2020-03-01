@@ -4,10 +4,12 @@ import com.dugi.monkey.crowling.melon.MelonCrowilng;
 import com.dugi.monkey.crowling.melon.RequestMelonCrowlingDto;
 import com.dugi.monkey.crowling.youtube.RequestYoutubeAPIDto;
 import com.dugi.monkey.crowling.youtube.YoutubeSearchAPIProcessing;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MelonYoutubeCombination {
 
     public List<RequestDailyChartsDto> dailyCharts() {
