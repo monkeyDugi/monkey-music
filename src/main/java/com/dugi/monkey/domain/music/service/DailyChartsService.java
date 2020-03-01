@@ -1,7 +1,7 @@
 package com.dugi.monkey.domain.music.service;
 
-import com.dugi.monkey.crowling.MelonYoutubeCombination;
-import com.dugi.monkey.crowling.RequestDailyChartsDto;
+import com.dugi.monkey.crawling.MelonYoutubeCombination;
+import com.dugi.monkey.crawling.RequestDailyChartsDto;
 import com.dugi.monkey.domain.music.DailyChartsRepository;
 import com.dugi.monkey.web.dto.ResponseDailyChartsDto;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,5 @@
-package com.dugi.monkey.crowling.melon;
+package com.dugi.monkey.crawling.melon;
 
-import com.dugi.monkey.crowling.youtube.YoutubeSearchAPI;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,9 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MelonCrowilng {
+public class MelonCrawilng {
 
-    public List<RequestMelonCrowlingDto> melonCrowilng() {
+    public List<RequestMelonCrawlingDto> melonCrowilng() {
         String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         Document doc = null;
 
@@ -24,7 +23,7 @@ public class MelonCrowilng {
 
         Elements melons = doc.select("div.service_list_song>table>tbody>tr");
 
-        List<RequestMelonCrowlingDto> requestMelonCrowlingDtoList = new ArrayList<>();
+        List<RequestMelonCrawlingDto> requestMelonCrawlingDtoList = new ArrayList<>();
         String rank;
         String title;
         String singer;
@@ -36,7 +35,7 @@ public class MelonCrowilng {
             singer = melon.select("div.wrap_song_info>div.rank02>span>a").text();
             image = melon.select("div>a.image_typeAll>img").attr("src");
 
-            requestMelonCrowlingDtoList.add(RequestMelonCrowlingDto.builder()
+            requestMelonCrawlingDtoList.add(RequestMelonCrawlingDto.builder()
                                             .rank(rank)
                                             .title(title)
                                             .singer(singer)
@@ -46,6 +45,6 @@ public class MelonCrowilng {
             System.out.println(rank + title + singer + image);
         }
 
-        return requestMelonCrowlingDtoList;
+        return requestMelonCrawlingDtoList;
     }
 }

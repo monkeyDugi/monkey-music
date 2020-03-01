@@ -1,17 +1,17 @@
-package com.dugi.monkey.crowling.melon;
+package com.dugi.monkey.crawling.melon;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RequestMelonCrowlingDto {
+public class RequestMelonCrawlingDto {
     private String rank;
     private String title;
     private String singer;
     private String image;
 
     @Builder
-    public RequestMelonCrowlingDto(String rank, String title, String singer, String image) {
+    public RequestMelonCrawlingDto(String rank, String title, String singer, String image) {
         this.rank = rank;
         this.title = title;
         this.singer = singer;

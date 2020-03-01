@@ -1,6 +1,6 @@
-package com.dugi.monkey.crowling.youtube;
+package com.dugi.monkey.crawling.youtube;
 
-import com.dugi.monkey.crowling.melon.RequestMelonCrowlingDto;
+import com.dugi.monkey.crawling.melon.RequestMelonCrawlingDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +8,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
 
 public class YoutubeSearchAPI {
 
-    protected String youtubeSearchAPI(RequestMelonCrowlingDto requestMelonCrowlingDto) {
+    protected String youtubeSearchAPI(RequestMelonCrawlingDto requestMelonCrawlingDto) {
         String jsonString = "";
-        String title = requestMelonCrowlingDto.getTitle();
-        String singer = requestMelonCrowlingDto.getSinger();
+        String title = requestMelonCrawlingDto.getTitle();
+        String singer = requestMelonCrawlingDto.getSinger();
         String param = title + singer;
 
         try {

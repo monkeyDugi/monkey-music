@@ -1,4 +1,4 @@
-package com.dugi.monkey.crowling;
+package com.dugi.monkey.crawling;
 
 import com.dugi.monkey.domain.music.DailyCharts;
 import lombok.Builder;

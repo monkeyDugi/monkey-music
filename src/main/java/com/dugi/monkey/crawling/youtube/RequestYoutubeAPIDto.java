@@ -1,4 +1,4 @@
-package com.dugi.monkey.crowling.youtube;
+package com.dugi.monkey.crawling.youtube;
 
 import lombok.Builder;
 import lombok.Getter;
