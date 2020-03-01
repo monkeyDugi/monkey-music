@@ -8,15 +8,16 @@
 package com.dugi.monkey.scheduler;
 
 import com.dugi.monkey.domain.music.service.DailyChartsService;
+import com.dugi.monkey.util.DailyChartsBeanUtil;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class JobTest implements Job {
+public class DailyChartsJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        DailyChartsService dailyChartsService = BeanUtilsTest.getBean(DailyChartsService.class);
+        DailyChartsService dailyChartsService = DailyChartsBeanUtil.getBean(DailyChartsService.class);
         dailyChartsService.save();
     }
 }

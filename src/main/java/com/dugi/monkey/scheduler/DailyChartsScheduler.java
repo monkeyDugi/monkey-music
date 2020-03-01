@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-public class SchedulerTest {
+public class DailyChartsScheduler {
 
     @PostConstruct // 해당 클래스가 Bean 등록 되자마다 실행(인스턴스화 되자마자)
                    // 스케쥴러를 통한 배치 이기 때문에 어디선가 메서드를 호출해 실행하는 것 보다는
@@ -26,8 +26,8 @@ public class SchedulerTest {
         scheduler.start(); // 스케줄러 시작!
 
         // Job 지정
-        JobDetail job = JobBuilder.newJob(JobTest.class) // 실행할 Job 클래스
-                                .withIdentity("jobTest") // Job 고유명 지정
+        JobDetail job = JobBuilder.newJob(DailyChartsJob.class) // 실행할 Job 클래스
+                                .withIdentity("dailyChartsJob") // Job 고유명 지정
                                 .build();
 
         // trgger 생성

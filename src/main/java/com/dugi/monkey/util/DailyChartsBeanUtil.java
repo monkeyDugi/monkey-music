@@ -1,4 +1,4 @@
-package com.dugi.monkey.scheduler;
+package com.dugi.monkey.util;
 
 import com.dugi.monkey.domain.music.service.DailyChartsService;
 import org.springframework.context.ApplicationContext;
