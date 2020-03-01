@@ -73,6 +73,7 @@ buildscript {
 ### - [IFrame API]()
 ### - [Enetity에서 Setter]()
 ### - [생성자와 Builder 패턴]()
+### - [quarts 스케줄러]()
 ### - [기타]()
 - [ORM과 JPA란]()
 
@@ -172,7 +173,29 @@ Example.builder())
 
 ```
 
+#
+
+### - quarts 스케줄러
+- 일정 시간마다 기능을 수행할 수 있는 스케줄러
+- 사용이유 : 매일 오전 10시에 멜론 일간 차트를 가져와야 하기 때문
+- 에러 : InstantiationException, NullPointerException
+  - InstantiationException는 @RequireConstructor로 생성자 주입을 할 때 발생  
+    NullPointerException는 @Autowired, new로 생성 할 때 발생
+  - 원인
+    - Job인터페이스를 구현한 Job 구현 클래스를 가동 시키는 스케줄러 클래스 빈이  
+      주입 받으려는 Service 클래스에 접근 할 수 없다. Job을 구현 받은 클래스에서 외부 빈은 주입 받을 수 없는건가??  
+      **아직 정확히 모르겠다.**
+  - 해결
+    - **ApplicationContextAware** 인터페이스를 구현 받아 **setApplicationContext**로 ApplicationContext에  
+      접근할 수 있다.  
+      접근하여, ApplicationContext를 set하고 원하는 빈을 get하여 리턴하여 강제 주입 해주면 된다.
+  - ApplicationContextAware
+    - 빈이 생성 될 때 **setApplicationContext**가 실행 되어 AppicationContext를 가져올 수 있다.
+  - ApplicationContext
+    - 빈이 생성되면 IoC컨테이너(ApplicationContext)에 저장이 되는데 여기서 직접 빈을 가져오기 위해 사용했다.    
+
 # 
+
 ### 기타
 #### - ORM과 JPA이란
 - ORM : Object-relational mapping(객체 관계 매핑)
