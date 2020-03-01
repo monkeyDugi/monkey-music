@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class DailyChartsService {
+
     private final DailyChartsRepository dailyChartsRepository;
 
     @Transactional(readOnly = true)
