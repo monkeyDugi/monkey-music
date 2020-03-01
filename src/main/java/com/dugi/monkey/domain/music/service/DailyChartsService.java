@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class DailyChartsService {
 
     private final DailyChartsRepository dailyChartsRepository;
+    private final MelonYoutubeCombination melonYoutubeCombination;
 
     @Transactional(readOnly = true)
     public List<ResponseDailyChartsDto> findAll() {
@@ -28,13 +29,12 @@ public class DailyChartsService {
 
     @Transactional
     public void save() {
-        MelonYoutubeCombination melonYoutubeCombination = new MelonYoutubeCombination();
         List<RequestDailyChartsDto> requestDailyChartsDto = melonYoutubeCombination.dailyCharts();
 
         dailyChartsRepository.deleteAll();
 
-        for(int i = 0; i < requestDailyChartsDto.size(); i++) {
-            dailyChartsRepository.save(requestDailyChartsDto.get(i).toEntity());
+        for (RequestDailyChartsDto dailyChartsDto : requestDailyChartsDto) {
+            dailyChartsRepository.save(dailyChartsDto.toEntity());
         }
     }
 }
