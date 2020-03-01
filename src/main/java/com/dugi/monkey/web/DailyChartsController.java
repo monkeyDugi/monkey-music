@@ -19,9 +19,4 @@ public class DailyChartsController {
     public List<ResponseDailyChartsDto> list() {
         return dailyChartsService.findAll();
     }
-
-    @GetMapping("test/1")
-    public void save() {
-        dailyChartsService.save();
-    }
 }
