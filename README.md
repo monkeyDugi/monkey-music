@@ -183,7 +183,8 @@ Example.builder())
     NullPointerException는 @Autowired, new로 생성 할 때 발생
   - 원인
     - Job인터페이스를 구현한 Job 구현 클래스를 가동 시키는 스케줄러 클래스 빈이  
-      주입 받으려는 Service 클래스에 접근 할 수 없다. Job을 구현 받은 클래스에서 외부 빈은 주입 받을 수 없는건가??  
+      주입 받으려는 Service 클래스에 접근 할 수 없다. Job을 구현 받은 클래스에서 외부 빈은 주입 받을 수 없는건가??
+      아마도 다른 빈들 보다 Job의 빈이 먼저 등록 되어, 다른 빈들 불러오지 못하는 것 같음.  
       **아직 정확히 모르겠다.**
   - 해결
     - **ApplicationContextAware** 인터페이스를 구현 받아 **setApplicationContext**로 ApplicationContext에  
