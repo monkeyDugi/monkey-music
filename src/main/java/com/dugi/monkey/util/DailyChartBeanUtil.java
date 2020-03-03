@@ -1,11 +1,10 @@
 package com.dugi.monkey.util;
 
-import com.dugi.monkey.domain.music.service.DailyChartsService;
 import org.springframework.context.ApplicationContext;
 
-public class DailyChartsBeanUtil {
+public class DailyChartBeanUtil {
 
-    public static DailyChartsService getBean(Class<DailyChartsService> beanName) {
+    public static Object getBean(String beanName) {
         ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 
         return applicationContext.getBean(beanName);

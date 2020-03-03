@@ -7,17 +7,19 @@
 * */
 package com.dugi.monkey.scheduler;
 
-import com.dugi.monkey.domain.music.service.DailyChartsService;
-import com.dugi.monkey.util.DailyChartsBeanUtil;
+import com.dugi.monkey.crawling.MelonYoutubeCombination;
+import com.dugi.monkey.service.DailyChartService;
+import com.dugi.monkey.util.DailyChartBeanUtil;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class DailyChartsJob implements Job {
+public class DailyChartJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        DailyChartsService dailyChartsService = DailyChartsBeanUtil.getBean(DailyChartsService.class);
-        dailyChartsService.save();
+        DailyChartService dailyChartService = (DailyChartService) DailyChartBeanUtil.getBean("dailyChartService");
+        MelonYoutubeCombination melonYoutubeCombination = (MelonYoutubeCombination) DailyChartBeanUtil.getBean("melonYoutubeCombination");
+        dailyChartService.addDailyChart(melonYoutubeCombination.dailyChart());
     }
 }
