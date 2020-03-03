@@ -12,17 +12,17 @@ import java.util.List;
 @Component
 public class MelonYoutubeCombination {
 
-    public List<RequestDailyChartsDto> dailyCharts() {
+    public List<RequestDailyChartDto> dailyChart() {
         MelonCrawilng melonCrawilng = new MelonCrawilng();
         YoutubeSearchAPIProcessing processing = new YoutubeSearchAPIProcessing();
 
         List<RequestMelonCrawlingDto> requestMelonCrawlingDtoList = melonCrawilng.melonCrowilng();
         List<RequestYoutubeAPIDto> requestYoutubeAPIDtoList = processing.searchDataProcessing(requestMelonCrawlingDtoList);
 
-        List<RequestDailyChartsDto> requestDailyChartsDtoList = new ArrayList<>();
+        List<RequestDailyChartDto> requestDailyChartDtoList = new ArrayList<>();
 
         for (int i = 0; i < requestYoutubeAPIDtoList.size(); i++) {
-            requestDailyChartsDtoList.add(RequestDailyChartsDto.builder()
+            requestDailyChartDtoList.add(RequestDailyChartDto.builder()
                                             .rank(requestMelonCrawlingDtoList.get(i).getRank())
                                             .title(requestMelonCrawlingDtoList.get(i).getTitle())
                                             .singer(requestMelonCrawlingDtoList.get(i).getSinger())
@@ -31,7 +31,7 @@ public class MelonYoutubeCombination {
                                             .build());
         }
 
-        return requestDailyChartsDtoList;
+        return requestDailyChartDtoList;
     }
 }
 

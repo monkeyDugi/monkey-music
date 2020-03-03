@@ -19,7 +19,7 @@ public class mustacheControllerTest {
     @Test
     public void 일간차트_페이지_로딩() {
         // when
-        String body = this.restTemplate.getForObject("/charts/daily/", String.class);
+        String body = this.restTemplate.getForObject("/chart/daily/", String.class);
 
         // then
         assertThat(body).contains("순위");

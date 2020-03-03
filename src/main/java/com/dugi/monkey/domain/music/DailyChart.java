@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-public class DailyCharts {
+public class DailyChart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,7 +43,7 @@ public class DailyCharts {
     private LocalDate modifyDate;
 
     @Builder
-    public DailyCharts(String rank, String videoId, String title, String singer, String image) {
+    public DailyChart(String rank, String videoId, String title, String singer, String image) {
         this.rank = rank;
         this.videoId = videoId;
         this.title = title;

@@ -13,13 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DailyChartsRepositoryTest {
+public class DailyChartRepositoryTest {
+
     @Autowired
-    DailyChartsRepository dailyChartsRepository;
+    DailyChartRepository dailyChartRepository;
 
     @Before
     public void cleanup() {
-        dailyChartsRepository.deleteAll();
+        dailyChartRepository.deleteAll();
     }
 
     @Test
@@ -31,7 +32,7 @@ public class DailyChartsRepositoryTest {
         String singer = "지코";
         String image = "https://i.ytimg.com/vi/UuV2BmJ1p_I/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB5nudwhD7aBZkTSH4IFhbWNei-7Q";
 
-        dailyChartsRepository.save(DailyCharts.builder()
+        dailyChartRepository.save(DailyChart.builder()
                 .rank(rank)
                 .videoId(videoId)
                 .title(title)
@@ -40,10 +41,10 @@ public class DailyChartsRepositoryTest {
                 .build());
 
         // when
-        List<DailyCharts> dailyChartsList = dailyChartsRepository.findAll();
+        List<DailyChart> dailyChartsList = dailyChartRepository.findAll();
 
         // then
-        DailyCharts dailyCharts = dailyChartsList.get(0);
+        DailyChart dailyCharts = dailyChartsList.get(0);
         assertThat(dailyCharts.getRank()).isEqualTo(rank);
         assertThat(dailyCharts.getVideoId()).isEqualTo(videoId);
         assertThat(dailyCharts.getTitle()).isEqualTo(title);

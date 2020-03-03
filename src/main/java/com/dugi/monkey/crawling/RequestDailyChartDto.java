@@ -1,11 +1,11 @@
 package com.dugi.monkey.crawling;
 
-import com.dugi.monkey.domain.music.DailyCharts;
+import com.dugi.monkey.domain.music.DailyChart;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RequestDailyChartsDto {
+public class RequestDailyChartDto {
     private String rank;
     private String title;
     private String singer;
@@ -13,7 +13,7 @@ public class RequestDailyChartsDto {
     private String videoId;
 
     @Builder
-    public RequestDailyChartsDto(String rank, String title, String singer, String image, String videoId) {
+    public RequestDailyChartDto(String rank, String title, String singer, String image, String videoId) {
         this.rank = rank;
         this.title = title;
         this.singer = singer;
@@ -21,8 +21,8 @@ public class RequestDailyChartsDto {
         this.videoId = videoId;
     }
 
-    public DailyCharts toEntity() {
-        return DailyCharts.builder()
+    public DailyChart toEntity() {
+        return DailyChart.builder()
                 .rank(rank)
                 .title(title)
                 .singer(singer)
