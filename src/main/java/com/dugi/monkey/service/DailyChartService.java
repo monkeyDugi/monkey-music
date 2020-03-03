@@ -20,7 +20,7 @@ public class DailyChartService {
     public List<ResponseDailyChartDto> getDailyChart() {
         return dailyChartRepository.findAll()
                 .stream()                         // 1. 결과로 넘오온 DailyChars의 stream을
-                .map(ResponseDailyChartDto::new) // map을 통해 DailyChartsListResponseDto로 변환 -> List 반환
+                .map(ResponseDailyChartDto::new)  // map을 통해 DailyChartsListResponseDto로 변환 -> List 반환
                                                   // .map(DailyChars의 -> new DailyChartsListResponseDto(DailyChars의))와 같음
                 .collect(Collectors.toList());
     }
