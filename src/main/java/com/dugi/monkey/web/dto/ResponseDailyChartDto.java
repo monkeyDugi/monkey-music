@@ -1,6 +1,7 @@
 package com.dugi.monkey.web.dto;
 
 import com.dugi.monkey.domain.music.DailyChart;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -11,6 +12,7 @@ public class ResponseDailyChartDto {
     private String singer;
     private String image;
 
+    @Builder
     public ResponseDailyChartDto(DailyChart entity) {
             this.rank = entity.getRank();
             this.videoId = entity.getVideoId();
