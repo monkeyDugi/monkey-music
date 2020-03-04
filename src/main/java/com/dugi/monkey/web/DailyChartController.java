@@ -14,7 +14,7 @@ public class DailyChartController {
     // @AutoWire를 쓰지 않고, @RequiredArgsConstructor로 생성자 주입
     private final DailyChartService dailyChartService;
 
-    @GetMapping("api/chart/daily")
+    @GetMapping("api/charts/daily")
     public List<ResponseDailyChartDto> list() {
         return dailyChartService.getDailyChartAll();
     }

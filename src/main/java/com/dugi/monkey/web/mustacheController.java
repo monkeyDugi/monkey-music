@@ -12,7 +12,7 @@ public class mustacheController {
 
     private final DailyChartService dailyChartService;
 
-    @GetMapping("/chart/daily")
+    @GetMapping("/charts/daily")
     public String dailyChart(Model model) {
         return "dailyChart";
     }
