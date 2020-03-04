@@ -10,27 +10,27 @@ import java.util.List;
 
 public class YoutubeSearchAPIProcessing extends YoutubeSearchAPI{
 
-    public List<RequestYoutubeAPIDto> searchDataProcessing(List<RequestMelonCrawlingDto> requestMelonCrawlingDtoList) {
+    public List<RequestYoutubeAPIDto> searchDataProcessing(List<RequestMelonCrawlingDto> requestMelonCrawlingDtos) {
 
-        List<RequestYoutubeAPIDto> requestYoutubeAPIDtoLIst = new ArrayList<>();
+        List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = new ArrayList<>();
 
         try
         {
             for(int i = 0; i < 1; i++) {
-                String jsonString = youtubeSearchAPI(requestMelonCrawlingDtoList.get(i));
+                String jsonString = youtubeSearchAPI(requestMelonCrawlingDtos.get(i));
                 JSONObject jsonObject = new JSONObject(jsonString);
                 JSONArray items = jsonObject.getJSONArray("items");
                 JSONObject item = items.getJSONObject(0);
                 JSONObject id = item.getJSONObject("id");
                 String videoId = id.getString("videoId");
 
-                requestYoutubeAPIDtoLIst.add(RequestYoutubeAPIDto.builder()
+                requestYoutubeAPIDtos.add(RequestYoutubeAPIDto.builder()
                         .videoId(videoId)
                         .build());
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return requestYoutubeAPIDtoLIst;
+        return requestYoutubeAPIDtos;
     }
 }

@@ -41,14 +41,14 @@ public class DailyChartRepositoryTest {
                 .build());
 
         // when
-        List<DailyChart> dailyChartsList = dailyChartRepository.findAll();
+        List<DailyChart> dailyCharts = dailyChartRepository.findAll();
 
         // then
-        DailyChart dailyCharts = dailyChartsList.get(0);
-        assertThat(dailyCharts.getRank()).isEqualTo(rank);
-        assertThat(dailyCharts.getVideoId()).isEqualTo(videoId);
-        assertThat(dailyCharts.getTitle()).isEqualTo(title);
-        assertThat(dailyCharts.getSinger()).isEqualTo(singer);
-        assertThat(dailyCharts.getImage()).isEqualTo(image);
+        DailyChart dailyChart = dailyCharts.get(0);
+        assertThat(dailyChart.getRank()).isEqualTo(rank);
+        assertThat(dailyChart.getVideoId()).isEqualTo(videoId);
+        assertThat(dailyChart.getTitle()).isEqualTo(title);
+        assertThat(dailyChart.getSinger()).isEqualTo(singer);
+        assertThat(dailyChart.getImage()).isEqualTo(image);
     }
 }

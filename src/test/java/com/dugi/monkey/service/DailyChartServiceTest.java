@@ -45,20 +45,20 @@ public class DailyChartServiceTest {
 
         given(dailyChartRepository.findAll()).willReturn(dailyChartsList);
 
-        assertThat(dailyChartService.getDailyChart().get(0).getVideoId()).isEqualTo("videoId");
+        assertThat(dailyChartService.getDailyChartAll().get(0).getVideoId()).isEqualTo("videoId");
     }
 
     @Test
     public void 일간차트_등록() {
-        List<RequestDailyChartDto> requestDailyChartDtoList = new ArrayList<>();
-        requestDailyChartDtoList.add(RequestDailyChartDto.builder()
+        List<RequestDailyChartDto> requestDailyChartDtos = new ArrayList<>();
+        requestDailyChartDtos.add(RequestDailyChartDto.builder()
                                                         .rank("1")
                                                         .videoId("videoId")
                                                         .title("title")
                                                         .singer("singer")
                                                         .image("image")
                                                         .build());
-        dailyChartService.addDailyChart(requestDailyChartDtoList);
+        dailyChartService.addDailyChart(requestDailyChartDtos);
 
         verify(dailyChartRepository).save(any(DailyChart.class));
     }

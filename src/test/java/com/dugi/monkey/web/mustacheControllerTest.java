@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class mustacheControllerTest {
+
     @Autowired
     private TestRestTemplate restTemplate;
 

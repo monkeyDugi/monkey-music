@@ -17,7 +17,7 @@ public class DailyChartService {
     private final DailyChartRepository dailyChartRepository;
 
     @Transactional(readOnly = true)
-    public List<ResponseDailyChartDto> getDailyChart() {
+    public List<ResponseDailyChartDto> getDailyChartAll() {
         return dailyChartRepository.findAll()
                 .stream()                         // 1. 결과로 넘오온 DailyChars의 stream을
                 .map(ResponseDailyChartDto::new)  // map을 통해 DailyChartsListResponseDto로 변환 -> List 반환
@@ -26,10 +26,10 @@ public class DailyChartService {
     }
 
     @Transactional
-    public void addDailyChart(List<RequestDailyChartDto> requestDailyChartDtoList) {
+    public void addDailyChart(List<RequestDailyChartDto> requestDailyChartDtos) {
         dailyChartRepository.deleteAll();
 
-        for (RequestDailyChartDto dailyChartsDto : requestDailyChartDtoList) {
+        for (RequestDailyChartDto dailyChartsDto : requestDailyChartDtos) {
             dailyChartRepository.save(dailyChartsDto.toEntity());
         }
     }

@@ -27,7 +27,7 @@ public class DailyChartScheduler {
 
         // Job 지정
         JobDetail job = JobBuilder.newJob(DailyChartJob.class) // 실행할 Job 클래스
-                                .withIdentity("dailyChartsJob") // Job 고유명 지정
+                                .withIdentity("dailyChartJob") // Job 고유명 지정
                                 .build();
 
         // trgger 생성

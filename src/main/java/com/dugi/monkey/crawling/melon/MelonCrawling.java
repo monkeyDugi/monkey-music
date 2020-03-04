@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MelonCrawilng {
+public class MelonCrawling {
 
-    public List<RequestMelonCrawlingDto> melonCrowilng() {
+    public List<RequestMelonCrawlingDto> melonCrawilng() {
         String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         Document doc = null;
 
@@ -23,7 +23,7 @@ public class MelonCrawilng {
 
         Elements melons = doc.select("div.service_list_song>table>tbody>tr");
 
-        List<RequestMelonCrawlingDto> requestMelonCrawlingDtoList = new ArrayList<>();
+        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = new ArrayList<>();
         String rank;
         String title;
         String singer;
@@ -35,7 +35,7 @@ public class MelonCrawilng {
             singer = melon.select("div.wrap_song_info>div.rank02>span>a").text();
             image = melon.select("div>a.image_typeAll>img").attr("src");
 
-            requestMelonCrawlingDtoList.add(RequestMelonCrawlingDto.builder()
+            requestMelonCrawlingDtos.add(RequestMelonCrawlingDto.builder()
                                             .rank(rank)
                                             .title(title)
                                             .singer(singer)
@@ -45,6 +45,6 @@ public class MelonCrawilng {
             System.out.println(rank + title + singer + image);
         }
 
-        return requestMelonCrawlingDtoList;
+        return requestMelonCrawlingDtos;
     }
 }
