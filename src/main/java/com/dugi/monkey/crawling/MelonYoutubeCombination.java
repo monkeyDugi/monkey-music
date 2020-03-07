@@ -14,8 +14,8 @@ import java.util.List;
 @Component
 public class MelonYoutubeCombination {
 
-        private final MelonCrawling melonCrawling;
-        private final YoutubeSearchAPIProcessing processing;
+    private final MelonCrawling melonCrawling;
+    private final YoutubeSearchAPIProcessing processing;
 
     public List<RequestDailyChartDto> dailyChart() {
 
