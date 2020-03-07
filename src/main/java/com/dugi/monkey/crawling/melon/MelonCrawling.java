@@ -4,14 +4,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MelonCrawling {
 
-    public List<RequestMelonCrawlingDto> melonCrawilng() {
+    public List<RequestMelonCrawlingDto> melonCrawling() {
         String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         Document doc = null;
 

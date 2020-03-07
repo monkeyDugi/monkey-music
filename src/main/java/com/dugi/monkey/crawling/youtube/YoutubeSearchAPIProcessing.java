@@ -4,10 +4,12 @@ import com.dugi.monkey.crawling.melon.RequestMelonCrawlingDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class YoutubeSearchAPIProcessing extends YoutubeSearchAPI{
 
     public List<RequestYoutubeAPIDto> searchDataProcessing(List<RequestMelonCrawlingDto> requestMelonCrawlingDtos) {
