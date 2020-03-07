@@ -20,7 +20,7 @@ public class YoutubeSearchAPI {
         try {
             String inputLine;
             String apiurl = "https://www.googleapis.com/youtube/v3/search";
-            apiurl += "?key=AIzaSyDGNqrzytyG4vieS-Pa1daow3onXPH62TQ";                  //api 키
+            apiurl += "?key=" + APIKey.API_KEY.getApiKey();                  //api 키
             apiurl += "&part=snippet&type=video&maxResults=1&videoEmbeddable=true";    //max result 최대 20개 그 이상이면 할당량 더 사라짐.
             apiurl += "&q=" + URLEncoder.encode(param, "UTF-8");                  //검색어 한글깨짐 방지.
 
