@@ -4,19 +4,22 @@ import com.dugi.monkey.crawling.melon.MelonCrawling;
 import com.dugi.monkey.crawling.melon.RequestMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.RequestYoutubeAPIDto;
 import com.dugi.monkey.crawling.youtube.YoutubeSearchAPIProcessing;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Component
 public class MelonYoutubeCombination {
 
-    public List<RequestDailyChartDto> dailyChart() {
-        MelonCrawling melonCrawling = new MelonCrawling();
-        YoutubeSearchAPIProcessing processing = new YoutubeSearchAPIProcessing();
+        private final MelonCrawling melonCrawling;
+        private final YoutubeSearchAPIProcessing processing;
 
-        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = melonCrawling.melonCrawilng();
+    public List<RequestDailyChartDto> dailyChart() {
+
+        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = melonCrawling.melonCrawling();
         List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = processing.searchDataProcessing(requestMelonCrawlingDtos);
 
         List<RequestDailyChartDto> requestDailyChartDtos = new ArrayList<>();
