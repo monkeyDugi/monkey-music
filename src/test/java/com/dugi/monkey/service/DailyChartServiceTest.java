@@ -1,8 +1,8 @@
 package com.dugi.monkey.service;
 
 import com.dugi.monkey.crawling.RequestDailyChartDto;
-import com.dugi.monkey.domain.music.DailyChart;
-import com.dugi.monkey.domain.music.DailyChartRepository;
+import com.dugi.monkey.domain.music.dailychart.DailyChart;
+import com.dugi.monkey.domain.music.dailychart.DailyChartRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
