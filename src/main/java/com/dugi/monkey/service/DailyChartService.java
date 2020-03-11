@@ -1,7 +1,7 @@
 package com.dugi.monkey.service;
 
 import com.dugi.monkey.crawling.RequestDailyChartDto;
-import com.dugi.monkey.domain.music.DailyChartRepository;
+import com.dugi.monkey.domain.music.dailychart.DailyChartRepository;
 import com.dugi.monkey.web.dto.ResponseDailyChartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.dugi.monkey.web.dto;
 
-import com.dugi.monkey.domain.music.DailyChart;
+import com.dugi.monkey.domain.music.dailychart.DailyChart;
 import lombok.Builder;
 import lombok.Getter;
 
