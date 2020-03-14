@@ -1,5 +1,7 @@
 package com.dugi.monkey.crawling;
 
+import com.dugi.monkey.crawling.dto.RequestDailyChartDto;
+import com.dugi.monkey.crawling.youtube.dailychart.MelonYoutubeCombination;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
