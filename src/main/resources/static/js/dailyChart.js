@@ -1,23 +1,6 @@
 let videoId;
 let tag;
 let currentVideoIndex;
-//let songList = [
-//    {
-//        rank: 1,
-//        song: '아무노래',
-//        singer: '지코',
-//        img: 'https://i.ytimg.com/vi/UuV2BmJ1p_I/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB5nudwhD7aBZkTSH4IFhbWNei-7Q',
-//        vidoeId: 'UuV2BmJ1p_I'
-//    },
-//    {
-//        rank: 2,
-//        song: 'Call You Mine',
-//        singer: '권진아, 샘김',
-//        img: 'https://i.ytimg.com/vi/tUPOFKU5ZuQ/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAwKi3fLguejBOiwE0rveHNPnz6iw',
-//        vidoeId: 'tUPOFKU5ZuQ'
-//    }
-//]
-
 let songList;
 
 /**
