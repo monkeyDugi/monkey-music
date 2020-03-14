@@ -1,8 +1,9 @@
-package com.dugi.monkey.web;
+package com.dugi.monkey.web.dailychart;
 
 import com.dugi.monkey.domain.music.dailychart.DailyChart;
 import com.dugi.monkey.service.DailyChartService;
-import com.dugi.monkey.web.dto.ResponseDailyChartDto;
+import com.dugi.monkey.web.dailychart.DailyChartController;
+import com.dugi.monkey.web.dailychart.dto.ResponseDailyChartDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

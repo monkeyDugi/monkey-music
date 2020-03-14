@@ -7,7 +7,7 @@
 * */
 package com.dugi.monkey.scheduler;
 
-import com.dugi.monkey.crawling.MelonYoutubeCombination;
+import com.dugi.monkey.crawling.youtube.dailychart.MelonYoutubeCombination;
 import com.dugi.monkey.service.DailyChartService;
 import com.dugi.monkey.util.DailyChartBeanUtil;
 import org.quartz.Job;

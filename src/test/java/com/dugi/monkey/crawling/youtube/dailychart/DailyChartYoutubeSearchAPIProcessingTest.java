@@ -1,4 +1,4 @@
-package com.dugi.monkey.crawling.youtube;
+package com.dugi.monkey.crawling.youtube.dailychart;
 
 import com.dugi.monkey.crawling.melon.MelonCrawling;
 import org.junit.Before;
@@ -15,10 +15,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = NONE)
-public class YoutubeSearchAPIProcessingTest {
+public class DailyChartYoutubeSearchAPIProcessingTest {
 
     @Autowired
-    private YoutubeSearchAPIProcessing youtubeSearchAPIProcessing;
+    private DailyChartYoutubeSearchAPIProcessing dailyCahrtYoutubeSearchAPIProcessing;
 
     @Autowired
     private MelonCrawling melonCrawling;
@@ -27,7 +27,7 @@ public class YoutubeSearchAPIProcessingTest {
 
     @Before
     public void setUp() throws Exception {
-        requestYoutubeAPIDtos = youtubeSearchAPIProcessing.searchDataProcessing(melonCrawling.melonCrawling());
+        requestYoutubeAPIDtos = dailyCahrtYoutubeSearchAPIProcessing.dailyChartSearchDataProcessing(melonCrawling.melonCrawling());
     }
 
     @Test

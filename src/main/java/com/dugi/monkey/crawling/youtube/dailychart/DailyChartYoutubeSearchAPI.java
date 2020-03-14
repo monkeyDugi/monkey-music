@@ -1,6 +1,7 @@
-package com.dugi.monkey.crawling.youtube;
+package com.dugi.monkey.crawling.youtube.dailychart;
 
 import com.dugi.monkey.crawling.melon.RequestMelonCrawlingDto;
+import com.dugi.monkey.crawling.youtube.APIKey;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class YoutubeSearchAPI {
+public class DailyChartYoutubeSearchAPI {
 
-    protected String youtubeSearchAPI(RequestMelonCrawlingDto requestMelonCrawlingDto) {
+    protected String dailyChartYoutubeSearchAPI(RequestMelonCrawlingDto requestMelonCrawlingDto) {
         String jsonString = "";
         String title = requestMelonCrawlingDto.getTitle();
         String singer = requestMelonCrawlingDto.getSinger();

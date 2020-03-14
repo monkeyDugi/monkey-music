@@ -1,9 +1,10 @@
-package com.dugi.monkey.crawling;
+package com.dugi.monkey.crawling.youtube.dailychart;
 
+import com.dugi.monkey.crawling.dto.RequestDailyChartDto;
 import com.dugi.monkey.crawling.melon.MelonCrawling;
 import com.dugi.monkey.crawling.melon.RequestMelonCrawlingDto;
-import com.dugi.monkey.crawling.youtube.RequestYoutubeAPIDto;
-import com.dugi.monkey.crawling.youtube.YoutubeSearchAPIProcessing;
+import com.dugi.monkey.crawling.youtube.dailychart.RequestYoutubeAPIDto;
+import com.dugi.monkey.crawling.youtube.dailychart.DailyChartYoutubeSearchAPIProcessing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +16,12 @@ import java.util.List;
 public class MelonYoutubeCombination {
 
     private final MelonCrawling melonCrawling;
-    private final YoutubeSearchAPIProcessing processing;
+    private final DailyChartYoutubeSearchAPIProcessing processing;
 
     public List<RequestDailyChartDto> dailyChart() {
 
         List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = melonCrawling.melonCrawling();
-        List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = processing.searchDataProcessing(requestMelonCrawlingDtos);
+        List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = processing.dailyChartSearchDataProcessing(requestMelonCrawlingDtos);
 
         List<RequestDailyChartDto> requestDailyChartDtos = new ArrayList<>();
 

@@ -1,4 +1,4 @@
-package com.dugi.monkey.crawling.youtube;
+package com.dugi.monkey.crawling.youtube.dailychart;
 
 import lombok.Builder;
 import lombok.Getter;

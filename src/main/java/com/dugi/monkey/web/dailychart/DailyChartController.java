@@ -1,7 +1,7 @@
-package com.dugi.monkey.web;
+package com.dugi.monkey.web.dailychart;
 
 import com.dugi.monkey.service.DailyChartService;
-import com.dugi.monkey.web.dto.ResponseDailyChartDto;
+import com.dugi.monkey.web.dailychart.dto.ResponseDailyChartDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.dugi.monkey.web.dto;
+package com.dugi.monkey.web.dailychart.dto;
 
 import com.dugi.monkey.domain.music.dailychart.DailyChart;
 import lombok.Builder;
