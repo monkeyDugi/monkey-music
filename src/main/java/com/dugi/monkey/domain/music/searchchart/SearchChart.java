@@ -15,6 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class SearchChart extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,14 +29,14 @@ public class SearchChart extends BaseTimeEntity {
     @Column(nullable = false)
     private String image;
 
-    @Column(nullable = false, columnDefinition = "N")
-    private String like;
+    @Column(nullable = false)
+    private String good;
 
     @Builder
-    public SearchChart(String videoId, String title, String like, String image) {
+    public SearchChart(String videoId, String title, String good, String image) {
         this.videoId = videoId;
         this.title = title;
         this.image = image;
-        this.like = like;
+        this.good = good;
     }
 }

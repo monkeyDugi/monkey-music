@@ -8,13 +8,13 @@ public class RequestSearchChartDto {
 
     private String title;
     private String image;
-    private String like;
+    private String good;
     private String videoId;
 
     @Builder
-    public RequestSearchChartDto(String title, String like, String image, String videoId) {
+    public RequestSearchChartDto(String title, String good, String image, String videoId) {
         this.title = title;
-        this.like = like;
+        this.good = good;
         this.image = image;
         this.videoId = videoId;
     }
