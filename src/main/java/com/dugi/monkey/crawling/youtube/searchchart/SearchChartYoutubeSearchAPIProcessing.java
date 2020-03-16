@@ -18,7 +18,7 @@ public class SearchChartYoutubeSearchAPIProcessing extends SearchChartYoutubeSea
 
         try
         {
-            for(int i = 0; i < 1; i++) {
+            for(int i = 0; i < 10; i++) {
                 String jsonString = searchChartyoutubeSearchAPI(word);
 //                System.out.println(jsonString);
                 JSONObject jsonObject = new JSONObject(jsonString);
