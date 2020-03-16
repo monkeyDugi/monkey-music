@@ -30,6 +30,6 @@ public class MelonYoutubeCombinationTest {
 
     @Test
     public void 멜론_일간차트_유튜브_결과가_1개인지() {
-        assertThat(requestDailyChartDtos.size()).isEqualTo(1);
+        assertThat(requestDailyChartDtos.size()).isEqualTo(10);
     }
 }
