@@ -45,7 +45,6 @@ function onPlayerStateChange(event) {
      type : "GET"
  ,   url :  "/api/charts/daily"
  ,   dataType : "JSON"
- ,   contentType : "application/json"
  ,   success : function(obj) {
          songList = obj;
          songListSet();
