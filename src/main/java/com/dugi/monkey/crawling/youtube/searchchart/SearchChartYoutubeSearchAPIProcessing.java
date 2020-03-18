@@ -16,11 +16,11 @@ public class SearchChartYoutubeSearchAPIProcessing extends SearchChartYoutubeSea
     public List<RequestSearchChartDto> searchChartSearchDataProcessing(String word) {
         List<RequestSearchChartDto> requestSearchChartDtos = new ArrayList<>();
 
+        String jsonString = searchChartyoutubeSearchAPI(word);
+        System.out.println(jsonString);
         try
         {
             for(int i = 0; i < 10; i++) {
-                String jsonString = searchChartyoutubeSearchAPI(word);
-//                System.out.println(jsonString);
                 JSONObject jsonObject = new JSONObject(jsonString);
                 JSONArray items = jsonObject.getJSONArray("items");
                 JSONObject item = items.getJSONObject(i);
