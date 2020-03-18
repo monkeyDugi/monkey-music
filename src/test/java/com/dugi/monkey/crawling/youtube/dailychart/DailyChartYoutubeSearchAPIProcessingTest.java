@@ -31,7 +31,7 @@ public class DailyChartYoutubeSearchAPIProcessingTest {
     }
 
     @Test
-    public void 유튜브_검색_결과가_1개가_맞는지() {
+    public void 유튜브_검색_결과가_10개가_맞는지() {
         assertThat(requestYoutubeAPIDtos.size()).isEqualTo(10);
     }
 }
