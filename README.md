@@ -74,6 +74,7 @@ buildscript {
 ### - [Enetity에서 Setter]()
 ### - [생성자와 Builder 패턴]()
 ### - [quarts 스케줄러]()
+### - [form과 input 태그로 고생한 일]()
 ### - [기타]()
 - [ORM과 JPA란]()
 
@@ -197,6 +198,43 @@ Example.builder())
 
 # 
 
+### form과 input 태그로 고생한 일
+- ajax로 api를 사용 하다가 고생을 해서 기록한다
+- 로직 설명
+  1. input의 값을 ajax를 통해 PathVariable로 컨트롤러에 전송  
+  ![form](https://user-images.githubusercontent.com/53487385/76988168-a94b3080-6987-11ea-85d4-d0adf2b213b4.PNG)  
+  
+  2. 엔터키 탕! -> api로 input 값 전송  
+  ![js](https://user-images.githubusercontent.com/53487385/76988173-ab14f400-6987-11ea-8a84-fc8e1f40db55.PNG)  
+  
+  3. input 값 PathVariable로 받아 처리  
+  ![apiController](https://user-images.githubusercontent.com/53487385/76988174-ab14f400-6987-11ea-8367-026d511da7de.PNG)  
+  
+  4. view Controller  
+  ![viewController](https://user-images.githubusercontent.com/53487385/76988175-abad8a80-6987-11ea-8693-73edb1b5592b.PNG)  
+
+- 문제점  
+  - 엔터키 탕! -> ajax를 처리하다 말고 view url인 "/charts/search/**?**"가 로드 되어 ajax로 처리하던 것이 모두 초기화 되어 버림  
+    즉, api 사용 불가, 더욱 이상했던 점은 **다른 키 입력 시 정상작동 함**
+- 원인
+  - **from**태그는 디폴트로 action이 **자기자신**을 가지고 있고, **form**태그 안에 존재하는 **input**태그는 엔터 입력 시 submit을 하여,    
+    **queryString**을 action에 던지는 디폴트를 가지고 있다. 즉, 해당 화면에서 **input**태그에 name, value 속성이 없었으므로
+    "/charts/search/**?**"을 로드 해버린 것 이다. name=singer, value=IU 이런 식으로 **input** 태그에 넣어 준다면, 
+    "/charts/search/**?singer=IU**" 이런 식으로 로드 되며, 결과는 동일했다. 
+- 해결
+  - ajax 통신 중 "/charts/search/**?**"가 로드 되는 것이므로, event.preventDefault()로 기존에 걸려있던 submit을 중단 시킨다.
+- 정리
+  - **form**와 **form**태그 안에 **input**태그는 따로 이벤트를 지정하지 않으면 엔터키 탕! -> queryString을 현재 페이지에 보내어 로드하게 된다.  
+  - 의도치 않는 submit이 일어나게 된다. 이는 submit이란 **action**으로 **form**안에 있는 내용을 전송하는 것    
+  - <h3>위에 설명한 글은 input태그 type=text일 경우 임.</h3>
+  - input태그 type=checkbox일 경우 event.preventDefault()를 실행하면 check, uncheck가 안되는 것.
+    - **form**의 action은 아무런 의미가 없음.
+- [참고1](https://webisfree.com/2017-08-07/input-입력폼-엔터키-누를-경우-submit-막기-prevent)
+- [참고2](https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/)
+- [참고3](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault)
+        
+#
+
 ### 기타
 #### - ORM과 JPA이란
 - ORM : Object-relational mapping(객체 관계 매핑)
@@ -216,4 +254,3 @@ Example.builder())
     - 관계형 데이터베이스 외에 다른 저장소로 쉽게 교체가 쉽다.
       - Spring Data의 하위 프로젝트들은 기본적인 CRUD 인터페이스가 같기 때문이라고 한다.
       - 즉, Spring Data JPA, Spring Data MongoDB 이런 식으로 의존성만 교체하면 save(), findAll() 등의 인터페이스가 같다. 
-
