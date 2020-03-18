@@ -43,8 +43,8 @@ function onPlayerStateChange(event) {
 
 let search = document.getElementById('search')
 search.addEventListener('keydown', function(event) {
-    event.preventDefault()
     if(event.keyCode === 13) {
+    event.preventDefault()
         const word = search.value
         $.ajax({
             type : "GET",
