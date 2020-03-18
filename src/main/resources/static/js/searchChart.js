@@ -41,27 +41,32 @@ function onPlayerStateChange(event) {
 	}
 }
 
- $.ajax({
-     type : "GET"
- ,   url :  "/api/charts/search"
- ,   dataType : "JSON"
- ,   contentType : "application/json"
- ,   success : function(obj) {
-         songList = obj;
-         songListSet();
-     }
- });
+let search = document.getElementById('search')
+search.addEventListener('keydown', function(event) {
+    event.preventDefault()
+    if(event.keyCode === 13) {
+        const word = search.value
+        $.ajax({
+            type : "GET",
+            url :  "/api/charts/search/" + word,
+            dataType : "JSON",
+            success : function(obj) {
+                 songList = obj;
+                 songListSet()
+            }
+        })
+    }
+})
 
 let tr = document.getElementsByTagName('tr')
 // 음악 목록 Set
 function songListSet() {
 	for(let i = 0; i < songList.length; i++) {
-		tr[i+1].getElementsByTagName('td')[0].innerHTML = songList[i].rank;
-        tr[i+1].getElementsByTagName('td')[1].firstElementChild.src = songList[i].image;
-        tr[i+1].getElementsByTagName('td')[2].innerHTML = songList[i].title;
-        tr[i+1].getElementsByTagName('td')[3].innerHTML = songList[i].singer;
-        tr[i+1].getElementsByTagName('td')[4].firstElementChild.value = songList[i].videoId;
-        tr[i+1].getElementsByTagName('td')[4].firstElementChild.dataset.index = i;
+        tr[i+1].getElementsByTagName('td')[0].firstElementChild.src = songList[i].image;
+        tr[i+1].getElementsByTagName('td')[1].innerHTML = songList[i].title;
+        tr[i+1].getElementsByTagName('td')[2].innerHTML = songList[i].good;
+        tr[i+1].getElementsByTagName('td')[3].firstElementChild.value = songList[i].videoId;
+        tr[i+1].getElementsByTagName('td')[3].firstElementChild.dataset.index = i;
 	}
 }
 
@@ -87,11 +92,11 @@ function onclickVideoIdSet(obj) {
 // 재상완료 후 다음곡 or 1번 곡 idSet
 function endedVideoIdSet() {
 	if(lastSongChk()) {
-		return tr[currentVideoIndex + 1].getElementsByTagName('td')[4].firstElementChild.value;
+		return tr[currentVideoIndex + 1].getElementsByTagName('td')[3].firstElementChild.value;
 	}
 
 	currentVideoIndex = 0;
-	return tr[1].getElementsByTagName('td')[4].firstElementChild.value;
+	return tr[1].getElementsByTagName('td')[3].firstElementChild.value;
 }
 
 // 마지막 곡인지 체크
