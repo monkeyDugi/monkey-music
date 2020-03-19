@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>MonkeyMusic</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/searchChart.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/searchChart.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-warning bg-warning fixed-top">
     <div class="collapse navbar-collapse" id="navbarsExample03">
-        <form class="form-inline my-2 my-md-0">
-            <input id="search" class="form-control" type="text" placeholder="Search" style="width: 400px;">
+        <form action="/charts/search"class="form-inline my-2 my-md-0">
+            <input id="search" name="word" class="form-control" type="text" placeholder="Search" value={{word}} style="width: 400px;">
         </form>
     </div>
 </nav>
@@ -96,15 +96,7 @@
         </tbody>
     </table>
 </div>
-<footer>
-    <div class="footer-interval"></div>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-bottom">
-        <div class="collapse navbar-collapse" id="navbarsExample03">
-            <form class="form-inline my-2 my-md-0">
-            </form>
-        </div>
-    </nav>
-</footer>
+{{>layout/footer}}
 <script type="text/javascript" src="/js/searchChart.js"></script>
 </body>
 </html>
