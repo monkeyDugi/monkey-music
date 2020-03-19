@@ -71,8 +71,6 @@ buildscript {
   
 # 목차
 ### - [IFrame API]()
-### - [Enetity에서 Setter]()
-### - [생성자와 Builder 패턴]()
 ### - [quarts 스케줄러]()
 ### - [form과 input 태그로 고생한 일]()
 ### - [기타]()
@@ -124,55 +122,6 @@ function onPlayerStateChange(event) {
 </script>
 ```
 [공문](https://developers.google.com/youtube/iframe_api_reference?hl=ko)
-
-#
-
-### - Enetity에서 Setter
-- Entity에서 Setter는 사용하지 않는다. 언제 어디서 사용되는 것인지 불분명 해지기 때문이다.
-- Entity 변경이 필요하면 메서드를 만들어 사용하자
-```java
-// 잘못된 예
-public class Order {
-    public void setStatus(boolean status) {
-        this.status = status;
-    }   
-}
-
-public void 주문서비스의_취소이벤트() {
-    order.setStatus(false);
-}
-
-// 옳은 예
-public class Order {
-    public void cancelOrder() {
-        this.status = false;
-    }   
-}
-
-public void 주문서비스의_취소이벤트() {
-    order.cancelOrder();
-}
-```
-
-#
-
-### - 생성자와 Builder 패턴
-- 생성자는 setter와 마찬가지로 목적을 파악하기 어렵기 때문에 Builder 패턴으로 명확하게 표현한다.
-```java
-// 잘못된 예
-// 생성자 호출 시 new Exapmle(b, a)로 해도 맞는지 틀린지 돌려보기 전 까지는 알 수가 없다.
-public Example(Sring a, STring b) {
-    this.a = a;
-    this.b = b;
-}
-
-// Builder 패턴 : 명확함
-Example.builder())
-       .a(a)
-       .b(b)
-       .build();
-
-```
 
 #
 
@@ -235,8 +184,7 @@ Example.builder())
         
 #
 
-### 기타
-#### - ORM과 JPA이란
+### - ORM과 JPA이란
 - ORM : Object-relational mapping(객체 관계 매핑)
   - 객체는 객체대로 설계하고, 관계형 데이터베이스는 관계형 데이터베이스대로 설계
   - ORM 프레임워크가 중간에서 매핑
