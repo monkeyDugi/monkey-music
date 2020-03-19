@@ -20,7 +20,6 @@ public class DailyChartYoutubeSearchAPIProcessing extends DailyChartYoutubeSearc
         {
             for(int i = 0; i < 10; i++) {
                 String jsonString = dailyChartYoutubeSearchAPI(requestMelonCrawlingDtos.get(i));
-                System.out.println(jsonString);
                 JSONObject jsonObject = new JSONObject(jsonString);
                 JSONArray items = jsonObject.getJSONArray("items");
                 JSONObject item = items.getJSONObject(0);

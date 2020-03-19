@@ -17,7 +17,7 @@ public class SearchChartYoutubeSearchAPIProcessing extends SearchChartYoutubeSea
         List<RequestSearchChartDto> requestSearchChartDtos = new ArrayList<>();
 
         String jsonString = searchChartyoutubeSearchAPI(word);
-        System.out.println(jsonString);
+
         try
         {
             for(int i = 0; i < 10; i++) {
