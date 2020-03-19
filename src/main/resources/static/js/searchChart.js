@@ -48,7 +48,6 @@ function searchApi() {
         url :  "/api/charts/search/" + word,
         dataType : "JSON",
         success : function(obj) {
-            console.log('완료')
              songList = obj;
              songListSet()
         }
