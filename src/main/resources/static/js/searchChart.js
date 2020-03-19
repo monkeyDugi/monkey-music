@@ -41,22 +41,21 @@ function onPlayerStateChange(event) {
 	}
 }
 
-let search = document.getElementById('search')
-search.addEventListener('keydown', function(event) {
-    if(event.keyCode === 13) {
-    event.preventDefault()
-        const word = search.value
-        $.ajax({
-            type : "GET",
-            url :  "/api/charts/search/" + word,
-            dataType : "JSON",
-            success : function(obj) {
-                 songList = obj;
-                 songListSet()
-            }
-        })
-    }
-})
+function searchApi() {
+    word = search.value
+    $.ajax({
+        type : "GET",
+        url :  "/api/charts/search/" + word,
+        dataType : "JSON",
+        success : function(obj) {
+            console.log('완료')
+             songList = obj;
+             songListSet()
+        }
+    })
+}
+
+searchApi()
 
 let tr = document.getElementsByTagName('tr')
 // 음악 목록 Set
