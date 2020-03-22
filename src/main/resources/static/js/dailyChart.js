@@ -41,6 +41,15 @@ function onPlayerStateChange(event) {
 	}
 }
 
+let search = document.getElementById('search')
+let word
+search.addEventListener('keydown', function(event) {
+    if(event.keyCode === 13) {
+        word = search.value
+        window.location.href = '/charts/search/' + word;
+    }
+})
+
  $.ajax({
      type : "GET"
  ,   url :  "/api/charts/daily"
