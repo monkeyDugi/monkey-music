@@ -18,13 +18,8 @@ public class SearchChartController {
 
     private final SearchChartService searchChartService;
 
-    @Autowired
-    SearchChartYoutubeSearchAPIProcessing processing;
-
     @GetMapping("api/charts/search/{word}")
     public List<ResponseSearchChartDto> list(@PathVariable("word") String word) {
-        List<RequestSearchChartDto> requestSearchChartDtos = processing.searchChartSearchDataProcessing(word);
-
-        return searchChartService.getSearchChartAll(requestSearchChartDtos);
+        return searchChartService.getSearchChartAll(word);
     }
 }
