@@ -66,11 +66,19 @@ let tr = document.getElementsByTagName('tr')
 // 음악 목록 Set
 function songListSet() {
 	for(let i = 0; i < songList.length; i++) {
-        tr[i+1].getElementsByTagName('td')[0].firstElementChild.src = songList[i].image;
-        tr[i+1].getElementsByTagName('td')[1].innerHTML = songList[i].title;
-        tr[i+1].getElementsByTagName('td')[2].innerHTML = songList[i].good;
-        tr[i+1].getElementsByTagName('td')[3].firstElementChild.value = songList[i].videoId;
-        tr[i+1].getElementsByTagName('td')[3].firstElementChild.dataset.index = i;
+        tr[i+1].getElementsByTagName('td')[0].firstElementChild.src = songList[i].image
+        tr[i+1].getElementsByTagName('td')[1].innerHTML = songList[i].title
+
+        if(songList[i].good === 'Y') {
+            tr[i+1].getElementsByTagName('td')[2].firstElementChild.src = '/image/heart_b.png'
+        } else if(songList[i].good === 'N') {
+            tr[i+1].getElementsByTagName('td')[2].firstElementChild.src = '/image/heart.png'
+        }
+        tr[i+1].getElementsByTagName('td')[2].firstElementChild.dataset.good = songList[i].good
+        tr[i+1].getElementsByTagName('td')[2].firstElementChild.dataset.index = i
+
+        tr[i+1].getElementsByTagName('td')[3].firstElementChild.value = songList[i].videoId
+        tr[i+1].getElementsByTagName('td')[3].firstElementChild.dataset.index = i
 	}
 }
 
@@ -78,6 +86,45 @@ const playBtns = document.getElementsByClassName('play-btn')
 for(playBtn of playBtns) {
     playBtn.addEventListener('click', function() {
         onclickVideoIdSet($(this))
+    })
+}
+
+// 등록 후 id 받아서 dataset에 저장 후 삭제 시 사용 해야 함.
+const goodBtns = document.getElementsByClassName('good-btn')
+for(goodBtn of goodBtns) {
+    goodBtn.addEventListener('click', function() {
+        let _this = this
+
+        let good = _this.dataset.good
+        let index = _this.dataset.index
+        let goodVideoId = songList[index].videoId
+        let urlType
+        let msg
+
+        if(good === 'Y') {
+            urlType = 'DELETE'
+            _this.src = '/image/heart.png'
+            _this.dataset.good = 'N'
+//            param = this.dataset.id
+        } else if(good === 'N') {
+            urlType = 'POST'
+            _this.src = '/image/heart_b.png'
+            _this.dataset.good = 'Y'
+//            param = goodVideoId
+        }
+
+        $.ajax({
+            type : urlType,
+            url :  "/api/charts/good/" + goodVideoId,
+            dataType : "JSON",
+            success : function(obj) {
+                if(good === 'N') {
+//                    this.dataset.id = 'd'
+//                    _this.dataset.id = obj
+//                    console.log(obj)
+                }
+            }
+        })
     })
 }
 

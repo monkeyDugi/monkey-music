@@ -23,20 +23,16 @@ public class SearchChart extends BaseTimeEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String videoId;
 
     @Column(nullable = false)
     private String image;
 
-    @Column(nullable = false)
-    private String good;
-
     @Builder
-    public SearchChart(String videoId, String title, String good, String image) {
+    public SearchChart(String videoId, String title, String image) {
         this.videoId = videoId;
         this.title = title;
         this.image = image;
-        this.good = good;
     }
 }
