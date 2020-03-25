@@ -6,6 +6,7 @@
 - springBoot : 2.1.7
 - gradle : 4.10.2
 - quarts : 2.3.1
+- querydsl : 4.2.1
 - [JPA(Spring Data JPA)]()
   - 내가 현업에서 경험한 java는 DB에 접근하기 위한 수단 정도로 느껴진다. 모든 로직은 쿼리에서 수행하려고 하고,  
     관계형 데이터 베이스는 SQL로만 가능 하기 때문인 것 같다. 이게 잘 못 되었다고 생각하지는 않는다. 다만 java를 이용해서  
@@ -27,10 +28,8 @@
   - 검색어에 대한 유튜브 리스트 20개를 보여준다.
 - 마이뮤직
   - 하트 클릭 시 마이 뮤직 리스트에 저장
-- 가장 많이 들은 곡
 - 공통
   - 음원은 유튜브 영상을 가져온다.
-  - 반복재생, 다음 곡 재생, 이전 곡 재생 가능
   - 구글, 네이버 소셜 로그인 
   - 비회원은 검색 기능 사용 불가
  
@@ -73,7 +72,7 @@ buildscript {
 ### - [IFrame API]()
 ### - [quarts 스케줄러]()
 ### - [form과 input 태그로 고생한 일]()
-### - [기타]()
+### - [querydsl]()
 - [ORM과 JPA란]()
 
 #
@@ -182,6 +181,20 @@ function onPlayerStateChange(event) {
 - [참고2](https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/)
 - [참고3](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault)
         
+#
+
+### - qeurydsl
+- 사용이유
+  - JPA를 사용하는 이유 중 하나는 쿼리를 작성하지 않기 위함도 있다. 하지만 Spring Data Jpa가 제공하는  
+    기본 메서드는 정말 기본 CRUD만 가능한 것으로 보인다.  
+    그래서 @Query를 사용 했지만 결국 MyBatis를 사용하는 것과 다를바가 없어 보였다. 물론, native query가 아닌  
+    JPQL을 사용하면 디비에 의존하지 않고 클래스를 바라 보기 때문에 MyBatis와는 다르다.
+    그렇지만 querydsl만의 장점이 있다.(아직 동적쿼리는 사용하지 않아서 제외 함)
+    1. 쿼리문을 사용하면 문자열 이기 때문에 컴파일을 하고 직접 실행을 해야 틀렸다는 것을 알 수 있다.  
+       즉, 런타임에서 에러를 잡을 수 있지만, querydsl은 쿼리문 자체를 메서드로 작성하기 때문에  
+       컴파일 전 IDE에서 부터 에러를 알 수 있다. 실제로 현업에서 이런 부분으로 시간을 많이 잡아 먹기 때문에  
+       이 정도 장점만 느껴도 엄청난 장점으로 보여진다.
+
 #
 
 ### - ORM과 JPA이란
