@@ -5,12 +5,15 @@ buildscript {
     // classpath : spring-boot-gradle-plugin의 2.1.7.REALESE를 의존성으로 받음
     ext {
         springBootVersion = '2.1.7.RELEASE'
+        querydslPluginVersion = '1.0.10'
     }
     repositories {
         mavenCentral()
+        maven {url "https://plugins.gradle.org/m2/"} // plugin 저장소
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
     }
 }
 
@@ -21,6 +24,23 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 // 스프링부트 의전성 관리를 해주는 플러그인으로써 꼭 추가해야 함
 apply plugin: 'io.spring.dependency-management'
+// querydsl 적용
+apply plugin: 'com.ewerk.gradle.plugins.querydsl' // plugin 적용
+def querydslSrcDir = 'src/main/generated' // QClass 생성 위치
+
+querydsl {
+    library = 'com.querydsl:querydsl-apt'
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir querydslSrcDir
+        }
+    }
+}
 
 group 'com.dugi.moneky'
 version '1.0-SNAPSHOT'
@@ -49,6 +69,12 @@ dependencies {
     compile 'org.jsoup:jsoup:1.12.2'
     compile 'org.json:json:20171018'
     compile group: 'org.quartz-scheduler', name: 'quartz'
+    // https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
+    compile ('com.querydsl:querydsl-jpa')
+    // https://mvnrepository.com/artifact/com.querydsl/querydsl-apt
+    compile ('com.querydsl:querydsl-apt')
+
+
     // 스프링부트 test에서 사용하는 컴파일
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

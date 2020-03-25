@@ -1,5 +1,6 @@
 package com.dugi.monkey.domain.music.goodchart;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,9 @@ public class GoodChart {
 
     @Column(nullable = false)
     private String videoId;
+
+    @Builder
+    public GoodChart(String videoId) {
+        this.videoId = videoId;
+    }
 }
