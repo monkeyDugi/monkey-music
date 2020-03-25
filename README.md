@@ -73,7 +73,7 @@ buildscript {
 ### - [quarts 스케줄러]()
 ### - [form과 input 태그로 고생한 일]()
 ### - [querydsl]()
-- [ORM과 JPA란]()
+### - [ORM과 JPA란]()
 
 #
 
