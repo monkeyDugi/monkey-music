@@ -73,6 +73,8 @@ dependencies {
     compile ('com.querydsl:querydsl-jpa')
     // https://mvnrepository.com/artifact/com.querydsl/querydsl-apt
     compile ('com.querydsl:querydsl-apt')
+    // 소셜 로그인 의존성
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 
 
     // 스프링부트 test에서 사용하는 컴파일
