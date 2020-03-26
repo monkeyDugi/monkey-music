@@ -3,3 +3,4 @@
 build/
 src/main/java/com/dugi/monkey/crawling/youtube/APIKey.java
 generated
+application-oauth.properties
