@@ -20,6 +20,6 @@ public class DailyChartJob implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
         DailyChartService dailyChartService = (DailyChartService) DailyChartBeanUtil.getBean("dailyChartService");
         MelonYoutubeCombination melonYoutubeCombination = (MelonYoutubeCombination) DailyChartBeanUtil.getBean("melonYoutubeCombination");
-        dailyChartService.addDailyChart(melonYoutubeCombination.dailyChart());
+//        dailyChartService.addDailyChart(melonYoutubeCombination.dailyChart());
     }
 }
