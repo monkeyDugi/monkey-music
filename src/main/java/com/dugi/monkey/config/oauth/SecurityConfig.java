@@ -1,6 +1,6 @@
 package com.dugi.monkey.config.oauth;
 
-import com.dugi.monkey.domain.music.user.Role;
+import com.dugi.monkey.domain.music.member.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,8 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .headers().frameOptions().disable() //  h2-console 화면을 사용하기 위해 해당 옵션들 disable
             .and()
                 .authorizeRequests() // 설정된 값 이외 나머지 URL
-                .antMatchers("/", "/css/**", "/image/**", "/js/**", "/h2-console/**").permitAll()
-                .antMatchers("/**/charts/search/**", "/**/charts/good/**").hasRole(Role.USER.name()) // 권한 관리 대상 지정 옵션
+                .antMatchers("/charts/daily", "/css/**", "/image/**", "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/**/charts/good/**", "/**/charts/good/**").hasRole(Role.USER.name()) // 권한 관리 대상 지정 옵션
                                                                                     // URL, HTTP 메소드별로 관리 가능
                                                                                     // "/" 등 지정된 URL들은 permitALL() 옵션으로 전체 열람 권한을 줌
                                                                                     // 해당 주소는 USER 권한을 가진 사람만 접속 가능

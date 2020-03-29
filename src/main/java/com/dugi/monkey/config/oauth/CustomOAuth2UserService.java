@@ -1,9 +1,9 @@
 package com.dugi.monkey.config.oauth;
 
 import com.dugi.monkey.config.oauth.dto.OAuthAttributes;
-import com.dugi.monkey.config.oauth.dto.SessionUser;
-import com.dugi.monkey.domain.music.user.User;
-import com.dugi.monkey.domain.music.user.UserRepository;
+import com.dugi.monkey.config.oauth.dto.SessionMember;
+import com.dugi.monkey.domain.music.member.Member;
+import com.dugi.monkey.domain.music.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -24,7 +24,7 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -45,22 +45,22 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // OAuth2UserService를 통해 가져온 OAuth2User의 attribute를 담을 클래스
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        User user = saveOrUpdate(attributes);
+        Member member = saveOrUpdate(attributes);
 
-        // essionUser : 세션에 사용자 정보를 저장하기 위한 Dto 클래스
-        httpSession.setAttribute("user", new SessionUser(user));
+        // sessionUser : 세션에 사용자 정보를 저장하기 위한 Dto 클래스
+        httpSession.setAttribute("member", new SessionMember(member));
 
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
+        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(member.getRoleKey())),
                                                 attributes.getAttributes(),
                                                 attributes.getNameAttributeKey());
     }
 
     // 기존 사용자면 update 처리하고, User 엔티티에도 반영
-    private User saveOrUpdate(OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail())
+    private Member saveOrUpdate(OAuthAttributes attributes) {
+        Member member = memberRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
 
-        return userRepository.save(user);
+        return memberRepository.save(member);
     }
 }

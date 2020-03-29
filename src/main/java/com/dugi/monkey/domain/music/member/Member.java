@@ -1,4 +1,4 @@
-package com.dugi.monkey.domain.music.user;
+package com.dugi.monkey.domain.music.member;
 
 import com.dugi.monkey.domain.music.BaseTimeEntity;
 import lombok.Builder;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +35,13 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public User(String name, String email, Role role) {
+    public Member(String name, String email, Role role) {
         this.name = name;
         this.email = email;
         this.role = role;
     }
 
-    public User update(String name) {
+    public Member update(String name) {
         this.name = name;
 
         return this;

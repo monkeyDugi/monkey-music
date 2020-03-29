@@ -1,7 +1,7 @@
 package com.dugi.monkey.config.oauth.dto;
 
-import com.dugi.monkey.domain.music.user.Role;
-import com.dugi.monkey.domain.music.user.User;
+import com.dugi.monkey.domain.music.member.Member;
+import com.dugi.monkey.domain.music.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -41,9 +41,10 @@ public class OAuthAttributes {
     }
 
     // OAuthAttributes에서 엔티티를 생성하는 시점은 처음 가입할 때 인데
-    // 이 때 기본 권한을 GUEST로 주기 위해서 role 빌더값에 GUEST 사용
-    public User toEntity() {
-        return User.builder()
+    // 이 때 기본 권한을 USER로 주기 위해서 role 빌더값에 USER 사용
+    // 나중에 종류 추가되면 더 추가할 거임. GUEST 같은.
+    public Member toEntity() {
+        return Member.builder()
                 .name(name)
                 .email(email)
                 .role(Role.GUEST)

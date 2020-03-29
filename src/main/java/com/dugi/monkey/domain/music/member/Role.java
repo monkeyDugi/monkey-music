@@ -1,4 +1,4 @@
-package com.dugi.monkey.domain.music.user;
+package com.dugi.monkey.domain.music.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
