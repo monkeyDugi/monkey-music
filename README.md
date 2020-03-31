@@ -25,15 +25,15 @@
 ### 요구사항
 - 음원 일간 차트
   - 매일 아침 10 시 멜론의 일간 차트를 업데이트 하여 보여준다.
-  - 일간 차트는 20개
+  - 일간 차트는 10개
 - 음원 검색 기능
-  - 검색어에 대한 유튜브 리스트 20개를 보여준다.
+  - 검색어에 대한 유튜브 리스트 10개를 보여준다.
 - 마이뮤직
-  - 하트 클릭 시 마이 뮤직 리스트에 저장
+  - 하트 클릭 시 마이 리스트에 저장
 - 공통
   - 음원은 유튜브 영상을 가져온다.
   - 구글, 네이버 소셜 로그인 
-  - 비회원은 검색 기능 사용 불가
+  - 비회원은 일간차트 기능만 사용 가능
  
 #
  
@@ -71,16 +71,16 @@ buildscript {
 #  
   
 # 목차
-### - [IFrame API]()
-### - [quarts 스케줄러]()
-### - [form과 input 태그로 고생한 일]()
-### - [querydsl]()
-### - [ORM과 JPA란]()
-### - [스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트]()
+### [IFrame API]()
+### [quarts 스케줄러]()
+### [form과 input 태그로 고생한 일]()
+### [querydsl]()
+### [ORM과 JPA란]()
+### [스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트]()
 
 #
 
-### - IFrame API
+### IFrame API
 - 유튜브에서 제공하는 유튜브 영상을 로드하고, 컨트롤 하기 위한 API
 ```javascript
 <div id="player"></div>
@@ -127,7 +127,7 @@ function onPlayerStateChange(event) {
 
 #
 
-### - quarts 스케줄러
+### quarts 스케줄러
 - 일정 시간마다 기능을 수행할 수 있는 스케줄러
 - 사용이유 : 매일 오전 10시에 멜론 일간 차트를 가져와야 하기 때문
 - 에러 : InstantiationException, NullPointerException
@@ -186,7 +186,7 @@ function onPlayerStateChange(event) {
         
 #
 
-### - qeurydsl
+### qeurydsl
 - 사용이유
   - JPA를 사용하는 이유 중 하나는 쿼리를 작성하지 않기 위함도 있다. 하지만 Spring Data Jpa가 제공하는  
     기본 메서드는 정말 기본 CRUD만 가능한 것으로 보인다.  
@@ -200,7 +200,7 @@ function onPlayerStateChange(event) {
 
 #
 
-### - ORM과 JPA이란
+### ORM과 JPA이란
 - ORM : Object-relational mapping(객체 관계 매핑)
   - 객체는 객체대로 설계하고, 관계형 데이터베이스는 관계형 데이터베이스대로 설계
   - ORM 프레임워크가 중간에서 매핑
@@ -221,7 +221,7 @@ function onPlayerStateChange(event) {
 
 #
 
-### - 스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트
+### 스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트
 - 소셜 로그인 사용 이유 중 몇 가지만 추려 보자면 아래와 같다
   - 로그인 시 보안
   - 비밀번호 찾기/변경
@@ -231,3 +231,10 @@ function onPlayerStateChange(event) {
 - 스프링 부트 1.5의 Oauth2가 아니라, 스프링 부트 2.0을 쓸 것 인데 이유는 아래와 같다.
   - 기존이 1.5가 물론 안정적일 수는 있지만 스프링 팀에서 더 이상 버그 수정 이외에 신규 기능은 나오지 않고,  
     2.0에만 신규 기능이 나올 것 이라고 했기 때문이다.  
+ 
+#### - 구글 소셜 로그인
+- 도메인뒤에 붙게 되며 로그인 요청 시 해당 URI를 리디렉션 한다.
+![구글 리디렉션 URL](https://user-images.githubusercontent.com/53487385/78036422-40ab7d00-73a5-11ea-8f4d-b58c2d50e191.png)  
+
+- 리디렉션 후 리턴은 도메인이다. 이것을 확인하지 않아서 시간을 날렸다..
+![구글OAuth2 리디렉션 후 요청](https://user-images.githubusercontent.com/53487385/78036427-41dcaa00-73a5-11ea-8aa5-fe0f9c974e7a.png)
