@@ -11,26 +11,14 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-warning bg-warning fixed-top">
     <div class="collapse navbar-collapse" id="navbarsExample03">
-        <input id="search" class="form-control" type="text" placeholder="Search" style="width: 400px;">
+        {{>layout/searchEnable}}
+        {{>layout/searchDisable}}
     </div>
-    <!--  개발자가 별도로 로그인 컨트롤러를 만들 필요가 없다.
-          스프링 시큐리티에서 제공을 해주기 때문에
-    -->
-    {{#memberName}}
-        <span id="member">{{memberName}}</span>
-        <!-- 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL  -->
-        <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-    {{/memberName}}
-    {{^memberName}}
-        <!-- 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL  -->
-        <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">GoogleLogin</a>
-    {{/memberName}}
+    {{>layout/logout}}
+    {{>layout/login}}
 </nav>
 <div class="head-interval"></div>
-<!-- youtube iframe -->
-<div class = "iframe-div">
-    <div id="player"></div>
-</div>
+{{>layout/iframe}}
 <div class="container">
     <h2>일간차트</h2>
     <table class="table">
@@ -44,76 +32,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img class="dd" src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="rank-td"></td>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
+        {{>layout/dailyChart/tr}}
         </tbody>
     </table>
 </div>

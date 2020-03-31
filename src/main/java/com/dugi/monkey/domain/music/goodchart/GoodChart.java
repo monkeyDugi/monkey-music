@@ -1,5 +1,6 @@
 package com.dugi.monkey.domain.music.goodchart;
 
+import com.dugi.monkey.domain.music.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @Entity
-public class GoodChart {
+public class GoodChart extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +23,12 @@ public class GoodChart {
     @Column(nullable = false)
     private String videoId;
 
+    @Column(nullable = false)
+    private String email;
+
     @Builder
-    public GoodChart(String videoId) {
+    public GoodChart(String videoId, String email) {
         this.videoId = videoId;
+        this.email = email;
     }
 }

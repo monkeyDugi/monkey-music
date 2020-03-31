@@ -17,8 +17,4 @@ public interface GoodChartRepository extends JpaRepository<GoodChart, Long>, Goo
             "UNION " +
             "SELECT 'N' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM GOOD_CHART g WHERE g.VIDEO_ID =:videoId)", nativeQuery = true)
     String findMyListYN(@Param("videoId") String videoId);
-
-//    @Modifying
-//    @Query(value = "DELETE FROM GOOD_CHART g WHERE g.VIDEO_ID =:goodVideoId", nativeQuery = true)
-//    void deleteBygoodVideoId(@Param("goodVideoId") String goodVideoId);
 }

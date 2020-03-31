@@ -55,7 +55,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                                                 attributes.getNameAttributeKey());
     }
 
-    // 기존 사용자면 update 처리하고, User 엔티티에도 반영
+    // 기존 사용자면 update 처리하고, Member 엔티티에도 반영
     private Member saveOrUpdate(OAuthAttributes attributes) {
         Member member = memberRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName()))

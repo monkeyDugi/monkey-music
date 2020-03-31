@@ -1,7 +1,7 @@
 package com.dugi.monkey.service;
 
-import com.dugi.monkey.domain.music.goodchart.GoodChart;
 import com.dugi.monkey.domain.music.goodchart.GoodChartRepository;
+import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,15 +13,12 @@ public class GoodChartService {
     private final GoodChartRepository goodChartRepository;
 
     @Transactional
-    public Long addGoodChart(String goodVideoId) {
-        return goodChartRepository.save(GoodChart.builder()
-                                            .videoId(goodVideoId)
-                                            .build())
-                                   .getId();
+    public void addGoodChart(RequestGoodChartDto requestGoodChartDto) {
+        goodChartRepository.save(requestGoodChartDto.toEntity());
     }
 
     @Transactional
-    public void deleteGoodChart(String goodVideoId) {
-        goodChartRepository.deleteBygoodVideoId(goodVideoId);
+    public void deleteGoodChart(RequestGoodChartDto requestGoodChartDto) {
+        goodChartRepository.deleteByGoodVideoId(requestGoodChartDto);
     }
 }

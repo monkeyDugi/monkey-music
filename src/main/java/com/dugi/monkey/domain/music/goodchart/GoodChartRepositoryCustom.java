@@ -1,8 +1,8 @@
 package com.dugi.monkey.domain.music.goodchart;
 
-import org.springframework.data.repository.query.Param;
+import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 
 public interface GoodChartRepositoryCustom {
 
-    void deleteBygoodVideoId(@Param("goodVideoId") String goodVideoId);
+    void deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto);
 }

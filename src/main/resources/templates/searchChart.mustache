@@ -13,12 +13,10 @@
     <div class="collapse navbar-collapse" id="navbarsExample03">
         <input id="search" name="word" class="form-control" type="text" placeholder="Search" value={{word}} style="width: 400px;">
     </div>
+    {{>layout/logout}}
 </nav>
 <div class="head-interval"></div>
-<!-- youtube iframe -->
-<div class = "iframe-div">
-    <div id="player"></div>
-</div>
+{{>layout/iframe}}
 <div class="container">
     <h2>검색 영상</h2>
     <table class="table">
@@ -31,66 +29,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
-        <tr>
-            <td class="img-td"><img src=""></td>
-            <td></td>
-            <td class="good-image-td"><img src="" data-good="" data-index="" data-id="" class="good-btn"></td>
-            <td class="play-td"><button type="button" class="play-btn" data-index=""><img src=/image/play.png></button></td>
-        </tr>
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
+        {{>layout/searchChart/tr}}
         </tbody>
     </table>
 </div>

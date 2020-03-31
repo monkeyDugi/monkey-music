@@ -59,6 +59,9 @@ $.ajax({
     success : function(obj) {
          songList = obj;
          songListSet()
+    },
+    error : function(error) {
+        alert(JSON.stringify(error))
     }
 })
 
@@ -105,12 +108,10 @@ for(goodBtn of goodBtns) {
             urlType = 'DELETE'
             _this.src = '/image/heart.png'
             _this.dataset.good = 'N'
-//            param = this.dataset.id
         } else if(good === 'N') {
             urlType = 'POST'
             _this.src = '/image/heart_b.png'
             _this.dataset.good = 'Y'
-//            param = goodVideoId
         }
 
         $.ajax({
@@ -118,11 +119,6 @@ for(goodBtn of goodBtns) {
             url :  "/api/charts/good/" + goodVideoId,
             dataType : "JSON",
             success : function(obj) {
-                if(good === 'N') {
-//                    this.dataset.id = 'd'
-//                    _this.dataset.id = obj
-//                    console.log(obj)
-                }
             }
         })
     })
