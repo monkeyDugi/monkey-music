@@ -12,9 +12,4 @@ import org.springframework.data.repository.query.Param;
  * Custom 메서드 사용 시에는 GoodChartRepositoryCustom를 따로 주입 받아야 하므로 번거롭다.
  */
 public interface GoodChartRepository extends JpaRepository<GoodChart, Long>, GoodChartRepositoryCustom {
-
-    @Query(value = "SELECT 'Y' FROM DUAL WHERE EXISTS (SELECT 1 FROM GOOD_CHART g WHERE g.VIDEO_ID =:videoId)" +
-            "UNION " +
-            "SELECT 'N' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM GOOD_CHART g WHERE g.VIDEO_ID =:videoId)", nativeQuery = true)
-    String findMyListYN(@Param("videoId") String videoId);
 }

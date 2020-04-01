@@ -18,4 +18,14 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
         .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
         .execute();
     }
+
+    @Override
+    public Long findMyListExists(RequestGoodChartDto requestGoodChartDto) {
+        return queryFactory
+                .select()
+                .from(goodChart)
+                .where(goodChart.videoId.eq(requestGoodChartDto.getVideoId())
+                .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
+                .fetchCount();
+    }
 }

@@ -72,9 +72,9 @@ function songListSet() {
         tr[i+1].getElementsByTagName('td')[0].firstElementChild.src = songList[i].image
         tr[i+1].getElementsByTagName('td')[1].innerHTML = songList[i].title
 
-        if(songList[i].good === 'Y') {
+        if(songList[i].good === '1') {
             tr[i+1].getElementsByTagName('td')[2].firstElementChild.src = '/image/heart_b.png'
-        } else if(songList[i].good === 'N') {
+        } else if(songList[i].good === '0') {
             tr[i+1].getElementsByTagName('td')[2].firstElementChild.src = '/image/heart.png'
         }
         tr[i+1].getElementsByTagName('td')[2].firstElementChild.dataset.good = songList[i].good
@@ -104,14 +104,14 @@ for(goodBtn of goodBtns) {
         let urlType
         let msg
 
-        if(good === 'Y') {
+        if(good === '1') {
             urlType = 'DELETE'
             _this.src = '/image/heart.png'
-            _this.dataset.good = 'N'
-        } else if(good === 'N') {
+            _this.dataset.good = '0'
+        } else if(good === '0') {
             urlType = 'POST'
             _this.src = '/image/heart_b.png'
-            _this.dataset.good = 'Y'
+            _this.dataset.good = '1'
         }
 
         $.ajax({

@@ -5,4 +5,5 @@ import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 public interface GoodChartRepositoryCustom {
 
     void deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto);
+    Long findMyListExists(RequestGoodChartDto requestGoodChartDto);
 }

@@ -1,7 +1,7 @@
 package com.dugi.monkey.web.searchchart;
 
-import com.dugi.monkey.crawling.dto.RequestSearchChartDto;
-import com.dugi.monkey.crawling.youtube.searchchart.SearchChartYoutubeSearchAPIProcessing;
+import com.dugi.monkey.config.oauth.LoginMember;
+import com.dugi.monkey.config.oauth.dto.SessionMember;
 import com.dugi.monkey.service.SearchChartService;
 import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class SearchChartController {
     private final SearchChartService searchChartService;
 
     @GetMapping("api/charts/search/{word}")
-    public List<ResponseSearchChartDto> list(@PathVariable("word") String word) {
-        return searchChartService.getSearchChartAll(word);
+    public List<ResponseSearchChartDto> list(@PathVariable("word") String word, @LoginMember SessionMember member) {
+        return searchChartService.getSearchChartAll(word, member.getEmail());
     }
 }

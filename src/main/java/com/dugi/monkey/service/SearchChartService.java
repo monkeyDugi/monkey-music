@@ -4,6 +4,7 @@ import com.dugi.monkey.crawling.dto.RequestSearchChartDto;
 import com.dugi.monkey.crawling.youtube.searchchart.SearchChartYoutubeSearchAPIProcessing;
 import com.dugi.monkey.domain.music.goodchart.GoodChartRepository;
 import com.dugi.monkey.domain.music.searchchart.SearchChartRepository;
+import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +25,31 @@ public class SearchChartService {
     SearchChartYoutubeSearchAPIProcessing processing;
 
     @Transactional
-    public List<ResponseSearchChartDto> getSearchChartAll(String word) {
+    public List<ResponseSearchChartDto> getSearchChartAll(String word, String email) {
         List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
         List<RequestSearchChartDto> requestSearchChartDtos = processing.searchChartSearchDataProcessing(word);
 
         String videoId;
-        String goodWhether;
-        String chartWhether;
+        Long goodExists;
+        Long chartExists;
 
         for(int i = 0; i < requestSearchChartDtos.size(); i++) {
             videoId = requestSearchChartDtos.get(i).getVideoId();
-            goodWhether = goodChartRepository.findMyListYN(videoId);
+
+            RequestGoodChartDto requestGoodChartDto = RequestGoodChartDto.builder()
+                                                                            .videoId(videoId)
+                                                                            .email(email)
+                                                                            .build();
+            goodExists = goodChartRepository.findMyListExists(requestGoodChartDto);
 
             responseSearchChartDtos.add(ResponseSearchChartDto.builder()
                                                             .requestSearchChartDto(requestSearchChartDtos.get(i))
-                                                            .good(goodWhether.toString())
+                                                            .good(String.valueOf(goodExists))
                                                             .build());
 
-            chartWhether = searchChartRepository.findByVideoId(videoId);
+            chartExists = searchChartRepository.findByExistsVideoId(videoId);
 
-            if("notExists".equals(chartWhether)) {
+            if(0 == chartExists) {
                 searchChartRepository.save(responseSearchChartDtos.get(i).toEntity());
             }
         }
