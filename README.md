@@ -78,6 +78,7 @@ buildscript {
 ### [ORM과 JPA란]()
 ### [스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트]()
 - [구글 소셜 로그인]()
+### [세션정보 DB에 저장]()
 
 #
 
@@ -239,3 +240,10 @@ function onPlayerStateChange(event) {
 
 - 리디렉션 후 리턴은 도메인이다. 이것을 확인하지 않아서 시간을 날렸다..
 ![구글OAuth2 리디렉션 후 요청](https://user-images.githubusercontent.com/53487385/78036427-41dcaa00-73a5-11ea-8aa5-fe0f9c974e7a.png)
+
+#
+
+### 세션정보 DB에 저장
+- 설정이 간단하지만, 로그인 요청 마다 DB에 요청이 발생하여 성능상 이슈가 발생할 수 있지만,  
+  사용자가 적기 때문에 사용!
+- JPA에 의하여 **SPRING_SESSION, SPRING_SESSION-ATTRIBUTES** 테이블이 생성 된다.  
