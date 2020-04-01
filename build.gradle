@@ -75,7 +75,8 @@ dependencies {
     compile ('com.querydsl:querydsl-apt')
     // 소셜 로그인 의존성
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-
+    // DB를 세션 저장소로 사용하기 위한 의존성
+    compile('org.springframework.session:spring-session-jdbc')
 
     // 스프링부트 test에서 사용하는 컴파일
     testCompile('org.springframework.boot:spring-boot-starter-test')
