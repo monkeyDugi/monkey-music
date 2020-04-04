@@ -25,7 +25,7 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING) // JPA로 DB 저장 시 Enum 값을 어떤 형태로 저장할지 결정
