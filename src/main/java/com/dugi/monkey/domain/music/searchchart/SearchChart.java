@@ -1,6 +1,7 @@
 package com.dugi.monkey.domain.music.searchchart;
 
 import com.dugi.monkey.domain.music.BaseTimeEntity;
+import com.dugi.monkey.domain.music.goodchart.GoodChart;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
