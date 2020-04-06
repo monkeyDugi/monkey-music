@@ -7,4 +7,4 @@ src/main/java/com/dugi/monkey/crawling/youtube/APIKey.java
 generated
 # 소셜 로그인 설정
 application-oauth.properties
-#
+monkeyDugi.log*
