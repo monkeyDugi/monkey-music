@@ -9,11 +9,15 @@ public class RequestGoodChartDto {
 
     private String videoId;
     private String email;
+    private String image;
+    private String title;
 
     @Builder
-    public RequestGoodChartDto(String videoId, String email) {
+    public RequestGoodChartDto(String videoId, String email, String image, String title) {
         this.videoId = videoId;
         this.email = email;
+        this.image = image;
+        this.title = title;
     }
 
     public GoodChart toEntity() {
