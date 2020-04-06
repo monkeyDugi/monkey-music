@@ -1,4 +1,4 @@
-package com.dugi.monkey.domain.music;
+package com.dugi.monkey.domain.music.manyToOneExample;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +23,9 @@ public class Good {
     private Long cnt;
 
     @ManyToOne
-    @JoinColumn(name = "SEARCH_ID")
+    // join할 search 테이블의 id가 아니라 Good 테이블의 join전용 컬럼명을 설정
+    // search 테이블에서 자동으로 @id와 조인이 됨.
+    @JoinColumn(name = "search_id")
     private Search search;
 
     @Builder

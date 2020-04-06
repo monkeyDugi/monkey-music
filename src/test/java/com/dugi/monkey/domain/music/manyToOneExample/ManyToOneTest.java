@@ -1,14 +1,11 @@
-package com.dugi.monkey.domain.music;
+package com.dugi.monkey.domain.music.manyToOneExample;
 
-import com.querydsl.core.Tuple;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -70,17 +67,13 @@ public class ManyToOneTest {
         System.out.println("====================================================");
         Long c = goodRepository.findExists("공실이가 등록한 글 1");
         System.out.println("dddddddddddddd : " + c);
-        // 안됨
-//        List<Tuple> c = goodRepository.findExists("공실이가 등록한 글 1");
-//        for(Tuple a : c) {
-//            System.out.println("제목 : " + a.get(QGood.good.title));
-//            System.out.println("내용 : " + a.get(QGood.good.content));
-//            System.out.println("작성자 : " + a.get(QGood.good.search.name));
-//        }
 
         System.out.println("====================================================");
         Search search = searchRepository.findById("search2").get();
         System.out.println(" : " + search.getName());
         System.out.println(" : " + search.getPassword());
+
+        System.out.println("====================================================");
+//        goodRepository.deleteAll();
     }
 }

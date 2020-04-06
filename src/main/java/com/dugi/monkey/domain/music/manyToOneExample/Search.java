@@ -1,4 +1,4 @@
-package com.dugi.monkey.domain.music;
+package com.dugi.monkey.domain.music.manyToOneExample;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,6 @@ import javax.persistence.Id;
 public class Search {
 
     @Id
-    @Column(name="SEARCH_ID")
     private String id;
     private String password;
     private String name;

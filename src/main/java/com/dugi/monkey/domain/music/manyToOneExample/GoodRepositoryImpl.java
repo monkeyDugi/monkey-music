@@ -1,12 +1,9 @@
-package com.dugi.monkey.domain.music;
+package com.dugi.monkey.domain.music.manyToOneExample;
 
-import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
-import static com.dugi.monkey.domain.music.QGood.good;
+import static com.dugi.monkey.domain.music.manyToOneExample.QGood.good;
 
 @RequiredArgsConstructor
 public class GoodRepositoryImpl implements GoodRepositoryCustom {
