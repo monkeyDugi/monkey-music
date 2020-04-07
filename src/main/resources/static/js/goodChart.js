@@ -55,13 +55,31 @@ $.ajax({
     url :  "/api/charts/good",
     dataType : "JSON",
     success : function(obj) {
-         songList = obj;
+         songList = obj
+         addRow()
          songListSet()
     },
     error : function(error) {
         alert(JSON.stringify(error))
     }
 })
+
+function addRow() {
+    for(let i = 0; i < songList.length; i++) {
+        let objRow = document.getElementById('tb').insertRow()
+        let objCellImage = objRow.insertCell(0)
+        objCellImage.innerHTML = "<td class='img-td'><img src=''></td>"
+
+        let objCellTb = objRow.insertCell(1)
+        objCellTb.innerHTML = "<td></td>"
+
+        let objCellGood = objRow.insertCell(2)
+        objCellGood.innerHTML = "<td class='good-image-td'><img src='' data-good='' data-index='' class='good-btn' style='cursor:Pointer'></td>"
+
+        let objCellPlay = objRow.insertCell(3)
+        objCellPlay.innerHTML = "<td class='play-td'><button type='button' class='play-btn' data-index=''><img src=/image/play.png></button></td>"
+    }
+}
 
 let tr = document.getElementsByTagName('tr')
 // 음악 목록 Set
@@ -76,32 +94,26 @@ function songListSet() {
 	}
 }
 
-const playBtns = document.getElementsByClassName('play-btn')
-for(playBtn of playBtns) {
-    playBtn.addEventListener('click', function() {
-        onclickVideoIdSet($(this))
-    })
-}
+$(document).on('click', '.play-btn', function() {
+    onclickVideoIdSet($(this))
+})
 
 const tb = document.getElementById('tb')
-// 등록 후 id 받아서 dataset에 저장 후 삭제 시 사용 해야 함.
-const goodBtns = document.getElementsByClassName('good-btn')
-for(goodBtn of goodBtns) {
-    goodBtn.addEventListener('click', function() {
-        let index = this.dataset.index
-        let goodVideoId = songList[index].videoId
+// 동적 태그 컨트롤을 위해 제이쿼리 사용, vanilaJs로 모르겠음..
+$(document).on('click', '.good-btn', function() {
+    let index = $(this).data('index')
+    let goodVideoId = songList[index].videoId
 
-        tb.deleteRow(index) // 틀린거임 고쳐야 함.
+    $(this).parent().parent().remove()
 
-        $.ajax({
-            type : 'DELETE',
-            url :  '/api/charts/good/' + goodVideoId,
-            dataType : 'JSON',
-            success : function(obj) {
-            }
-        })
+    $.ajax({
+        type : 'DELETE',
+        url :  '/api/charts/good/' + goodVideoId,
+        dataType : 'JSON',
+        success : function(obj) {
+        }
     })
-}
+})
 
 // onClick 시 VideoId, 현재노래 index Set
 function onclickVideoIdSet(obj) {

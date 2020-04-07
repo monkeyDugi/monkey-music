@@ -11,8 +11,10 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-warning bg-warning fixed-top">
     <div class="collapse navbar-collapse" id="navbarsExample03">
+        {{>layout/home}}
         <input id="search" name="word" class="form-control" type="text" placeholder="Search" value={{word}} style="width: 400px;">
     </div>
+    {{>layout/myList}}
     {{>layout/logout}}
 </nav>
 <div class="head-interval"></div>
