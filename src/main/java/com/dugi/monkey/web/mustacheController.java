@@ -3,16 +3,11 @@ package com.dugi.monkey.web;
 import com.dugi.monkey.config.oauth.LoginMember;
 import com.dugi.monkey.config.oauth.dto.SessionMember;
 import com.dugi.monkey.service.GoodChartService;
-import com.dugi.monkey.web.goodchart.dto.ResponseGoodChartDto;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.boot.model.source.internal.hbm.XmlElementMetadata;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

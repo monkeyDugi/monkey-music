@@ -1,13 +1,13 @@
 package com.dugi.monkey.domain.music.goodchart;
 
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
-import com.querydsl.core.Tuple;
-
-import java.util.List;
+import com.dugi.monkey.web.goodchart.dto.ResponseGoodChartDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface GoodChartRepositoryCustom {
 
-    void deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto);
+    Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto);
     Long findMyListExists(RequestGoodChartDto requestGoodChartDto);
-    List<Tuple> findUserGoodChart(String email);
+    Page<ResponseGoodChartDto> findUserGoodChart(String email, Pageable pageable);
 }

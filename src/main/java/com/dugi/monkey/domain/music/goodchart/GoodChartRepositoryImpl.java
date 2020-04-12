@@ -1,9 +1,16 @@
 package com.dugi.monkey.domain.music.goodchart;
 
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
+import com.dugi.monkey.web.goodchart.dto.ResponseGoodChartDto;
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.projection.ProjectionFactory;
 
 import java.util.List;
 
@@ -16,12 +23,12 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public void deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto) {
-        queryFactory
-        .delete(goodChart)
-        .where(goodChart.videoId.eq(requestGoodChartDto.getVideoId())
-        .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
-        .execute();
+    public Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto) {
+        return queryFactory
+              .delete(goodChart)
+              .where(goodChart.videoId.eq(requestGoodChartDto.getVideoId())
+              .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
+              .execute();
     }
 
     @Override
@@ -35,17 +42,24 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
     }
 
     @Override
-    public List<Tuple> findUserGoodChart(String email) {
-        return queryFactory
-                .select(goodChart.videoId,
-                        searchChart.image,
-                        searchChart.title
-                )
+    public Page<ResponseGoodChartDto> findUserGoodChart(String email, Pageable pageable) {
+        QueryResults<ResponseGoodChartDto> result =
+                queryFactory.select(
+                                    Projections.constructor(
+                                    ResponseGoodChartDto.class,
+                                    searchChart.title,
+                                    searchChart.image,
+                                    goodChart.videoId))
                 .from(goodChart)
                 .leftJoin(searchChart)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .on(goodChart.videoId.eq(searchChart.videoId))
                 .where(goodChart.email.eq(email))
-                .fetch();
+                .fetchResults();
+
+
+        return new PageImpl<>(result.getResults(), pageable, result.getTotal());
     }
 
 }
