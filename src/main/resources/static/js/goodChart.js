@@ -138,7 +138,7 @@ function pagingDataSet() {
 function rowTagAdd() {
     document.getElementById('tbody').innerHTML = ''
 
-    for(let i = 0 i < songList.content.length i++) {
+    for(let i = 0; i < songList.content.length; i++) {
         objRow = document.getElementById('tbody').insertRow()
         let objCellImage = objRow.insertCell(0)
         objCellImage.innerHTML = "<td class='img-td'><img src=''></td>"
@@ -160,7 +160,7 @@ function rowTagAdd() {
 let tr = document.getElementsByTagName('tr')
 // 음악 목록 Set
 function songListSet() {
-	for(let i = 0 i < songList.content.length i++) {
+	for(let i = 0; i < songList.content.length; i++) {
         tr[i+1].getElementsByTagName('td')[0].firstElementChild.src = songList.content[i].image
         tr[i+1].getElementsByTagName('td')[1].innerHTML = songList.content[i].title
         tr[i+1].getElementsByTagName('td')[2].firstElementChild.src = '/image/heart_b.png'

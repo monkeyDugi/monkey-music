@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MonkeyMusic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
+    <link rel="stylesheet" href="/css/goodChart.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-warning bg-warning fixed-top">
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+        {{>layout/home}}
+        <input id="search" class="form-control" type="text" placeholder="Search..." style="width: 400px;">
+    </div>
+    {{>layout/logout}}
+</nav>
+<div class="head-interval"></div>
+{{>layout/iframe}}
+<div class="container">
+    <h2>마이뮤직</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>제목</th>
+            <th></th>
+            <th>재생</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example" style="text-align: center;">
+        <ul class="pagination-sm" id="pagination"></ul></nav>
+
+</div>
+{{>layout/footer}}
+<script type="text/javascript" src="/js/goodChart.js"></script>
+</body>
+</html>
