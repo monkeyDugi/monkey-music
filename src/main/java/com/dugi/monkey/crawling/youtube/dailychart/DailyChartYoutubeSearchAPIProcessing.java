@@ -13,7 +13,6 @@ import java.util.List;
 public class DailyChartYoutubeSearchAPIProcessing extends DailyChartYoutubeSearchAPI {
 
     public List<RequestYoutubeAPIDto> dailyChartSearchDataProcessing(List<RequestMelonCrawlingDto> requestMelonCrawlingDtos) {
-
         List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = new ArrayList<>();
 
         try
