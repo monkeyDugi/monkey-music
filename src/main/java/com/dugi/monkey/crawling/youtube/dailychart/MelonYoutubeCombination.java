@@ -20,7 +20,7 @@ public class MelonYoutubeCombination {
 
     public List<RequestDailyChartDto> dailyChart() {
 
-        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = melonCrawling.melonCrawling();
+        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = melonCrawling.melonChartDataProcessing(10);
         List<RequestYoutubeAPIDto> requestYoutubeAPIDtos = processing.dailyChartSearchDataProcessing(requestMelonCrawlingDtos);
 
         List<RequestDailyChartDto> requestDailyChartDtos = new ArrayList<>();
