@@ -45,12 +45,12 @@ public class MelonCrawling {
     }
 
     public Elements getEntireElementsOfMelonChart() throws IOException {
-        Document doc = getMelonChartConnectionInformation();
+        Document doc = getMelonChartConnection();
 
         return doc.select("div.service_list_song>table>tbody>tr");
     }
 
-    public Document getMelonChartConnectionInformation() throws IOException {
+    public Document getMelonChartConnection() throws IOException {
         String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
         
         return Jsoup.connect(url).get();
