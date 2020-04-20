@@ -7,7 +7,6 @@ import com.dugi.monkey.domain.music.searchchart.SearchChartRepository;
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
