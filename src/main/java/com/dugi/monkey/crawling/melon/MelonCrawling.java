@@ -1,8 +1,8 @@
 package com.dugi.monkey.crawling.melon;
 
+import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +13,8 @@ import java.util.List;
 @Component
 public class MelonCrawling {
     
-    public List<RequestMelonCrawlingDto> melonChartDataProcessing(int size) {
-        List<RequestMelonCrawlingDto> requestMelonCrawlingDtos = new ArrayList<>();
+    public List<ResponseMelonCrawlingDto> getCrawlingResult(int size) {
+        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = new ArrayList<>();
         
         String rank;
         String title;
@@ -30,7 +30,7 @@ public class MelonCrawling {
                 singer = melonChartElements.get(i).select("div.wrap_song_info>div.rank02>span>a").text();
                 image = melonChartElements.get(i).select("div>a.image_typeAll>img").attr("src");
 
-                requestMelonCrawlingDtos.add(RequestMelonCrawlingDto.builder()
+                responseMelonCrawlingDtos.add(ResponseMelonCrawlingDto.builder()
                         .rank(rank)
                         .title(title)
                         .singer(singer)
@@ -41,7 +41,7 @@ public class MelonCrawling {
             e.printStackTrace();
         }   
 
-        return requestMelonCrawlingDtos;
+        return responseMelonCrawlingDtos;
     }
 
     public Elements getEntireElementsOfMelonChart() throws IOException {

@@ -1,7 +1,6 @@
 package com.dugi.monkey.web.searchchart.dto;
 
-import com.dugi.monkey.crawling.dto.RequestSearchChartDto;
-import com.dugi.monkey.domain.music.dailychart.DailyChart;
+import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import com.dugi.monkey.domain.music.searchchart.SearchChart;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +14,10 @@ public class ResponseSearchChartDto {
     private String videoId;
 
     @Builder
-    public ResponseSearchChartDto(RequestSearchChartDto requestSearchChartDto, String good) {
-        this.title = requestSearchChartDto.getTitle();
-        this.image = requestSearchChartDto.getImage();
-        this.videoId = requestSearchChartDto.getVideoId();
+    public ResponseSearchChartDto(ResponseYoutubeAPIDto responseYoutubeAPIDto, String good) {
+        this.title = responseYoutubeAPIDto.getTitle();
+        this.image = responseYoutubeAPIDto.getImage();
+        this.videoId = responseYoutubeAPIDto.getVideoId();
         this.good = good;
     }
 

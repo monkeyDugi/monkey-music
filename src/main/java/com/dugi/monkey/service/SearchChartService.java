@@ -1,13 +1,13 @@
 package com.dugi.monkey.service;
 
-import com.dugi.monkey.crawling.dto.RequestSearchChartDto;
-import com.dugi.monkey.crawling.youtube.searchchart.SearchChartYoutubeSearchAPIProcessing;
+import com.dugi.monkey.crawling.youtube.YoutubeSearchAPI;
+import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import com.dugi.monkey.domain.music.goodchart.GoodChartRepository;
 import com.dugi.monkey.domain.music.searchchart.SearchChartRepository;
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,39 +20,58 @@ public class SearchChartService {
 
     private final GoodChartRepository goodChartRepository;
     private final SearchChartRepository searchChartRepository;
-
-    @Autowired
-    SearchChartYoutubeSearchAPIProcessing processing;
+    private final YoutubeSearchAPI youtubeSearchAPI;
 
     @Transactional
-    public List<ResponseSearchChartDto> getSearchChartAll(String word, String email) {
+    public List<ResponseSearchChartDto> findSearchChartAll(String word, String email) {
         List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
-        List<RequestSearchChartDto> requestSearchChartDtos = processing.searchChartSearchDataProcessing(word);
+        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
+        RequestGoodChartDto requestGoodChartDto;
 
         String videoId;
         Long goodExists;
-        Long chartExists;
+        Long searchExists;
 
-        for(int i = 0; i < requestSearchChartDtos.size(); i++) {
-            videoId = requestSearchChartDtos.get(i).getVideoId();
+        responseYoutubeAPIDtos = getSearchCharts(word);
 
-            RequestGoodChartDto requestGoodChartDto = RequestGoodChartDto.builder()
-                                                                            .videoId(videoId)
-                                                                            .email(email)
-                                                                            .build();
-            goodExists = goodChartRepository.findMyListExists(requestGoodChartDto);
+        for(int i = 0; i < responseYoutubeAPIDtos.size(); i++) {
+            videoId = getVideoId(responseYoutubeAPIDtos, i);
+
+            requestGoodChartDto = RequestGoodChartDto.builder()
+                    .videoId(videoId)
+                    .email(email)
+                    .build();
+
+            goodExists = isGood(requestGoodChartDto);
 
             responseSearchChartDtos.add(ResponseSearchChartDto.builder()
-                                                            .requestSearchChartDto(requestSearchChartDtos.get(i))
-                                                            .good(String.valueOf(goodExists))
-                                                            .build());
+                    .responseYoutubeAPIDto(responseYoutubeAPIDtos.get(i))
+                    .good(String.valueOf(goodExists))
+                    .build());
 
-            chartExists = searchChartRepository.findByExistsVideoId(videoId);
+            searchExists = isSearch(videoId);
 
-            if(0 == chartExists) {
+            if(0 == searchExists) {
                 searchChartRepository.save(responseSearchChartDtos.get(i).toEntity());
             }
         }
+
         return responseSearchChartDtos;
+    }
+
+    public List<ResponseYoutubeAPIDto> getSearchCharts(String word) {
+        return youtubeSearchAPI.getSearchChartApiResult(word,10);
+    }
+
+    public String getVideoId(List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos, int index) {
+        return responseYoutubeAPIDtos.get(index).getVideoId();
+    }
+
+    public Long isGood(RequestGoodChartDto requestGoodChartDto) {
+        return goodChartRepository.findMyListExists(requestGoodChartDto);
+    }
+
+    public Long isSearch(String videoId) {
+        return searchChartRepository.findByExistsVideoId(videoId);
     }
 }

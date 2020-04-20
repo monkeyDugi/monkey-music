@@ -1,10 +1,10 @@
-package com.dugi.monkey.crawling.dto;
+package com.dugi.monkey.crawling.youtube.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RequestSearchChartDto {
+public class ResponseYoutubeAPIDto {
 
     private String title;
     private String image;
@@ -12,7 +12,7 @@ public class RequestSearchChartDto {
     private String videoId;
 
     @Builder
-    public RequestSearchChartDto(String title, String good, String image, String videoId) {
+    public ResponseYoutubeAPIDto(String title, String good, String image, String videoId) {
         this.title = title;
         this.good = good;
         this.image = image;

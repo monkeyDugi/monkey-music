@@ -7,7 +7,7 @@
 * */
 package com.dugi.monkey.scheduler;
 
-import com.dugi.monkey.crawling.youtube.dailychart.MelonYoutubeCombination;
+import com.dugi.monkey.crawling.MelonYoutubeCombination;
 import com.dugi.monkey.service.DailyChartService;
 import com.dugi.monkey.util.DailyChartBeanUtil;
 import org.quartz.Job;
@@ -20,6 +20,6 @@ public class DailyChartJob implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
         DailyChartService dailyChartService = (DailyChartService) DailyChartBeanUtil.getBean("dailyChartService");
         MelonYoutubeCombination melonYoutubeCombination = (MelonYoutubeCombination) DailyChartBeanUtil.getBean("melonYoutubeCombination");
-//        dailyChartService.addDailyChart(melonYoutubeCombination.dailyChart());
+//        dailyChartService.addDailyChart(melonYoutubeCombination.getDailyChart());
     }
 }
