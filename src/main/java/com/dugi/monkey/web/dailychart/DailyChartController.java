@@ -15,7 +15,7 @@ public class DailyChartController {
     private final DailyChartService dailyChartService;
 
     @GetMapping("api/charts/daily")
-    public List<ResponseDailyChartDto> list() {
-        return dailyChartService.getDailyChartAll();
+    public List<ResponseDailyChartDto> findDailyChartAll() {
+        return dailyChartService.findDailyChartAll();
     }
 }

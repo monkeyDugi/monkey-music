@@ -3,16 +3,12 @@ package com.dugi.monkey.domain.music.goodchart;
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import com.dugi.monkey.web.goodchart.dto.ResponseGoodChartDto;
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.projection.ProjectionFactory;
-
-import java.util.List;
 
 import static com.dugi.monkey.domain.music.goodchart.QGoodChart.goodChart;
 import static com.dugi.monkey.domain.music.searchchart.QSearchChart.searchChart;
@@ -42,7 +38,7 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
     }
 
     @Override
-    public Page<ResponseGoodChartDto> findUserGoodChart(String email, Pageable pageable) {
+    public Page<ResponseGoodChartDto> findByEmailGoodChart(String email, Pageable pageable) {
         QueryResults<ResponseGoodChartDto> result =
                 queryFactory.select(
                                     Projections.constructor(
@@ -57,7 +53,6 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
                 .on(goodChart.videoId.eq(searchChart.videoId))
                 .where(goodChart.email.eq(email))
                 .fetchResults();
-
 
         return new PageImpl<>(result.getResults(), pageable, result.getTotal());
     }

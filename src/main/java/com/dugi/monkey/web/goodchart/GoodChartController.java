@@ -30,15 +30,15 @@ public class GoodChartController {
     }
 
     @DeleteMapping("api/charts/good/{goodVideoId}")
-    public Long deleteGoodChart(@PathVariable("goodVideoId") String goodVideoId, @LoginMember SessionMember member) {
-        return goodChartService.deleteGoodChart(RequestGoodChartDto.builder()
+    public Long deleteByGoodVideoId(@PathVariable("goodVideoId") String goodVideoId, @LoginMember SessionMember member) {
+        return goodChartService.deleteByGoodVideoId(RequestGoodChartDto.builder()
                       .videoId(goodVideoId)
                       .email(member.getEmail())
                       .build());
     }
 
     @GetMapping("api/charts/good")
-    public Page<ResponseGoodChartDto> getUserGoodChart(@LoginMember SessionMember member, @PageableDefault(size = 5) Pageable pageable) {
-        return goodChartService.getUserGoodChart(member.getEmail(), pageable);
+    public Page<ResponseGoodChartDto> findByEmailGoodChart(@LoginMember SessionMember member, @PageableDefault(size = 5) Pageable pageable) {
+        return goodChartService.findByEmailGoodChart(member.getEmail(), pageable);
     }
 }

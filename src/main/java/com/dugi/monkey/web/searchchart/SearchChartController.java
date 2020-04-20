@@ -18,7 +18,7 @@ public class SearchChartController {
     private final SearchChartService searchChartService;
 
     @GetMapping("api/charts/search/{word}")
-    public List<ResponseSearchChartDto> list(@PathVariable("word") String word, @LoginMember SessionMember member) {
-        return searchChartService.getSearchChartAll(word, member.getEmail());
+    public List<ResponseSearchChartDto> findSearchChartAll(@PathVariable("word") String word, @LoginMember SessionMember member) {
+        return searchChartService.findSearchChartAll(word, member.getEmail());
     }
 }

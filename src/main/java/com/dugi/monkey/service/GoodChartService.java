@@ -21,12 +21,12 @@ public class GoodChartService {
     }
 
     @Transactional
-    public Long deleteGoodChart(RequestGoodChartDto requestGoodChartDto) {
+    public Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto) {
         return goodChartRepository.deleteByGoodVideoId(requestGoodChartDto);
     }
 
     @Transactional
-    public Page<ResponseGoodChartDto> getUserGoodChart(String email, Pageable pageable) {
-        return goodChartRepository.findUserGoodChart(email, pageable);
+    public Page<ResponseGoodChartDto> findByEmailGoodChart(String email, Pageable pageable) {
+        return goodChartRepository.findByEmailGoodChart(email, pageable);
     }
 }

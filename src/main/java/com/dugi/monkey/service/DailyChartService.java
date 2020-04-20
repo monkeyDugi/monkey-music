@@ -1,7 +1,8 @@
 package com.dugi.monkey.service;
 
-import com.dugi.monkey.crawling.dto.RequestDailyChartDto;
+import com.dugi.monkey.crawling.youtube.dto.ResponseMelonYoutubeCombinationDto;
 import com.dugi.monkey.domain.music.dailychart.DailyChartRepository;
+
 import com.dugi.monkey.web.dailychart.dto.ResponseDailyChartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class DailyChartService {
     private final DailyChartRepository dailyChartRepository;
 
     @Transactional(readOnly = true)
-    public List<ResponseDailyChartDto> getDailyChartAll() {
+    public List<ResponseDailyChartDto> findDailyChartAll() {
         return dailyChartRepository.findAll()
                 .stream()                         // 1. 결과로 넘오온 DailyChars의 stream을
                 .map(ResponseDailyChartDto::new)  // map을 통해 DailyChartsListResponseDto로 변환 -> List 반환
@@ -26,10 +27,10 @@ public class DailyChartService {
     }
 
     @Transactional
-    public void addDailyChart(List<RequestDailyChartDto> requestDailyChartDtos) {
+    public void addDailyChart(List<ResponseMelonYoutubeCombinationDto> requestDailyChartDtos) {
         dailyChartRepository.deleteAll();
 
-        for (RequestDailyChartDto dailyChartsDto : requestDailyChartDtos) {
+        for (ResponseMelonYoutubeCombinationDto dailyChartsDto : requestDailyChartDtos) {
             dailyChartRepository.save(dailyChartsDto.toEntity());
         }
     }
