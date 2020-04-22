@@ -3,7 +3,6 @@ package com.dugi.monkey.crawling.youtube;
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
 @Component
 public class YoutubeSearchAPI {
 
@@ -22,7 +20,7 @@ public class YoutubeSearchAPI {
     private final static String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
     private final static String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
     private final static String API_PARAMETER_KEYWORD = "&q=";
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     public List<ResponseYoutubeAPIDto> getDailyChartApiResult(List<ResponseMelonCrawlingDto> requestMelonCrawlingDtos, int maxResult) {
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
