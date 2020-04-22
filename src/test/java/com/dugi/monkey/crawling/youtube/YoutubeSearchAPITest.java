@@ -85,6 +85,7 @@ public class YoutubeSearchAPITest {
                     .singer(keyword1)
                     .build());
         }
+
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(requestMelonCrawlingDtos, maxResult1);
 
         assertThat(responseYoutubeAPIDtos.size()).isEqualTo(10);
