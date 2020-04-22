@@ -22,7 +22,8 @@ public class YoutubeSearchAPITest {
 
     String keyword1 = "김범수";
     String keyword2 = "보고싶다";
-    int maxResult = 10;
+    int maxResult10 = 10;
+    int maxResult1 = 1;
 
     @Test
     public void 검색어가_1개일_경우_그대로_반환한다() {
@@ -42,11 +43,11 @@ public class YoutubeSearchAPITest {
 
         String mockUrl = "https://www.googleapis.com/youtube/v3/search";
         mockUrl += "?key=" + APIKey.API_KEY.getApiKey();
-        mockUrl += "&part=snippet&type=video&maxResults=" + maxResult;
+        mockUrl += "&part=snippet&type=video&maxResults=" + maxResult10;
         mockUrl += "&videoEmbeddable=true";
         mockUrl += "&q=" + keyword1;
 
-        String url = youtubeSearchAPI.createUrl(maxResult);
+        String url = youtubeSearchAPI.createUrl(maxResult10);
 
         assertThat(url).isEqualTo(mockUrl);
     }
@@ -54,7 +55,7 @@ public class YoutubeSearchAPITest {
     @Test
     public void YOUTUBE_SEARCH_API의_결과는_NULL이_아니다() {
         youtubeSearchAPI.keywordJoin(keyword1);
-        String json = youtubeSearchAPI.createJson(maxResult);
+        String json = youtubeSearchAPI.createJson(maxResult10);
 
         assertThat(json).isNotNull();
     }
@@ -62,14 +63,14 @@ public class YoutubeSearchAPITest {
     @Test
     public void YOUTUBE_SEARCH_API의_결과에_검색어가_포함된다() {
         youtubeSearchAPI.keywordJoin(keyword1);
-        String json = youtubeSearchAPI.createJson(maxResult);
+        String json = youtubeSearchAPI.createJson(maxResult10);
 
         assertThat(json).contains(keyword1);
     }
 
     @Test
     public void YOUTUBE_SEARCH_API의_결과를_추출하여_List에_리턴한_Size는_10이다_검색기능() {
-        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getSearchChartApiResult(keyword1, maxResult);
+        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getSearchChartApiResult(keyword1, maxResult10);
 
         assertThat(responseYoutubeAPIDtos.size()).isEqualTo(10);
     }
@@ -84,7 +85,7 @@ public class YoutubeSearchAPITest {
                     .singer(keyword1)
                     .build());
         }
-        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(requestMelonCrawlingDtos, maxResult);
+        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(requestMelonCrawlingDtos, maxResult1);
 
         assertThat(responseYoutubeAPIDtos.size()).isEqualTo(10);
     }
