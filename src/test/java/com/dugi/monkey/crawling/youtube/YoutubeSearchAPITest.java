@@ -3,22 +3,15 @@ package com.dugi.monkey.crawling.youtube;
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = YoutubeSearchAPI.class)
 public class YoutubeSearchAPITest {
 
-    @Autowired
-    YoutubeSearchAPI youtubeSearchAPI;
+    YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI();
 
     String keyword1 = "김범수";
     String keyword2 = "보고싶다";
