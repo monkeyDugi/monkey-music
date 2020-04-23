@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class YoutubeSearchAPITest {
 
-    YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI();
+    private YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI();
 
-    String keyword1 = "김범수";
-    String keyword2 = "보고싶다";
-    int maxResult10 = 10;
-    int maxResult1 = 1;
+    private String keyword1 = "김범수";
+    private String keyword2 = "보고싶다";
+    private int maxResult10 = 10;
+    private int maxResult1 = 1;
 
     @Test
     public void 검색어가_1개일_경우_그대로_반환한다() {

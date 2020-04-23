@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MelonCrawlingTest {
 
-    MelonCrawling melonCrawling = new MelonCrawling();
+    private MelonCrawling melonCrawling = new MelonCrawling();
 
     @Test
     public void 멜론_크롤링_결과는_NULL이_아니다() throws IOException {
