@@ -80,4 +80,6 @@ dependencies {
 
     // 스프링부트 test에서 사용하는 컴파일
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    // 스프링 시큐리티 테스트
+    testCompile('org.springframework.security:spring-security-test')
 }
