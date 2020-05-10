@@ -23,22 +23,34 @@ public class GoodChartController {
 
     @PostMapping("api/charts/good/{goodVideoId}")
     public void addGoodChart(@PathVariable("goodVideoId") String goodVideoId, @LoginMember SessionMember member) {
+        String email = "test@test.com";
+
+        if(member != null) email = member.getEmail();
+
         goodChartService.addGoodChart(RequestGoodChartDto.builder()
                                                                 .videoId(goodVideoId)
-                                                                .email(member.getEmail())
+                                                                .email(email)
                                                                 .build());
     }
 
     @DeleteMapping("api/charts/good/{goodVideoId}")
     public Long deleteByGoodVideoId(@PathVariable("goodVideoId") String goodVideoId, @LoginMember SessionMember member) {
+        String email = "test@test.com";
+
+        if(member != null) email = member.getEmail();
+
         return goodChartService.deleteByGoodVideoId(RequestGoodChartDto.builder()
                       .videoId(goodVideoId)
-                      .email(member.getEmail())
+                      .email(email)
                       .build());
     }
 
     @GetMapping("api/charts/good")
     public Page<ResponseGoodChartDto> findByEmailGoodChart(@LoginMember SessionMember member, @PageableDefault(size = 5) Pageable pageable) {
-        return goodChartService.findByEmailGoodChart(member.getEmail(), pageable);
+        String email = "test@test.com";
+
+        if(member != null) email = member.getEmail();
+
+        return goodChartService.findByEmailGoodChart(email, pageable);
     }
 }
