@@ -1,6 +1,7 @@
 package com.dugi.monkey.web.searchchart;
 
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
+import com.dugi.monkey.scheduler.DailyChartScheduler;
 import com.dugi.monkey.service.SearchChartService;
 import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import org.junit.Test;
@@ -28,6 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class SearchChartControllerTest {
+
+    // mocking하지 않으면 빈 생성 시 dailyChartJob을 생성하기 때문에 이미 존재한다는 에러 발생
+    @MockBean
+    DailyChartScheduler dailyChartScheduler;
 
     @Autowired
     private MockMvc mockMvc;

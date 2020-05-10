@@ -1,6 +1,7 @@
 package com.dugi.monkey.web.dailychart;
 
 import com.dugi.monkey.domain.music.dailychart.DailyChart;
+import com.dugi.monkey.scheduler.DailyChartScheduler;
 import com.dugi.monkey.service.DailyChartService;
 import com.dugi.monkey.web.dailychart.dto.ResponseDailyChartDto;
 import org.junit.Test;
@@ -26,6 +27,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class DailyChartControllerTest {
+
+    @MockBean
+    DailyChartScheduler dailyChartScheduler;
 
     @Autowired
     private MockMvc mockMvc;
