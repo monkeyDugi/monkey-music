@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DailyChartControllerTest {
 
     @MockBean
-    DailyChartScheduler dailyChartScheduler;
+    private DailyChartScheduler dailyChartScheduler;
 
     @Autowired
     private MockMvc mockMvc;

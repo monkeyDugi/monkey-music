@@ -32,7 +32,7 @@ public class SearchChartControllerTest {
 
     // mocking하지 않으면 빈 생성 시 dailyChartJob을 생성하기 때문에 이미 존재한다는 에러 발생
     @MockBean
-    DailyChartScheduler dailyChartScheduler;
+    private DailyChartScheduler dailyChartScheduler;
 
     @Autowired
     private MockMvc mockMvc;
