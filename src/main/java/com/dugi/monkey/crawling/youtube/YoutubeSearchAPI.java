@@ -88,7 +88,7 @@ public class YoutubeSearchAPI {
         this.keyword =  String.join("", keyword);
     }
 
-    // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 올지 않은 결과가 나옴.
+    // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
     public String createJson(int maxResult) {
         return restTemplate.getForObject(createUrl(maxResult), String.class);
     }
