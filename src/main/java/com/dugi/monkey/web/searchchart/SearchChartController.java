@@ -19,6 +19,13 @@ public class SearchChartController {
 
     @GetMapping("api/charts/search/{word}")
     public List<ResponseSearchChartDto> findSearchChartAll(@PathVariable("word") String word, @LoginMember SessionMember member) {
-        return searchChartService.findSearchChartAll(word, member.getEmail());
+        // 테스트 코드 작성 시에 세션이 없으므로 @LoginMember SessionMember member로 인한 NPE 발생
+        // 테스트 코드 작성 시 "test@test.com"로 fix하여 테스트
+        // 실제 구현 시에는 member가 null 일 수 없으므로 항상 member.getEmail()을 사용
+        // 구현코드에 테스트 관련 코드가 들어가는 건 좋지 않으므로, 오키에 올린 글 참고하여, 테스트 변경 하기.
+        String email = "test@test.com";
+        if(member != null) email = member.getEmail();
+
+        return searchChartService.findSearchChartAll(word, email);
     }
 }

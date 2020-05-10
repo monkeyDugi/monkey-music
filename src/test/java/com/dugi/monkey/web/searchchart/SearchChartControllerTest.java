@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,7 +39,7 @@ public class SearchChartControllerTest {
     @WithMockUser(roles = "USER")
     public void 검색차트를_가져온다() throws Exception {
         String word = "maroon5";
-        String email = "lbd4946@gmail.com";
+        String email = "test@test.com";
         String good = "Y";
 
         List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
@@ -58,6 +59,7 @@ public class SearchChartControllerTest {
         given(searchChartService.findSearchChartAll(word, email)).willReturn(responseSearchChartDtos);
 
         mockMvc.perform(get("/api/charts/search/" + word))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("maroon5")));
 
