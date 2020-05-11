@@ -28,8 +28,8 @@ public class SearchChartServiceTest {
     @Mock
     private YoutubeSearchAPI youtubeSearchAPI;
 
-    List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
-    RequestGoodChartDto requestGoodChartDto;
+    private List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
+    private RequestGoodChartDto requestGoodChartDto;
 
     String title = "title";
     String videoId = "videoId";
