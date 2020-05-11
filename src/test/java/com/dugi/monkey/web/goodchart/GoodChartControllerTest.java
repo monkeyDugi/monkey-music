@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -58,16 +56,5 @@ public class GoodChartControllerTest {
                 .andExpect(status().isOk());
 
         verify(goodChartService).deleteByGoodVideoId(any());
-    }
-
-    @Test
-    public void 마이리스트_가져오기() throws Exception {
-        String email = "test@test.com";
-        Pageable pageable = null;
-
-//        given(goodChartService.findByEmailGoodChart(email, pageable));
-
-        mockMvc.perform(get("/api/charts/good" + "?page=0"))
-                .andExpect(status().isOk());
     }
 }
