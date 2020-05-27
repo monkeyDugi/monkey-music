@@ -2,7 +2,7 @@
 .idea
 build/
 # youtube API Key
-src/main/java/com/dugi/monkey/crawling/youtube/APIKey.java
+#src/main/java/com/dugi/monkey/crawling/youtube/APIKey.java
 
 # 소셜 로그인 설정
 application-oauth.properties
