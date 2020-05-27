@@ -20,6 +20,34 @@ cache:
 # 여기서는 프로젝트 내부에 둔 gradlew을 통해 clean & build 수행
 script: "./gradlew clean build"
 
+# deploy 명령어가 실행 전 수행
+# CodeDeploy는 Jar 파일은 인식하지 못하므로 Jar + 기타 설정 파일들을 모아 압축(zip)한다.
+before_deploy:
+  # 현재 위치의 모든 파일을 monkey-music으로 압축한다.
+  - zip -r monkey-music *
+  # deploy라는 디렉토리를 Travis CI가 실행 중인 위치에 생성
+  - mkdir -p deploy
+  # monkey-music.zip파일을 deploy/monkey-music.zip으로 무료 이송
+  - mv monkey-music.zip deploy/monkey-music.zip
+
+# s3로 파일업로드 혹은 codeDeploy로 배포 등 외부 서비스와 연동될 행위들 선언
+deploy:
+  - provider: s3
+    # Travis repo settings에 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
+    # Travis repo setting에 설정된 값
+    sevret_access_key: $AWS_SECRET_KEY
+    # s3 버킷
+    bucket: monkey-music-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    # zip 파일 접근을 private으로 설정
+    acl: private
+    # 앞에서 생성한 deploy 디렉토리를 지정
+    # 해당 위치의 파일든만 s3 전송 가능
+    local_dir: deploy
+    wait-untill-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
