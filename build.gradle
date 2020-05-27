@@ -42,6 +42,10 @@ sourceSets {
     }
 }
 
+clean {
+    delete file(querydslSrcDir)
+}
+
 group 'com.dugi.moneky'
 version '1.0-SNAPSHOT'
 
