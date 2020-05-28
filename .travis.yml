@@ -50,6 +50,24 @@ deploy:
     local_dir: deploy
     wait-untill-deployed: true
 
+  - provider: codedeploy
+    # Travis repo settings에 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
+    # Travis repo setting에 설정된 값
+    sevret_access_key: $AWS_SECRET_KEY
+    # S3 버킷
+    bucket: monkey-music-build
+    # 빌드 파일을 압축해서 전달달
+    key: monkey-music.zip
+    # 압축 확장자
+    bundle_type: zip
+    # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    application: monkey-music
+    # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    deployment_group: monkey-music-group
+    region: ap-northeast-2
+    wait-unitl-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
