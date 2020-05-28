@@ -1,0 +1,16 @@
+# Code Deploy 설정
+
+# CodeDeploy 버전
+# 프로젝트 버전이 아니므로 0.0 외에 다른 버전을 사용하면 오류 발생
+version: 0.0
+os: linux
+files:
+  # CodeDeploy에서 전달해 준 파일 중 destination으로 이동시킬 대상을 지정
+  # 루트 경로(/)를 지정하면 전체 파일임
+  - source:  /
+    # source에서 지정된 파일을 받을 위치
+    # 이후 Jar르 실행하는 등은 destination에서 옮긴 파일들로 진행
+    destination: /home/ec2-user/app/monkey-music-service/zip/
+    # 기존에 파일들이 있으면 덮어쓸지를 결정
+    # 현재 yse라고 했으니 파일들을 덮어씀
+    overview: yes
