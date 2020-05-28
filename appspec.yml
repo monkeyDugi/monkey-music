@@ -30,6 +30,6 @@ permissions: # codedeploy에서 ec2 서버로 넘겨준 파일들을 모두 ec2-
 # - profile.sh : 앞선 4개 스크립트 파일에서 공용으로 사용할 'profile'과 포트 체크 로직
 hooks:
   ApplicationStart:
-    - location: deploy2.sh
+    - location: deploy.sh
       timeout: 60
       runas: ec2-user
