@@ -14,3 +14,22 @@ files:
     # 기존에 파일들이 있으면 덮어쓸지를 결정
     # 현재 yse라고 했으니 파일들을 덮어씀
     overview: yes
+
+permissions: # codedeploy에서 ec2 서버로 넘겨준 파일들을 모두 ec2-user 권한을 갖도록 함
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+# 순서대로 진행 됨(CodeDeploy 단계에서 실행할 명령어)
+# 무중단 배포를 진행하기 위해 총 5개의 스크립트가 필요
+# - stop.sh : 기존 엔진엑스에 연결되어 있지 않지만, 실행 중이던 스프링 부트 종료
+# - start.sh : 배포할 신규 버전 스프링 부트 프로젝트를 stop.sh로 종료한 'profile'로 실행
+# - health.sh : 'start.sh'로 실행시킨 프로젝트가 정상적으로 실행 됐는지 체크
+# - switch.sh : 엔진엑스가 바라보는 스프링 부트를 최신 버전으로 변경
+# - profile.sh : 앞선 4개 스크립트 파일에서 공용으로 사용할 'profile'과 포트 체크 로직
+hooks:
+  ApplicationStart:
+    - location: deploy2.sh
+      timeout: 60
+      runas: ec2-user
