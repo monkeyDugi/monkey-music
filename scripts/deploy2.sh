@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 서버에서 사용하는 deploy.sh의 upgrade 버전, deploy.sh 대신 이걸 사용
+
 REPOSITORY=/home/ec2-user/app/monkey-music-service
 PROJECT_NAME=monkey-music
 
