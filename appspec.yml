@@ -13,7 +13,7 @@ files:
     destination: /home/ec2-user/app/monkey-music-service/zip/
     # 기존에 파일들이 있으면 덮어쓸지를 결정
     # 현재 yse라고 했으니 파일들을 덮어씀
-    overview: yes
+    overwrite: yes
 
 permissions: # codedeploy에서 ec2 서버로 넘겨준 파일들을 모두 ec2-user 권한을 갖도록 함
   - object: /

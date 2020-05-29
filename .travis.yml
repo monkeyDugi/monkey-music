@@ -15,17 +15,12 @@ branches:
 # 다음 배포 때 부터 다시 받지 않도록 설정
 cache:
   directories:
-    - '$HOME/ .m2/repository'
-    - '$HOME/ .gradle'
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 # master 브랜치에 푸시 되었을 때 수행하는 명령어
 # 여기서는 프로젝트 내부에 둔 gradlew을 통해 clean & build 수행
 script: "./gradlew clean build"
-
-# travis ci의 대기 시간을 늘려준다.
-# 10분 간 작업이 없으면 빌드를 종료하기 때문에 인위적으로 로그를 찍어 연장 시키는 것
-# 30은 최대 분 단위
-install: travis_wait 30 mvn install
 
 # deploy 명령어가 실행되기 전에 수행
 # 배포에 필요한 파일은 Jar, appsepc.yml, deploy.sh(배포스크립ㄹ트)이기 때문에 해당 파일들만 포함하도록 설정
@@ -47,7 +42,7 @@ deploy:
     # Travis repo settings에 설정된 값
     access_key_id: $AWS_ACCESS_KEY
     # Travis repo setting에 설정된 값
-    sevret_access_key: $AWS_SECRET_KEY
+    secret_access_key: $AWS_SECRET_KEY
     # s3 버킷
     bucket: monkey-music-build
     region: ap-northeast-2
@@ -57,13 +52,13 @@ deploy:
     # 앞에서 생성한 deploy 디렉토리를 지정
     # 해당 위치의 파일든만 s3 전송 가능
     local_dir: deploy
-    wait-untill-deployed: true
+    wait-until-deployed: true
 
   - provider: codedeploy
     # Travis repo settings에 설정된 값
     access_key_id: $AWS_ACCESS_KEY
     # Travis repo setting에 설정된 값
-    sevret_access_key: $AWS_SECRET_KEY
+    secret_access_key: $AWS_SECRET_KEY
     # S3 버킷
     bucket: monkey-music-build
     # 빌드 파일을 압축해서 전달달
@@ -75,7 +70,7 @@ deploy:
     # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     deployment_group: monkey-music-group
     region: ap-northeast-2
-    wait-unitl-deployed: true
+    wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
 notifications:
