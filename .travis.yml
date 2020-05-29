@@ -22,6 +22,11 @@ cache:
 # 여기서는 프로젝트 내부에 둔 gradlew을 통해 clean & build 수행
 script: "./gradlew clean build"
 
+# travis ci의 대기 시간을 늘려준다.
+# 10분 간 작업이 없으면 빌드를 종료하기 때문에 인위적으로 로그를 찍어 연장 시키는 것
+# 30은 최대 분 단위
+install: travis_wait 30 mvn install
+
 # deploy 명령어가 실행되기 전에 수행
 # 배포에 필요한 파일은 Jar, appsepc.yml, deploy.sh(배포스크립ㄹ트)이기 때문에 해당 파일들만 포함하도록 설정
 # Travis Ci는 S3로 특정 파일만 업로드가 안되고, 디렉토리 단위로만 업로드가 되기 때문에 deploy 디렉ㅌ오리는 항상 생성.
