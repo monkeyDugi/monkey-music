@@ -1,41 +1,29 @@
 package com.dugi.monkey.web;
 
 import org.junit.Test;
-import org.springframework.mock.env.MockEnvironment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class ProfileControllerUnitTest {
+public class ProfileControllerTest {
+
+    @LocalServerPort
+    private int port;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
-    public void real_profile이_조회된다() {
-        // given
-        String expectedProfile = "real";
-        MockEnvironment mockEnvironment = new MockEnvironment();
+    public void profile은_인증없이_호출된다() throws Exception {
+        String expected = "default";
 
-        mockEnvironment.addActiveProfile(expectedProfile);
-        mockEnvironment.addActiveProfile("oauth");
-        mockEnvironment.addActiveProfile("real-db");
+        ResponseEntity<String> response = restTemplate.getForEntity("/profile", String.class);
 
-        ProfileController profileController = new ProfileController(mockEnvironment);
-
-        // when
-        String profile = profileController.profile();
-
-        // then
-        assertThat(profile).isEqualTo(expectedProfile);
-    }
-
-    @Test
-    public void active_profile이_없으면_default가_조회된다() {
-        String expectedProfile = "default";
-        MockEnvironment mockEnvironment = new MockEnvironment();
-        ProfileController profileController = new ProfileController(mockEnvironment);
-
-        // when
-        String profile = profileController.profile();
-
-        // then
-        assertThat(profile).isEqualTo(expectedProfile);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isEqualTo(expected);
     }
 }
