@@ -54,8 +54,11 @@ echo "> $JAR_NAME 실행"
 #   -> application-real.properties를 활성화
 #   -> application-real.properties의 spring.profiles.inclue=oauth, real-db 옵션 때문에
 #      real-bd 역시 함께 활성화 대상에 포함
-nohup java -jar -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/monkey-music-service/application-oauth.properties,/home/ec2-user/app/monkey-music-service/application-real-db.properties -Dspring.profiles.active=real $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+nohup java -jar \
+      -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/monkey-music-service/application-oauth.properties,/home/ec2-user/app/monkey-music-service/application-real-db.properties \
+      -Dspring.profiles.active=real \
       # nohup 실행 시 CodeDeploy는 무한 대기
       # 이 이슈 해결을 위해 nohup.out 파일을 표준 입출력용으로 별도로 사용
       # 이렇게 하지 않으면 nohup.out 파일이 생기지 않고, CodeDeploy 로그에 표준 입출력이 출력 됨
       # nohup이 끝나기 전까지 CodeDeploy도 끝나지 않으니 꼭 이렇게 해야만 함
+      $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
