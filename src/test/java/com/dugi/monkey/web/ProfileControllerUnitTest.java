@@ -10,7 +10,7 @@ public class ProfileControllerUnitTest {
     @Test
     public void real_profile이_조회된다() {
         // given
-        String expectedProfile = "real";
+        String expectedProfile = "real1";
         MockEnvironment mockEnvironment = new MockEnvironment();
 
         mockEnvironment.addActiveProfile(expectedProfile);
