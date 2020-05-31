@@ -35,7 +35,7 @@ public class YoutubeSearchAPITest {
         youtubeSearchAPI.keywordJoin(keyword1);
 
         String mockUrl = "https://www.googleapis.com/youtube/v3/search";
-        mockUrl += "?key=" + APIKey.API_KEY.getApiKey();
+        mockUrl += "?key=" + APIKey.TEST_API_KEY.getApiKey();
         mockUrl += "&part=snippet&type=video&maxResults=" + maxResult10;
         mockUrl += "&videoEmbeddable=true";
         mockUrl += "&q=" + keyword1;
