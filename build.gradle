@@ -47,7 +47,7 @@ clean {
 }
 
 group 'com.dugi.moneky'
-version '1.0.3-SNAPSHOT-' + new Date().format("yyyyMMddHHmmss")
+version '1.0.1-SNAPSHOT-' + new Date().format("yyyyMMddHHmmss")
 
 sourceCompatibility = 1.8
 
