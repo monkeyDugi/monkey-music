@@ -51,7 +51,7 @@ public class MelonCrawling {
     }
 
     public Document getMelonChartConnection() throws IOException {
-        String url = "https://www.melon.com/chart/day/index.htm?classCd=AB0000";
+        String url = "https://www.melon.com/chart/day/index.htm?classCd=GN0000";
         
         return Jsoup.connect(url).get();
     }
