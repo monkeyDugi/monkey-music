@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 기존 엔진엑스에 연결되어 있지 않지만, 실행 중이던 스프링 부트 종료
-
+ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH) # 현재 stop.sh가 속해 있는 경로 찾기
                            # 하단의 코드와 같이 profile.sh의 경로를 찾기 위해 사용
 source ${ABSDIR}/profile.sh
