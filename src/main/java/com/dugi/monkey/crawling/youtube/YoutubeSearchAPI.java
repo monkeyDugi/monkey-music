@@ -16,7 +16,7 @@ public class YoutubeSearchAPI {
 
     private String keyword;
     private final static String API_URL = "https://www.googleapis.com/youtube/v3/search";
-    private final static String API_KEY = "?key=" + APIKey.API_KEY.getApiKey();
+    private final static String API_KEY = "?key=" + APIKey.REAL_API_KEY.getApiKey();
     private final static String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
     private final static String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
     private final static String API_PARAMETER_KEYWORD = "&q=";
