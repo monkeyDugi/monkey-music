@@ -33,7 +33,7 @@ public class DailyChartScheduler {
         // trgger 생성
         // 지정 시간에 trigger GO GO!!
         Trigger trigger = TriggerBuilder.newTrigger()
-                                        .withSchedule(CronScheduleBuilder.cronSchedule("0 0 15 * * ?"))
+                                        .withSchedule(CronScheduleBuilder.cronSchedule("0 30 17 * * ?"))
                                         .build();
 
         scheduler.scheduleJob(job, trigger);
