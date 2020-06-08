@@ -2,12 +2,12 @@ package com.dugi.monkey.crawling.youtube;
 
 import org.junit.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class APIKeyTest {
 
     @Test
-    public void dsflkjsdfk() {
-//        assertThat(APIKey.apiKey()).isEqualTo("AIzaSyC8OSK4rWi-la7PbAZk3XwE2TIdIf3VY3w");
-//        APIKey apiKey = new APIKey();
-//        System.out.println(apiKey.apiKey());
+    public void youtube_API_KEY는_NULL이_아니다() {
+        assertThat(APIKey.apiKey()).isNotNull();
     }
 }
