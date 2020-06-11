@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class APIKey {
 
-    public static String apiKey() {
+    static String apiKey() {
         StandardPBEStringEncryptor standardPBEStringEncryptor = new StandardPBEStringEncryptor();
 
         standardPBEStringEncryptor.setAlgorithm("PBEWithMD5AndDES");
