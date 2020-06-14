@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
-public class MelonYoutubeCombination {
+public class MelonYoutubeCombination  {
 
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;

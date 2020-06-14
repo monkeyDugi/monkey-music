@@ -8,6 +8,6 @@ public class APIKeyTest {
 
     @Test
     public void youtube_API_KEY는_NULL이_아니다() {
-        assertThat(APIKey.apiKey()).isNotNull();
+        assertThat(APIKey.getApiKey()).isNotNull();
     }
 }
