@@ -10,3 +10,4 @@ monkeyDugi.log*
 
 # youtube-apikey : test용
 src/test/resources/application-apikey.properties
+src/main/resources/application-apikey.properties
