@@ -14,16 +14,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = YoutubeSearchAPI.class)
 public class YoutubeSearchAPITest {
-
-    @Autowired
-    private APIKey apiKey;
-
-    private final YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI(apiKey);
 
 //    @Autowired
 //    private YoutubeSearchAPI youtubeSearchAPI;
+
+    private YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI();
 
 
     private String keyword1 = "김범수";
@@ -48,7 +45,7 @@ public class YoutubeSearchAPITest {
         youtubeSearchAPI.keywordJoin(keyword1);
 
         String mockUrl = "https://www.googleapis.com/youtube/v3/search";
-        mockUrl += "?key=" + apiKey.getYoutube();
+//        mockUrl += "?key=" + youtubeSearchAPI.getApiKey();
         mockUrl += "&part=snippet&type=video&maxResults=" + maxResult10;
         mockUrl += "&videoEmbeddable=true";
         mockUrl += "&q=" + keyword1;

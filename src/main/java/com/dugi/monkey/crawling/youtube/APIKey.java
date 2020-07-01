@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @PropertySource("classpath:application-apikey.properties")
-@Component
+@Component(value = "apikey")
 public class APIKey {
 
     @Value("${api.youtube}")

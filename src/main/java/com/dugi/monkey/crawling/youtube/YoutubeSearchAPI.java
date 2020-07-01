@@ -7,24 +7,32 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
 @Component
 public class YoutubeSearchAPI {
 
-    private final APIKey apiKey;
+//    @Autowired
+//    private APIKey apiKey;
+
+//    @PostConstruct
+//    public String test() {
+//        return apiKey.getYoutube();
+//    }
 
     private String keyword;
-    private final String API_URL = "https://www.googleapis.com/youtube/v3/search";
+    private String API_URL = "https://www.googleapis.com/youtube/v3/search";
 //    private final String API_KEY = "?key=" + apiKey.getYoutube();
-    private final String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
-    private final String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
-    private final String API_PARAMETER_KEYWORD = "&q=";
+    private String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
+    private String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
+    private String API_PARAMETER_KEYWORD = "&q=";
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<ResponseYoutubeAPIDto> getDailyChartApiResult(List<ResponseMelonCrawlingDto> requestMelonCrawlingDtos, int maxResult) {
@@ -100,7 +108,7 @@ public class YoutubeSearchAPI {
 
     public String createUrl(int maxResult) {
         return API_URL +
-                apiKey.getYoutube() +
+//                test() +
                API_PARAMETER_PART_TYPE_MAXRESULT + maxResult +
                API_PARAMETER_VIDEOEMBEDDABLE +
                API_PARAMETER_KEYWORD + keyword;

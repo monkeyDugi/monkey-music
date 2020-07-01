@@ -4,16 +4,19 @@ import com.dugi.monkey.crawling.melon.MelonCrawling;
 import com.dugi.monkey.crawling.youtube.APIKey;
 import com.dugi.monkey.crawling.youtube.YoutubeSearchAPI;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class MelonYoutubeCombinationTest {
 
     @Autowired
-    private APIKey apiKey;
-
-    private MelonYoutubeCombination melonYoutubeCombination = new MelonYoutubeCombination(new MelonCrawling(), new YoutubeSearchAPI(apiKey));
+    private MelonYoutubeCombination melonYoutubeCombination;
 
     @Test
     public void 멜론_일간차트를_YOUTUBE_API에서_가져온_size는_10이다() {
