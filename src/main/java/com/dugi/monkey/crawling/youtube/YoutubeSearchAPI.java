@@ -4,6 +4,7 @@ import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@RequiredArgsConstructor
 @Component
 public class YoutubeSearchAPI {
 
-//    @Autowired
-//    private APIKey apiKey;
+    private final APIKey apiKey;
 
-//    @PostConstruct
-//    public String test() {
-//        return apiKey.getYoutube();
-//    }
-
+    @PostConstruct
+    public String key() {
+        return apiKey.getYoutube();
+    }
 
     private String keyword;
     private String API_URL = "https://www.googleapis.com/youtube/v3/search";
-//    private final String API_KEY = "?key=" + apiKey.getYoutube();
+//    private String API_KEY = "?key=";
     private String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
     private String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
     private String API_PARAMETER_KEYWORD = "&q=";
@@ -109,7 +109,8 @@ public class YoutubeSearchAPI {
 
     public String createUrl(int maxResult) {
         return API_URL +
-//                test() +
+                "?key=" +
+                key() +
                API_PARAMETER_PART_TYPE_MAXRESULT + maxResult +
                API_PARAMETER_VIDEOEMBEDDABLE +
                API_PARAMETER_KEYWORD + keyword;

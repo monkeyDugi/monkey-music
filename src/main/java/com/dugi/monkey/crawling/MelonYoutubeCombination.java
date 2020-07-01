@@ -19,7 +19,6 @@ public class MelonYoutubeCombination {
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;
 
-    @PostConstruct
     public List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
         List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
