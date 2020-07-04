@@ -104,6 +104,8 @@ public class YoutubeSearchAPI {
 
     // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
     public String createJson(int maxResult) {
+        String test = createUrl(maxResult);
+        System.out.println("-----------------------createjson : " + test);
         return restTemplate.getForObject(createUrl(maxResult), String.class);
     }
 

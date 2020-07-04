@@ -2,7 +2,9 @@ package com.dugi.monkey.crawling.melon.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
+@ToString
 @Getter
 public class ResponseMelonCrawlingDto {
     private String rank;

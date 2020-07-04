@@ -19,9 +19,30 @@ public class MelonYoutubeCombination {
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;
 
-    public List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
-        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+    List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos; // = melonCrawling.getCrawlingResult(10);
+    List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos; // = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+
+    @PostConstruct
+    private void melonYou() {
+        responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
+//        System.out.println("=================== : " + responseMelonCrawlingDtos);
+        responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+    }
+
+    @PostConstruct
+    public List<ResponseMelonYoutubeCombinationDto> runDailyChartTest() {
+        melonYou();
+
+        return getDailyChart();
+    }
+//    @PostConstruct
+//    private void yout() {
+//
+//    }
+
+    private List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
+//        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
+//        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
 
         List<ResponseMelonYoutubeCombinationDto> responseMelonYoutubeCombinationDtos = new ArrayList<>();
 
