@@ -8,6 +8,6 @@ build/
 application-oauth.properties
 monkeyDugi.log*
 
-# youtube-apikey : test용
+# youtube-apikey : test
 src/test/resources/application-apikey.properties
 src/main/resources/application-apikey.properties
