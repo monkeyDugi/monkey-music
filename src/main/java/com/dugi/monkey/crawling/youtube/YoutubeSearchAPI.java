@@ -3,23 +3,37 @@ package com.dugi.monkey.crawling.youtube;
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@RequiredArgsConstructor
 @Component
 public class YoutubeSearchAPI {
 
+    private final APIKey apiKey;
+
+    @PostConstruct
+    public String key() {
+        return apiKey.getYoutube();
+    }
+
     private String keyword;
-    private final static String API_URL = "https://www.googleapis.com/youtube/v3/search";
-    private final static String API_KEY = "?key=" + APIKey.getApiKey();
-    private final static String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
-    private final static String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
-    private final static String API_PARAMETER_KEYWORD = "&q=";
+    private String API_URL = "https://www.googleapis.com/youtube/v3/search";
+//    private String API_KEY = "?key=";
+    private String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
+    private String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
+    private String API_PARAMETER_KEYWORD = "&q=";
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<ResponseYoutubeAPIDto> getDailyChartApiResult(List<ResponseMelonCrawlingDto> requestMelonCrawlingDtos, int maxResult) {
@@ -90,12 +104,15 @@ public class YoutubeSearchAPI {
 
     // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
     public String createJson(int maxResult) {
+        String test = createUrl(maxResult);
+        System.out.println("-----------------------createjson : " + test);
         return restTemplate.getForObject(createUrl(maxResult), String.class);
     }
 
     public String createUrl(int maxResult) {
         return API_URL +
-               API_KEY +
+                "?key=" +
+                key() +
                API_PARAMETER_PART_TYPE_MAXRESULT + maxResult +
                API_PARAMETER_VIDEOEMBEDDABLE +
                API_PARAMETER_KEYWORD + keyword;

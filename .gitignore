@@ -7,3 +7,7 @@ build/
 # 소셜 로그인 설정
 application-oauth.properties
 monkeyDugi.log*
+
+# youtube-apikey : test용
+src/test/resources/application-apikey.properties
+src/main/resources/application-apikey.properties

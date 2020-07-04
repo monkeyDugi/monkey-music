@@ -3,18 +3,26 @@ package com.dugi.monkey.crawling.youtube;
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
+// 필수로 사용할 클래스만 지정 해주자. 의존관계로 인한 테스트가 어려워 진다.
+@SpringBootTest(classes = {YoutubeSearchAPI.class, APIKey.class})
 public class YoutubeSearchAPITest {
 
-    private YoutubeSearchAPI youtubeSearchAPI = new YoutubeSearchAPI();
+    @Autowired
+    private YoutubeSearchAPI youtubeSearchAPI;
 
-    private String keyword1 = "김범수";
-    private String keyword2 = "보고싶다";
+    private String keyword1 = "maroon5";
+    private String keyword2 = "sugar";
     private int maxResult10 = 10;
     private int maxResult1 = 1;
 
@@ -35,7 +43,7 @@ public class YoutubeSearchAPITest {
         youtubeSearchAPI.keywordJoin(keyword1);
 
         String mockUrl = "https://www.googleapis.com/youtube/v3/search";
-        mockUrl += "?key=" + APIKey.getApiKey();
+        mockUrl += "?key=" + youtubeSearchAPI.getApiKey().getYoutube();
         mockUrl += "&part=snippet&type=video&maxResults=" + maxResult10;
         mockUrl += "&videoEmbeddable=true";
         mockUrl += "&q=" + keyword1;
