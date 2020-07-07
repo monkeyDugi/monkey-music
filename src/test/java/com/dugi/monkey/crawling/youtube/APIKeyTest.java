@@ -19,7 +19,7 @@ public class APIKeyTest {
 
     @Test
     public void youtube_API_KEY는_NULL이_아니다() {
-        assertThat(apiKey.getYoutube()).isNotNull();
+        assertThat(apiKey.getYoutube()).isEqualTo("AIzaSyC8OSK4rWi-la7PbAZk3XwE2TIdIf3VY3w");
         log.info("dugi : " + apiKey.getYoutube());
     }
 }

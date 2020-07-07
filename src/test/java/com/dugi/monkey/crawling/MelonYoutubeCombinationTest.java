@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {MelonCrawling.class, YoutubeSearchAPI.class, MelonYoutubeCombination.class, APIKey.class})
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = {MelonCrawling.class, YoutubeSearchAPI.class, MelonYoutubeCombination.class, APIKey.class})
 public class MelonYoutubeCombinationTest {
 
 //    @Autowired
@@ -23,12 +23,12 @@ public class MelonYoutubeCombinationTest {
 //    @Autowired
 //    private MelonCrawling melonCrawling;
 
-    @Autowired
-    private MelonYoutubeCombination melonYoutubeCombination;
-
-    @Test
-    public void 멜론_일간차트를_YOUTUBE_API에서_가져온_size는_10이다() {
-//        assertThat(melonYoutubeCombination.getDailyChart().size()).isEqualTo(10);
-        assertThat(melonYoutubeCombination.runDailyChartTest().size()).isEqualTo(10);
-    }
+//    @Autowired
+//    private MelonYoutubeCombination melonYoutubeCombination;
+//
+//    @Test
+//    public void 멜론_일간차트를_YOUTUBE_API에서_가져온_size는_10이다() {
+////        assertThat(melonYoutubeCombination.getDailyChart().size()).isEqualTo(10);
+//        assertThat(melonYoutubeCombination.runDailyChartTest().size()).isEqualTo(10);
+//    }
 }

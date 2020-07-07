@@ -16,35 +16,35 @@ import static org.mockito.Mockito.verify;
 
 public class DailyChartServiceTest {
 
-    private DailyChartService dailyChartService;
-
-    @Mock
-    private DailyChartRepository dailyChartRepository;
-
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        dailyChartService = new DailyChartService(dailyChartRepository);
-    }
-
-    @Test
-    public void 검색차트를_가져온다() {
-        List<DailyChart> dailyChartDtos = new ArrayList<>();
-        DailyChart dailyChart = DailyChart.builder()
-                .rank("1")
-                .videoId("videoId")
-                .title("꾸러기")
-                .singer("김범수&수란")
-                .image("image")
-                .build();
-
-        dailyChartDtos.add(dailyChart);
-
-
-        given(dailyChartRepository.findAll()).willReturn(dailyChartDtos);
-
-        assertThat(dailyChartService.findDailyChartAll()).isNotNull();
-
-        verify(dailyChartRepository).findAll();
-    }
+//    private DailyChartService dailyChartService;
+//
+//    @Mock
+//    private DailyChartRepository dailyChartRepository;
+//
+//    @Before
+//    public void setUp() {
+//        MockitoAnnotations.initMocks(this);
+//        dailyChartService = new DailyChartService(dailyChartRepository);
+//    }
+//
+//    @Test
+//    public void 검색차트를_가져온다() {
+//        List<DailyChart> dailyChartDtos = new ArrayList<>();
+//        DailyChart dailyChart = DailyChart.builder()
+//                .rank("1")
+//                .videoId("videoId")
+//                .title("꾸러기")
+//                .singer("김범수&수란")
+//                .image("image")
+//                .build();
+//
+//        dailyChartDtos.add(dailyChart);
+//
+//
+//        given(dailyChartRepository.findAll()).willReturn(dailyChartDtos);
+//
+//        assertThat(dailyChartService.findDailyChartAll()).isNotNull();
+//
+//        verify(dailyChartRepository).findAll();
+//    }
 }
