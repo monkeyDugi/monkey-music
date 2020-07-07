@@ -30,7 +30,6 @@ public class YoutubeSearchAPI {
 
     private String keyword;
     private String API_URL = "https://www.googleapis.com/youtube/v3/search";
-//    private String API_KEY = "?key=";
     private String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
     private String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
     private String API_PARAMETER_KEYWORD = "&q=";
@@ -104,8 +103,6 @@ public class YoutubeSearchAPI {
 
     // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
     public String createJson(int maxResult) {
-        String test = createUrl(maxResult);
-        System.out.println("-----------------------createjson : " + test);
         return restTemplate.getForObject(createUrl(maxResult), String.class);
     }
 
