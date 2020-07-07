@@ -19,31 +19,25 @@ public class MelonYoutubeCombination  {
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;
 
-    List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos; // = melonCrawling.getCrawlingResult(10);
-    List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos; // = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+    List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos;
+    List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
 
-    @PostConstruct
+    // PostConstruct 살려야할지 말아야 할지?
+
+//    @PostConstruct
     private void melonYou() {
         responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-//        System.out.println("=================== : " + responseMelonCrawlingDtos);
         responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
     }
 
-    @PostConstruct
+//    @PostConstruct
     public List<ResponseMelonYoutubeCombinationDto> runDailyChartTest() {
         melonYou();
 
         return getDailyChart();
     }
-//    @PostConstruct
-//    private void yout() {
-//
-//    }
 
     private List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
-//        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-//        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
-
         List<ResponseMelonYoutubeCombinationDto> responseMelonYoutubeCombinationDtos = new ArrayList<>();
 
         for (int i = 0; i < responseYoutubeAPIDtos.size(); i++) {
