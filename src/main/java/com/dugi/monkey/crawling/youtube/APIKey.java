@@ -11,4 +11,5 @@ public class APIKey {
 
     @Value(value = "${api.youtube}")
     private String youtube;
+
 }
