@@ -6,11 +6,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Getter
-//@PropertySource(value = "classpath:/application-apikey.properties")
 @Component
 public class APIKey {
 
     @Value(value = "${api.youtube}")
     private String youtube;
-
 }
