@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class APIKey {
 
-    @Value(value = "${api.youtube}")
+    @Value(value = "${api_youtube}")
     private String youtube;
 }
