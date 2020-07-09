@@ -25,49 +25,49 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@AutoConfigureMockMvc
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class SearchChartControllerTest {
 
     // mocking하지 않으면 빈 생성 시 dailyChartJob을 생성하기 때문에 이미 존재한다는 에러 발생
-//    @MockBean
-//    private DailyChartScheduler dailyChartScheduler;
-//
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @MockBean
-//    private SearchChartService searchChartService;
-//
-//    @Test
-//    @WithMockUser(roles = "USER")
-//    public void 검색차트를_가져온다() throws Exception {
-//        String word = "maroon5";
-//        String email = "test@test.com";
-//        String good = "Y";
-//
-//        List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
-//
-//        ResponseYoutubeAPIDto responseYoutubeAPIDto =
-//                                            ResponseYoutubeAPIDto.builder()
-//                                            .title("maroon5")
-//                                            .videoId("videoId")
-//                                            .image("image")
-//                                            .build();
-//
-//        responseSearchChartDtos.add(ResponseSearchChartDto.builder().
-//                responseYoutubeAPIDto(responseYoutubeAPIDto)
-//                .good(good)
-//                .build());
-//
-//        given(searchChartService.findSearchChartAll(word, email)).willReturn(responseSearchChartDtos);
-//
-//        mockMvc.perform(get("/api/charts/search/" + word))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("maroon5")));
-//
-//        verify(searchChartService).findSearchChartAll(word, email);
-//    }
+    @MockBean
+    private DailyChartScheduler dailyChartScheduler;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private SearchChartService searchChartService;
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void 검색차트를_가져온다() throws Exception {
+        String word = "maroon5";
+        String email = "test@test.com";
+        String good = "Y";
+
+        List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
+
+        ResponseYoutubeAPIDto responseYoutubeAPIDto =
+                                            ResponseYoutubeAPIDto.builder()
+                                            .title("maroon5")
+                                            .videoId("videoId")
+                                            .image("image")
+                                            .build();
+
+        responseSearchChartDtos.add(ResponseSearchChartDto.builder().
+                responseYoutubeAPIDto(responseYoutubeAPIDto)
+                .good(good)
+                .build());
+
+        given(searchChartService.findSearchChartAll(word, email)).willReturn(responseSearchChartDtos);
+
+        mockMvc.perform(get("/api/charts/search/" + word))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("maroon5")));
+
+        verify(searchChartService).findSearchChartAll(word, email);
+    }
 }

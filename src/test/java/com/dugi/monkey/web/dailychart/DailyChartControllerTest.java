@@ -23,39 +23,39 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@AutoConfigureMockMvc
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class DailyChartControllerTest {
 
-//    @MockBean
-//    private DailyChartScheduler dailyChartScheduler;
-//
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @MockBean
-//    private DailyChartService dailyChartService;
-//
-//    @Test
-//    public void 일간차트를_가져온다() throws Exception {
-//        List<ResponseDailyChartDto> dailyChartDtos = new ArrayList<>();
-//        DailyChart dailyChart = DailyChart.builder()
-//                                            .rank("1")
-//                                            .videoId("videoId")
-//                                            .title("꾸러기")
-//                                            .singer("김범수&수란")
-//                                            .image("image")
-//                                            .build();
-//
-//        dailyChartDtos.add(ResponseDailyChartDto.builder().entity(dailyChart).build());
-//
-//        given(dailyChartService.findDailyChartAll()).willReturn(dailyChartDtos);
-//
-//        mockMvc.perform(get("/api/charts/daily"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("김범수&수란")));
-//
-//        verify(dailyChartService).findDailyChartAll();
-//    }
+    @MockBean
+    private DailyChartScheduler dailyChartScheduler;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private DailyChartService dailyChartService;
+
+    @Test
+    public void 일간차트를_가져온다() throws Exception {
+        List<ResponseDailyChartDto> dailyChartDtos = new ArrayList<>();
+        DailyChart dailyChart = DailyChart.builder()
+                                            .rank("1")
+                                            .videoId("videoId")
+                                            .title("꾸러기")
+                                            .singer("김범수&수란")
+                                            .image("image")
+                                            .build();
+
+        dailyChartDtos.add(ResponseDailyChartDto.builder().entity(dailyChart).build());
+
+        given(dailyChartService.findDailyChartAll()).willReturn(dailyChartDtos);
+
+        mockMvc.perform(get("/api/charts/daily"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("김범수&수란")));
+
+        verify(dailyChartService).findDailyChartAll();
+    }
 }

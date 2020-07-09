@@ -13,23 +13,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProfileControllerTest {
 
-//    @Autowired
-//    private TestRestTemplate restTemplate;
-//
-//    @MockBean
-//    private DailyChartScheduler dailyChartScheduler;
-//
-//    @Test
-//    public void profile은_인증없이_호출된다() throws Exception {
-//        String expected = "default";
-//
-//        ResponseEntity<String> response = restTemplate.getForEntity("/profile", String.class);
-//
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(response.getBody()).isEqualTo(expected);
-//    }
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @MockBean
+    private DailyChartScheduler dailyChartScheduler;
+
+    @Test
+    public void profile은_인증없이_호출된다() throws Exception {
+        String expected = "default";
+
+        ResponseEntity<String> response = restTemplate.getForEntity("/profile", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isEqualTo(expected);
+    }
 }

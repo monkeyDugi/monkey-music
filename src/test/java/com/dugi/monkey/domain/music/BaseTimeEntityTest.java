@@ -14,36 +14,36 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class BaseTimeEntityTest {
 
-//    @Autowired
-//    GoodChartRepository goodChartRepository;
-//
-//    @Before
-//    public void setUp() {
-//        goodChartRepository.deleteAll();
-//    }
-//
-//    @Test
-//    public void BaseTimeEntity_등록() {
-//
-//        // given
-//        LocalDateTime now = LocalDateTime.of(2020, 4, 23, 22, 24, 15);
-//
-//        goodChartRepository.save(GoodChart.builder()
-//                                        .email("email")
-//                                        .videoId("videoId")
-//                                        .build());
-//
-//        // when
-//        List<GoodChart> goodCharts = goodChartRepository.findAll();
-//
-//        //then
-//        GoodChart goodChart = goodCharts.get(0);
-//
-//        assertThat(goodChart.getCreateDate()).isAfter(now);
-//        assertThat(goodChart.getModifiedDate()).isAfter(now);
-//    }
+    @Autowired
+    GoodChartRepository goodChartRepository;
+
+    @Before
+    public void setUp() {
+        goodChartRepository.deleteAll();
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+
+        // given
+        LocalDateTime now = LocalDateTime.of(2020, 4, 23, 22, 24, 15);
+
+        goodChartRepository.save(GoodChart.builder()
+                                        .email("email")
+                                        .videoId("videoId")
+                                        .build());
+
+        // when
+        List<GoodChart> goodCharts = goodChartRepository.findAll();
+
+        //then
+        GoodChart goodChart = goodCharts.get(0);
+
+        assertThat(goodChart.getCreateDate()).isAfter(now);
+        assertThat(goodChart.getModifiedDate()).isAfter(now);
+    }
 }
