@@ -54,6 +54,7 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
                 .limit(pageable.getPageSize())
                 .on(goodChart.videoId.eq(searchChart.videoId))
                 .where(goodChart.email.eq(email))
+                .orderBy(goodChart.id.desc())
                 .fetchResults();
 
         return new PageImpl<>(result.getResults(), pageable, result.getTotal());

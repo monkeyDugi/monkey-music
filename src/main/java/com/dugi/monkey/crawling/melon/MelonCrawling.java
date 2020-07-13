@@ -44,13 +44,13 @@ public class MelonCrawling {
         return responseMelonCrawlingDtos;
     }
 
-    public Elements getEntireElementsOfMelonChart() throws IOException {
+    protected Elements getEntireElementsOfMelonChart() throws IOException {
         Document doc = getMelonChartConnection();
 
         return doc.select("div.service_list_song>table>tbody>tr");
     }
 
-    public Document getMelonChartConnection() throws IOException {
+    protected Document getMelonChartConnection() throws IOException {
         String url = "https://www.melon.com/chart/day/index.htm?classCd=GN0000";
         
         return Jsoup.connect(url).get();
