@@ -96,17 +96,17 @@ public class YoutubeSearchAPI {
         return responseYoutubeAPIDtos;
     }
 
-    public void keywordJoin (String... keyword) {
+    protected void keywordJoin (String... keyword) {
         this.keyword = "";
         this.keyword =  String.join("", keyword);
     }
 
     // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
-    public String createJson(int maxResult) {
+    protected String createJson(int maxResult) {
         return restTemplate.getForObject(createUrl(maxResult), String.class);
     }
 
-    public String createUrl(int maxResult) {
+    protected String createUrl(int maxResult) {
         return API_URL +
                 "?key=" +
                 key() +

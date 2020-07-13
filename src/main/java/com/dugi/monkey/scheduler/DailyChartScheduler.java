@@ -19,7 +19,7 @@ public class DailyChartScheduler {
     @PostConstruct // 해당 클래스가 Bean 등록 되자마다 실행(인스턴스화 되자마자)
                    // 스케쥴러를 통한 배치 이기 때문에 어디선가 메서드를 호출해 실행하는 것 보다는
                    // 이렇게 자동으로 실행되게 하는 것이 좋다.
-    public void start() throws SchedulerException {
+    private void start() throws SchedulerException {
 
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         Scheduler scheduler = schedulerFactory.getScheduler();

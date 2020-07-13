@@ -58,19 +58,19 @@ public class SearchChartService {
         return responseSearchChartDtos;
     }
 
-    public List<ResponseYoutubeAPIDto> getSearchCharts(String word) {
+    protected List<ResponseYoutubeAPIDto> getSearchCharts(String word) {
         return youtubeSearchAPI.getSearchChartApiResult(word,10);
     }
 
-    public String getVideoId(List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos, int index) {
+    protected String getVideoId(List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos, int index) {
         return responseYoutubeAPIDtos.get(index).getVideoId();
     }
 
-    public Long isGood(RequestGoodChartDto requestGoodChartDto) {
+    protected Long isGood(RequestGoodChartDto requestGoodChartDto) {
         return goodChartRepository.findMyListExists(requestGoodChartDto);
     }
 
-    public Long isSearch(String videoId) {
+    protected Long isSearch(String videoId) {
         return searchChartRepository.findByExistsVideoId(videoId);
     }
 }
