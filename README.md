@@ -10,26 +10,19 @@
 - 스프링 시큐리티 :
 - 스프링 시큐리티 Oauth2 클라이언트
 - [JPA(Spring Data JPA)]()
-  - 내가 현업에서 경험한 java는 DB에 접근하기 위한 수단 정도로 느껴진다. 모든 로직은 쿼리에서 수행하려고 하고,  
-    관계형 데이터 베이스는 SQL로만 가능 하기 때문인 것 같다. 이게 잘 못 되었다고 생각하지는 않는다. 다만 java를 이용해서  
-    데이터 베이스를 조작 해보고 싶다. 
-    뭐가 맞는지는 모르겠지만, java를 쿼리에 넘길 파라미터를 지정하고, 쿼리에서 받은 값을 화면에 던져주는 용도로 사용 중이다.    
-    물론 로직도 존재한다. 하지만 쿼리가 메인이라고 느껴진다. 내가 아직 현업에서 java를 제대로 만질 레벨이 아니라서 그런가?  
-    그래서 이런 생각이 드는건가? 했지만 몇 가지 프로젝트를 해본 경험으로 윗 분들도 java를 고민하고 사용하지 않는다.  
-    이미 자사 프레임워크로 구현이 되어있고, 이미 되어있는 것을 사용하기 때문인 것 같다. 당연히 되어있는 것을 참고해서 하는게 맞지만  
-    java에 대해서 고민을 현업에서 한 적이 없다. 쿼리에 대한 고민만 했다. 다른 지인들 이야기를 들어보면 신입들도 java에 대해서  
-    고민을 많이 한다고 하는데 나는 경험해보지 못했다. 그래서 이번에 토이 프로젝트에 객체관계매핑인 [ORM]()을 사용하기 위해 JPA를 선택했다.
 
 #
 
 ### 요구사항
 - 음원 일간 차트
-  - 매일 아침 10 시 멜론의 일간 차트를 업데이트 하여 보여준다.
+  - 매일 아침 5시 30분 멜론의 일간 차트를 업데이트 하여 보여준다.
   - 일간 차트는 10개
 - 음원 검색 기능
   - 검색어에 대한 유튜브 리스트 10개를 보여준다.
-- 마이뮤직
+- 마이리스트
   - 하트 클릭 시 마이 리스트에 저장
+  - 다시 하트 클릭 시 제
+  - 페이지당 5개로 페이징
 - 공통
   - 음원은 유튜브 영상을 가져온다.
   - 구글, 네이버 소셜 로그인 
@@ -74,8 +67,6 @@ buildscript {
 ### [IFrame API]()
 ### [quarts 스케줄러]()
 ### [form과 input 태그로 고생한 일]()
-### [querydsl]()
-### [ORM과 JPA란]()
 ### [스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트]()
 - [구글 소셜 로그인]()
 ### [세션정보 DB에 저장]()
@@ -131,7 +122,7 @@ function onPlayerStateChange(event) {
 
 ### quarts 스케줄러
 - 일정 시간마다 기능을 수행할 수 있는 스케줄러
-- 사용이유 : 매일 오전 10시에 멜론 일간 차트를 가져와야 하기 때문
+- 사용이유 : 매일 오후 5시 30분에 멜론 일간 차트를 가져와야 하기 때문
 - 에러 : InstantiationException, NullPointerException
   - InstantiationException는 @RequireConstructor로 생성자 주입을 할 때 발생  
     NullPointerException는 @Autowired, new로 생성 할 때 발생
@@ -184,42 +175,7 @@ function onPlayerStateChange(event) {
     - **form**의 action은 아무런 의미가 없음.
 - [참고1](https://webisfree.com/2017-08-07/input-입력폼-엔터키-누를-경우-submit-막기-prevent)
 - [참고2](https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/)
-- [참고3](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault)
-        
-#
-
-### qeurydsl
-- 사용이유
-  - JPA를 사용하는 이유 중 하나는 쿼리를 작성하지 않기 위함도 있다. 하지만 Spring Data Jpa가 제공하는  
-    기본 메서드는 정말 기본 CRUD만 가능한 것으로 보인다.  
-    그래서 @Query를 사용 했지만 결국 MyBatis를 사용하는 것과 다를바가 없어 보였다. 물론, native query가 아닌  
-    JPQL을 사용하면 디비에 의존하지 않고 클래스를 바라 보기 때문에 MyBatis와는 다르다.
-    그렇지만 querydsl만의 장점이 있다.(아직 동적쿼리는 사용하지 않아서 제외 함)
-    1. 쿼리문을 사용하면 문자열 이기 때문에 컴파일을 하고 직접 실행을 해야 틀렸다는 것을 알 수 있다.  
-       즉, 런타임에서 에러를 잡을 수 있지만, querydsl은 쿼리문 자체를 메서드로 작성하기 때문에  
-       컴파일 전 IDE에서 부터 에러를 알 수 있다. 실제로 현업에서 이런 부분으로 시간을 많이 잡아 먹기 때문에  
-       이 정도 장점만 느껴도 엄청난 장점으로 보여진다.
-
-#
-
-### ORM과 JPA이란
-- ORM : Object-relational mapping(객체 관계 매핑)
-  - 객체는 객체대로 설계하고, 관계형 데이터베이스는 관계형 데이터베이스대로 설계
-  - ORM 프레임워크가 중간에서 매핑
-  - 기존에 MyBatis에서 테이블 모델링에 집중하고, 쿼리를 이용하여 데이터베이스 관계를 조작 했지만,   
-    ORM은 객체간 관계를 이용한다.
-- JPA : Java Persistence API(자바 영속성 API)
-  - java ORM 기술 표준으로 인터페이스 모음이다. 
-  - Hibernate라는 프레임 워크를 주로 사용
-- Spring Data JPA
-  - JPA의 구현체를 조금 더 쉽게 사용하기 위해 등장
-  - 구현체 교체가 용이함
-    - Hibernate 이외에 다른 구현체로 교체를 할 때 Spring Data JPA 내부에서 구현체 매핑을 지원 해주기 때문에  
-      교체가 용이하다고 한다.
-  - 저장소 교체가 용이함
-    - 관계형 데이터베이스 외에 다른 저장소로 쉽게 교체가 쉽다.
-      - Spring Data의 하위 프로젝트들은 기본적인 CRUD 인터페이스가 같기 때문이라고 한다.
-      - 즉, Spring Data JPA, Spring Data MongoDB 이런 식으로 의존성만 교체하면 save(), findAll() 등의 인터페이스가 같다. 
+- [참고3](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault) 
 
 #
 
@@ -238,7 +194,7 @@ function onPlayerStateChange(event) {
 - 도메인뒤에 붙게 되며 로그인 요청 시 해당 URI를 리디렉션 한다.
 ![구글 리디렉션 URL](https://user-images.githubusercontent.com/53487385/78036422-40ab7d00-73a5-11ea-8f4d-b58c2d50e191.png)  
 
-- 리디렉션 후 리턴은 도메인이다. 이것을 확인하지 않아서 시간을 날렸다..
+- 리디렉션 후 리턴은 도메인이다. 이것을 확인하지 않아서 시간을 날렸다.. 계속 다른 페이지로 리턴을 받으려고 했었다..
 ![구글OAuth2 리디렉션 후 요청](https://user-images.githubusercontent.com/53487385/78036427-41dcaa00-73a5-11ea-8aa5-fe0f9c974e7a.png)
 
 #
