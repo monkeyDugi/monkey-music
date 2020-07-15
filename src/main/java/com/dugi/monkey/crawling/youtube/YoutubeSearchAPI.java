@@ -24,7 +24,7 @@ public class YoutubeSearchAPI {
     private final APIKey apiKey;
 
     @PostConstruct
-    public String key() {
+    protected String key() {
         return apiKey.getYoutube();
     }
 
