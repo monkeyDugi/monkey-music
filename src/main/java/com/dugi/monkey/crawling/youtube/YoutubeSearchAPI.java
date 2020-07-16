@@ -2,6 +2,7 @@ package com.dugi.monkey.crawling.youtube;
 
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
+import com.dugi.monkey.util.YoutubeConnection;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,33 +22,22 @@ import java.util.List;
 @Component
 public class YoutubeSearchAPI {
 
-    private final APIKey apiKey;
-
-    @PostConstruct
-    protected String key() {
-        return apiKey.getYoutube();
-    }
-
-    private String keyword;
-    private String API_URL = "https://www.googleapis.com/youtube/v3/search";
-    private String API_PARAMETER_PART_TYPE_MAXRESULT = "&part=snippet&type=video&maxResults=";
-    private String API_PARAMETER_VIDEOEMBEDDABLE = "&videoEmbeddable=true";
-    private String API_PARAMETER_KEYWORD = "&q=";
-    private RestTemplate restTemplate = new RestTemplate();
+    private final YoutubeConnection youtubeConnection;
 
     public List<ResponseYoutubeAPIDto> getDailyChartApiResult(List<ResponseMelonCrawlingDto> requestMelonCrawlingDtos, int maxResult) {
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
         String title;
         String singer;
 
-        for(int i = 0; i < 10; i++) {
+        // 멜론에서 가져온 검색어의 갯수만큼 조회하며, 그 개수는 10개
+        for(int i = 0; i < requestMelonCrawlingDtos.size(); i++) {
             title = requestMelonCrawlingDtos.get(i).getTitle();
             singer = requestMelonCrawlingDtos.get(i).getSinger();
 
-            keywordJoin(title, singer);
+            youtubeConnection.keywordJoin(title, singer);
 
             String jsonString = null;
-            jsonString = createJson(maxResult);
+            jsonString = youtubeConnection.createJson(maxResult);
 
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray items = jsonObject.getJSONArray("items");
@@ -64,15 +54,16 @@ public class YoutubeSearchAPI {
         return responseYoutubeAPIDtos;
     }
 
+    // 검색차트는 기본 10개를 가져도도록 사용 객체가 호출한다. 테스트 시 는 1개만 가져오도록 한다.
     public List<ResponseYoutubeAPIDto> getSearchChartApiResult(String word, int maxResult) {
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
 
-        keywordJoin(word);
+        youtubeConnection.keywordJoin(word);
 
         String jsonString = null;
-        jsonString = createJson(maxResult);
+        jsonString = youtubeConnection.createJson(maxResult);
 
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < maxResult; i++) {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray items = jsonObject.getJSONArray("items");
             JSONObject item = items.getJSONObject(i);
@@ -94,24 +85,5 @@ public class YoutubeSearchAPI {
         }
 
         return responseYoutubeAPIDtos;
-    }
-
-    protected void keywordJoin (String... keyword) {
-        this.keyword = "";
-        this.keyword =  String.join("", keyword);
-    }
-
-    // RestTemplate는 자동으로 UTF-8로 Encoding 하므로 인코딩을 직접 하면 옳지 않은 결과가 나옴.
-    protected String createJson(int maxResult) {
-        return restTemplate.getForObject(createUrl(maxResult), String.class);
-    }
-
-    protected String createUrl(int maxResult) {
-        return API_URL +
-                "?key=" +
-                key() +
-               API_PARAMETER_PART_TYPE_MAXRESULT + maxResult +
-               API_PARAMETER_VIDEOEMBEDDABLE +
-               API_PARAMETER_KEYWORD + keyword;
     }
 }

@@ -6,12 +6,14 @@ import com.dugi.monkey.crawling.youtube.YoutubeSearchAPI;
 import com.dugi.monkey.crawling.youtube.dto.ResponseMelonYoutubeCombinationDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
 @RequiredArgsConstructor
 @Component
 public class MelonYoutubeCombination  {
