@@ -6,12 +6,14 @@ import com.dugi.monkey.crawling.youtube.YoutubeSearchAPI;
 import com.dugi.monkey.crawling.youtube.dto.ResponseMelonYoutubeCombinationDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
 @RequiredArgsConstructor
 @Component
 public class MelonYoutubeCombination  {
@@ -19,26 +21,33 @@ public class MelonYoutubeCombination  {
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;
 
-    private List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos;
-    private List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
+//    private List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos;
+//    private List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
 
 
     // PostConstruct 살려야할지 말아야 할지?
 
 //    @PostConstruct
-    public List<ResponseMelonYoutubeCombinationDto> runDailyChart() {
-        melonYou();
-
-        return getDailyChart();
-    }
+//    public List<ResponseMelonYoutubeCombinationDto> runDailyChart() {
+////        melonYou();
+//        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
+//        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+//
+//        return getDailyChart(responseMelonCrawlingDtos, responseYoutubeAPIDtos);
+//    }
 
     //    @PostConstruct
-    protected void melonYou() {
-        responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-        responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
-    }
+//    protected void melonYou() {
+//        responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
+//        responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+//    }
 
-    protected List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
+    public List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
+        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
+        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
+
+        System.out.println(responseMelonCrawlingDtos);
+        System.out.println(responseYoutubeAPIDtos);
         List<ResponseMelonYoutubeCombinationDto> responseMelonYoutubeCombinationDtos = new ArrayList<>();
 
         for (int i = 0; i < responseYoutubeAPIDtos.size(); i++) {
