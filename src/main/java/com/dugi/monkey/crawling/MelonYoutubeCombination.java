@@ -21,27 +21,7 @@ public class MelonYoutubeCombination  {
     private final MelonCrawling melonCrawling;
     private final YoutubeSearchAPI youtubeSearchAPI;
 
-//    private List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos;
-//    private List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
-
-
-    // PostConstruct 살려야할지 말아야 할지?
-
-//    @PostConstruct
-//    public List<ResponseMelonYoutubeCombinationDto> runDailyChart() {
-////        melonYou();
-//        List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-//        List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
-//
-//        return getDailyChart(responseMelonCrawlingDtos, responseYoutubeAPIDtos);
-//    }
-
-    //    @PostConstruct
-//    protected void melonYou() {
-//        responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
-//        responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
-//    }
-
+    // 멜론 해외 일간차트를 유튜브에서 검색
     public List<ResponseMelonYoutubeCombinationDto> getDailyChart() {
         List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = melonCrawling.getCrawlingResult(10);
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1);
