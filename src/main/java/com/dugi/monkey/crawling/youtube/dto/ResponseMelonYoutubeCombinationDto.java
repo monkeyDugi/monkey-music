@@ -3,7 +3,9 @@ package com.dugi.monkey.crawling.youtube.dto;
 import com.dugi.monkey.domain.music.dailychart.DailyChart;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
+@ToString
 @Getter
 public class ResponseMelonYoutubeCombinationDto {
     private String rank;

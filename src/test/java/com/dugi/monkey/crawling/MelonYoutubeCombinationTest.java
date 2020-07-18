@@ -4,7 +4,6 @@ import com.dugi.monkey.crawling.melon.MelonCrawling;
 import com.dugi.monkey.crawling.melon.dto.ResponseMelonCrawlingDto;
 import com.dugi.monkey.crawling.youtube.APIKey;
 import com.dugi.monkey.crawling.youtube.YoutubeSearchAPI;
-import com.dugi.monkey.crawling.youtube.dto.ResponseMelonYoutubeCombinationDto;
 import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import com.dugi.monkey.util.YoutubeConnection;
 import org.junit.Before;
@@ -46,7 +45,6 @@ public class MelonYoutubeCombinationTest {
 
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
         List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = new ArrayList<>();
-        List<ResponseMelonYoutubeCombinationDto> responseMelonYoutubeCombinationDtos = new ArrayList<>();
 
         responseMelonCrawlingDtos.add(ResponseMelonCrawlingDto.builder()
                                                                 .rank(rank)
@@ -59,26 +57,13 @@ public class MelonYoutubeCombinationTest {
                                                         .videoId(videoId)
                                                         .build());
 
-        responseMelonYoutubeCombinationDtos.add(ResponseMelonYoutubeCombinationDto.builder()
-                                                                                    .rank(rank)
-                                                                                    .title(title)
-                                                                                    .singer(singer)
-                                                                                    .image(image)
-                                                                                    .videoId(videoId)
-                                                                                    .build());
-
-        melonYoutubeCombination.setResponseMelonCrawlingDtos(responseMelonCrawlingDtos);
-        melonYoutubeCombination.setResponseYoutubeAPIDtos(responseYoutubeAPIDtos);
-
-//        given(melonCrawling.getCrawlingResult(1)).willReturn(responseMelonCrawlingDtos);
-//        given(youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos ,1)).willReturn(responseYoutubeAPIDtos);
-//        given(melonYoutubeCombination.getDailyChart()).willReturn(responseMelonYoutubeCombinationDtos);
-//        given(melonYoutubeCombination.melonYou()).
+        given(melonCrawling.getCrawlingResult(10)).willReturn(responseMelonCrawlingDtos);
+        given(youtubeSearchAPI.getDailyChartApiResult(responseMelonCrawlingDtos, 1)).willReturn(responseYoutubeAPIDtos);
     }
 
     // 실제 로직은 10개 이지만 로직이 도는지 확인만을 위한 테스트라서 1로 함
     @Test
     public void 멜론_일간차트를_YOUTUBE_API에서_가져온_size는_1이다() {
-        assertThat(melonYoutubeCombination.runDailyChart().size()).isEqualTo(1);
+        assertThat(melonYoutubeCombination.getDailyChart().size()).isEqualTo(1);
     }
 }
