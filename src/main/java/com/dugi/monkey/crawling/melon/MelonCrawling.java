@@ -12,7 +12,8 @@ import java.util.List;
 
 @Component
 public class MelonCrawling {
-    
+
+    // 멜론 일간차트 크롤링
     public List<ResponseMelonCrawlingDto> getCrawlingResult(int size) {
         List<ResponseMelonCrawlingDto> responseMelonCrawlingDtos = new ArrayList<>();
         
