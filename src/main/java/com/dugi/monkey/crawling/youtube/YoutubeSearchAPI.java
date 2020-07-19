@@ -17,6 +17,12 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 일간차트, 검색차트를 youtube api를 통해 가져오는 클래스
+ * @date : 2020.07.19 22:04:34
+ */
+
 @Getter
 @RequiredArgsConstructor
 @Component

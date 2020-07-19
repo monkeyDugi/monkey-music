@@ -6,8 +6,11 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * 인증된 사용자 정보만 저장하는 dto
+ * @author : 이병덕
+ * @description : 인증된 사용자 정보하는 DTO
+ * @date : 2020.07.19 21:54:01
  */
+
 @Getter
 public class SessionMember implements Serializable {
 

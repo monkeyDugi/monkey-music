@@ -4,6 +4,12 @@ import com.dugi.monkey.domain.music.goodchart.GoodChart;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author : 이병덕
+ * @description : 마이리스트 요청 DTO
+ * @date : 2020.07.19 22:52:36
+ */
+
 @Getter
 public class RequestGoodChartDto {
 

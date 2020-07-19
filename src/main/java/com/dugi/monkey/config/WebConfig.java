@@ -9,8 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 /**
+ * @author : 이병덕
+ * @description
  * LoginMemberArgumentResolver클래스가 스프링에서 인식할 수 있도록 하는 클래스
  * HandlerMethodArgumentResolver는 항상 WebMvcConfigurer의 addArgumentResolvers()를 통해 추가해야 함.
+ * @date : 2020.07.19 21:57:48
  */
 @RequiredArgsConstructor
 @Configuration

@@ -8,8 +8,11 @@ import lombok.Getter;
 import java.util.Map;
 
 /**
- * DTO 역할
+ * @author : 이병덕
+ * @description : OAuth DTO
+ * @date : 2020.07.19 21:53:32
  */
+
 @Getter
 public class OAuthAttributes {
 

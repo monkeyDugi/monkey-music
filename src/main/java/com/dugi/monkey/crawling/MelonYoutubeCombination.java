@@ -13,6 +13,12 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 멜론에서 크롤링한 데이터로 youtube api에서 검하는 클래스
+ * @date : 2020.07.19 22:06:13
+ */
+
 @Setter
 @RequiredArgsConstructor
 @Component

@@ -7,7 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * 스프링 시큐리티 설정
+ * @author : 이병덕
+ * @description : 스프링 시큐리티 설정
+ * @date : 2020.07.19 21:56:33
  */
 @RequiredArgsConstructor
 @EnableWebSecurity // 스프링 시큐리티 설정 활성화

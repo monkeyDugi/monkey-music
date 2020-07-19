@@ -13,6 +13,12 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * @author : 이병덕
+ * @description : quarts 스케줄러러 매일 15:00시에 일간차트를 불러오는 기능을 수행하는 클래스로써, DailyChartJob.java를 job으로 등록
+ * @date : 2020.07.19 22:20:06
+ */
+
 @Component
 public class DailyChartScheduler {
 

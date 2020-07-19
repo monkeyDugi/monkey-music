@@ -9,6 +9,12 @@ package com.dugi.monkey.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/**
+ * @author : 이병덕
+ * @description : Entity에 생성일 수정일 적용을 위한 JPA AUditing 활성화
+ * @date : 2020.07.19 21:56:50
+ */
+
 @Configuration
 @EnableJpaAuditing // JPA Auditing 활성화
 public class JpaAuditingConfig {

@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 검색차트 조회
+ * @date : 2020.07.19 22:54:18
+ */
+
 @RequiredArgsConstructor
 @RestController
 public class     SearchChartController {
 
     private final SearchChartService searchChartService;
 
+    // 검색차트 조회
     @GetMapping("api/charts/search/{word}")
     public List<ResponseSearchChartDto> findSearchChartAll(@PathVariable("word") String word, @LoginMember SessionMember member) {
         // 테스트 코드 작성 시에 세션이 없으므로 @LoginMember SessionMember member로 인한 NPE 발생

@@ -4,6 +4,12 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author : 이병덕
+ * @description : 마이리스트 응답 DTO
+ * @date : 2020.07.19 22:52:54
+ */
+
 @Getter
 public class ResponseGoodChartDto {
 

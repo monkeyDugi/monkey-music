@@ -8,6 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 운영 서버의 포트가 real1, real2 중 무엇인지 판단하기 위한 컨트롤러
+ * 운영서버에서 무중단 배포를 위해 포트를 real1 : 8081, real2 : 8082를 사용 중
+ * @date : 2020.07.19 22:56:14
+ */
+
 @RequiredArgsConstructor
 @RestController
 public class ProfileController {

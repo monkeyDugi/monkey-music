@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 멜론에서 크롤링한 데이터를 응답 DTO에 리턴
+ * @date : 2020.07.19 21:59:42
+ */
+
 @Component
 public class MelonCrawling {
 
