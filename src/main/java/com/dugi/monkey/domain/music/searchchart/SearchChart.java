@@ -16,6 +16,12 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 검색차트
+ * @date : 2020.07.19 22:15:43
+ */
+
 @Getter
 @NoArgsConstructor
 @Entity

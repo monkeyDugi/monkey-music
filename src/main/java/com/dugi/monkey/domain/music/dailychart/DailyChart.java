@@ -11,6 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author : 이병덕
+ * @description : 일간차트
+ * @date : 2020.07.19 22:10:07
+ */
+
 @Getter
 @NoArgsConstructor
 @Entity

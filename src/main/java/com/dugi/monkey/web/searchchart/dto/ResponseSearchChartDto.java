@@ -5,6 +5,12 @@ import com.dugi.monkey.domain.music.searchchart.SearchChart;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author : 이병덕
+ * @description : 검색차트 응답 DTO
+ * @date : 2020.07.19 22:55:16
+ */
+
 @Getter
 public class ResponseSearchChartDto {
 

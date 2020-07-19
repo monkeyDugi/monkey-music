@@ -14,6 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import static com.dugi.monkey.domain.music.goodchart.QGoodChart.goodChart;
 import static com.dugi.monkey.domain.music.searchchart.QSearchChart.searchChart;
 
+/**
+ * @author : 이병덕
+ * @description : 마이리스트 qeuryDsl
+ * @date : 2020.07.19 22:14:13
+ */
+
 @RequiredArgsConstructor
 public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
 

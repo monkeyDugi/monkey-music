@@ -11,12 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author : 이병덕
+ * @description : 일간차트 검색 및 등록
+ * @date : 2020.07.19 22:21:07
+ */
+
 @RequiredArgsConstructor
 @Service
 public class DailyChartService {
 
     private final DailyChartRepository dailyChartRepository;
 
+    // 스케줄러에 의해 일간차트 DB에 등록된 일간차트 전체 검색
     @Transactional(readOnly = true)
     public List<ResponseDailyChartDto> findDailyChartAll() {
         return dailyChartRepository.findAll()
@@ -26,6 +33,7 @@ public class DailyChartService {
                 .collect(Collectors.toList());
     }
 
+    // 스케줄러에 의해 가져온 일간차트 데이터를 일간차트 DB에 저장
     @Transactional
     public void addDailyChart(List<ResponseMelonYoutubeCombinationDto> requestDailyChartDtos) {
         dailyChartRepository.deleteAll();

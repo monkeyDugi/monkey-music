@@ -14,6 +14,12 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+/**
+ * @author : 이병덕
+ * @description : DailyChartScheduler.java에서 quarts 스케줄러에 의한 매일 15:00시에  일간차트를 검색해오는 스케줄러의 job
+ * @date : 2020.07.19 22:17:27
+ */
+
 public class DailyChartJob implements Job {
 
     @Override

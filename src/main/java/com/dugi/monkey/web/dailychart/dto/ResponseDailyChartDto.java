@@ -4,6 +4,12 @@ import com.dugi.monkey.domain.music.dailychart.DailyChart;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author : 이병덕
+ * @description : 일간차트 응답 DTO
+ * @date : 2020.07.19 22:52:02
+ */
+
 @Getter
 public class ResponseDailyChartDto {
     private String rank;

@@ -11,6 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author : 이병덕
+ * @description : 마이리스트
+ * @date : 2020.07.19 22:12:37
+ */
+
 @Getter
 @NoArgsConstructor
 @Entity

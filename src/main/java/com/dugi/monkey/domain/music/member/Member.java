@@ -13,6 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author : 이병덕
+ * @description : OAuth 회원 정보
+ * @date : 2020.07.19 22:14:28
+ */
+
 @Getter
 @NoArgsConstructor
 @Entity

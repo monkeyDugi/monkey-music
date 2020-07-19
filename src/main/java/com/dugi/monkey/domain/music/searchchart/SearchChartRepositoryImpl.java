@@ -4,6 +4,12 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import static com.dugi.monkey.domain.music.searchchart.QSearchChart.searchChart;
 
+/**
+ * @author : 이병덕
+ * @description : 검색차트 qeuryDsl
+ * @date : 2020.07.19 22:16:11
+ */
+
 @RequiredArgsConstructor
 public class SearchChartRepositoryImpl implements SearchChartRepositoryCustom {
 

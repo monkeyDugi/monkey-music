@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author : 이병덕
+ * @description : 마이리스트 컨트롤러
+ * @date : 2020.07.19 22:53:12
+ */
+
 @RequiredArgsConstructor
 @RestController
 public class GoodChartController {

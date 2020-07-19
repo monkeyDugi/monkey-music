@@ -5,6 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * @author : 이병덕
+ * @description : 멜론에서 클롤링한 데이터와 해당 데이터로 youtube에서 검색한 데이터는 최종적으로 담는 응답 DTO
+ * @date : 2020.07.19 22:00:27
+ */
+
 @ToString
 @Getter
 public class ResponseMelonYoutubeCombinationDto {

@@ -17,6 +17,12 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : 이병덕
+ * @description : 일간차트, 검색차트를 youtube api를 통해 가져오는 클래스
+ * @date : 2020.07.19 22:04:34
+ */
+
 @Getter
 @RequiredArgsConstructor
 @Component
@@ -24,6 +30,7 @@ public class YoutubeSearchAPI {
 
     private final YoutubeConnection youtubeConnection;
 
+    // 멜론에서 가져온 일간차트를 유튜브에서 검색
     public List<ResponseYoutubeAPIDto> getDailyChartApiResult(List<ResponseMelonCrawlingDto> requestMelonCrawlingDtos, int maxResult) {
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
         String title;
@@ -54,7 +61,7 @@ public class YoutubeSearchAPI {
         return responseYoutubeAPIDtos;
     }
 
-    // 검색차트는 기본 10개를 가져도도록 사용 객체가 호출한다. 테스트 시 는 1개만 가져오도록 한다.
+    // 검색 키워드로 유튜브에서 검색
     public List<ResponseYoutubeAPIDto> getSearchChartApiResult(String word, int maxResult) {
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos = new ArrayList<>();
 

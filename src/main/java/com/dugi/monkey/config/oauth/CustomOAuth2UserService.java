@@ -18,8 +18,11 @@ import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
 /**
- * 구글 로그인 후 가져온 사용자의 정보(email, name등) 들을 기반으로 가입 및 정보 수정, 세션 저장 등의 기능을 담당
+ * @author : 이병덕
+ * @description : 구글 로그인 후 가져온 사용자의 정보(email, name등) 들을 기반으로 가입 및 정보 수정, 세션 저장 등의 기능을 담당
+ * @date : 2020.07.19 21:55:16
  */
+
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
