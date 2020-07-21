@@ -96,7 +96,7 @@ let word
 search.addEventListener('keydown', function(event) {
     if(event.keyCode === 13) {
         word = search.value
-        window.location.href = '/charts/search/' + word
+        window.location.href = '/charts/search?word=' + word
     }
 })
 

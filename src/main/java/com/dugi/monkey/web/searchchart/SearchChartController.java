@@ -7,6 +7,7 @@ import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class     SearchChartController {
     private final SearchChartService searchChartService;
 
     // 검색차트 조회
-    @GetMapping("api/charts/search/{word}")
-    public List<ResponseSearchChartDto> findSearchChartAll(@PathVariable("word") String word, @LoginMember SessionMember member) {
+    @GetMapping("api/charts/search")
+    public List<ResponseSearchChartDto> findSearchChartAll(@RequestParam("word") String word, @LoginMember SessionMember member) {
         // 테스트 코드 작성 시에 세션이 없으므로 @LoginMember SessionMember member로 인한 NPE 발생
         // 테스트 코드 작성 시 "test@test.com"로 fix하여 테스트
         // 실제 구현 시에는 member가 null 일 수 없으므로 항상 member.getEmail()을 사용
