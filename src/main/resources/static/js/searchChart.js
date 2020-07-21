@@ -46,15 +46,16 @@ let word
 search.addEventListener('keydown', function(event) {
     if(event.keyCode === 13) {
         word = search.value
-        window.location.href = '/charts/search/' + word;
+        window.location.href = '/charts/search?word=' + word;
     }
 })
 
-
+search.value = decodeURIComponent(search.value)
 word = search.value
+console.log(word)
 $.ajax({
     type : "GET",
-    url :  "/api/charts/search/" + word,
+    url :  "/api/charts/search?word=" + word,
     dataType : "JSON",
     success : function(obj) {
          songList = obj;
