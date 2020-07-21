@@ -63,7 +63,7 @@ public class SearchChartControllerTest {
 
         given(searchChartService.findSearchChartAll(word, email)).willReturn(responseSearchChartDtos);
 
-        mockMvc.perform(get("/api/charts/search/" + word))
+        mockMvc.perform(get("/api/charts/search?word=" + word))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("maroon5")));
