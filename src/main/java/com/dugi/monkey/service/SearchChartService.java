@@ -34,32 +34,20 @@ public class SearchChartService {
     public List<ResponseSearchChartDto> findSearchChartAll(String word, String email) {
         List<ResponseSearchChartDto> responseSearchChartDtos = new ArrayList<>();
         List<ResponseYoutubeAPIDto> responseYoutubeAPIDtos;
-        RequestGoodChartDto requestGoodChartDto;
 
         String videoId;
-        Long goodExists;
-        Long searchExists;
 
         responseYoutubeAPIDtos = getSearchCharts(word);
 
         for(int i = 0; i < responseYoutubeAPIDtos.size(); i++) {
             videoId = getVideoId(responseYoutubeAPIDtos, i);
 
-            requestGoodChartDto = RequestGoodChartDto.builder()
-                    .videoId(videoId)
-                    .email(email)
-                    .build();
+                responseSearchChartDtos.add(ResponseSearchChartDto.builder()
+                        .responseYoutubeAPIDto(responseYoutubeAPIDtos.get(i))
+                        .good(String.valueOf(isGood(videoId, email) ? 1 : 0)) // 프론트에서 하트 활성화를 위함
+                        .build());
 
-            goodExists = isGood(requestGoodChartDto);
-
-            responseSearchChartDtos.add(ResponseSearchChartDto.builder()
-                    .responseYoutubeAPIDto(responseYoutubeAPIDtos.get(i))
-                    .good(String.valueOf(goodExists))
-                    .build());
-
-            searchExists = isSearch(videoId);
-
-            if(0 == searchExists) {
+            if(!isSearch(videoId)) {
                 searchChartRepository.save(responseSearchChartDtos.get(i).toEntity());
             }
         }
@@ -77,15 +65,13 @@ public class SearchChartService {
         return responseYoutubeAPIDtos.get(index).getVideoId();
     }
 
-    // 마이 리스트에 videoId, email가 존재하는지 counting
-    // videoId, email에 대한 중복 데이터는 없으므로 0 or 1
-    protected Long isGood(RequestGoodChartDto requestGoodChartDto) {
-        return goodChartRepository.findMyListExists(requestGoodChartDto);
+    // 마이 리스트에 videoId, email가 존재하는지 체크
+    protected boolean isGood(String videoId, String email) {
+        return goodChartRepository.existsByVideoIdAndEmail(videoId, email);
     }
 
-    // 검색차트에 videoId에 대한 데이터가 있는지 counting
-    // 중복 데이터는 없으므로 0 or 1
-    protected Long isSearch(String videoId) {
-        return searchChartRepository.findByExistsVideoId(videoId);
+    // 검색차트에 videoId에 대한 데이터가 체크
+    protected boolean isSearch(String videoId) {
+        return searchChartRepository.existsByVideoId(videoId);
     }
 }

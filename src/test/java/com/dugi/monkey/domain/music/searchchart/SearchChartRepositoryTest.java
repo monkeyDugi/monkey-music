@@ -37,9 +37,9 @@ public class SearchChartRepositoryTest {
         // save
         searchChartRepository.save(searchChart);
 
-        Long result = searchChartRepository.findByExistsVideoId(videoId);
+        boolean result = searchChartRepository.existsByVideoId(videoId);
 
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(true);
     }
 
     @Test
@@ -47,8 +47,8 @@ public class SearchChartRepositoryTest {
         // save
         searchChartRepository.save(searchChart);
 
-        Long result = searchChartRepository.findByExistsVideoId("emptyVideoId");
+         boolean result = searchChartRepository.existsByVideoId("emptyVideoId");
 
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(false);
     }
 }

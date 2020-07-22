@@ -25,26 +25,6 @@ public class GoodChartRepositoryImpl implements GoodChartRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
-    @Transactional // update, delete는 @Transactional이 있어야 한다.
-    @Override
-    public Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto) {
-        return queryFactory
-              .delete(goodChart)
-              .where(goodChart.videoId.eq(requestGoodChartDto.getVideoId())
-              .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
-              .execute();
-    }
-
-    @Override
-    public Long findMyListExists(RequestGoodChartDto requestGoodChartDto) {
-        return queryFactory
-                .select()
-                .from(goodChart)
-                .where(goodChart.videoId.eq(requestGoodChartDto.getVideoId())
-                .and(goodChart.email.eq(requestGoodChartDto.getEmail())))
-                .fetchCount();
-    }
-
     @Override
     public Page<ResponseGoodChartDto> findByEmailGoodChart(String email, Pageable pageable) {
         QueryResults<ResponseGoodChartDto> result =

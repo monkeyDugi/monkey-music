@@ -13,7 +13,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface GoodChartRepositoryCustom {
 
-    Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto);
-    Long findMyListExists(RequestGoodChartDto requestGoodChartDto);
     Page<ResponseGoodChartDto> findByEmailGoodChart(String email, Pageable pageable);
 }
