@@ -120,86 +120,70 @@ function onPlayerStateChange(event) {
 
 #
 
-### quarts 스케줄러
-- 일정 시간마다 기능을 수행할 수 있는 스케줄러
-- 사용이유 : 매일 오후 5시 30분에 멜론 일간 차트를 가져와야 하기 때문
-- 에러 : InstantiationException, NullPointerException
-  - InstantiationException는 @RequireConstructor로 생성자 주입을 할 때 발생  
-    NullPointerException는 @Autowired, new로 생성 할 때 발생
-  - 원인
-    - Job인터페이스를 구현한 Job 구현 클래스를 가동 시키는 스케줄러 클래스 빈이  
-      주입 받으려는 Service 클래스에 접근 할 수 없다. Job을 구현 받은 클래스에서 외부 빈은 주입 받을 수 없는건가??
-      아마도 다른 빈들 보다 Job의 빈이 먼저 등록 되어, 다른 빈들 불러오지 못하는 것 같음.  
-      **아직 정확히 모르겠다.**
-  - 해결
-    - **ApplicationContextAware** 인터페이스를 구현 받아 **setApplicationContext**로 ApplicationContext에  
-      접근할 수 있다.  
-      접근하여, ApplicationContext를 set하고 원하는 빈을 get하여 리턴하여 강제 주입 해주면 된다.
-  - ApplicationContextAware
-    - 빈이 생성 될 때 **setApplicationContext**가 실행 되어 AppicationContext를 가져올 수 있다.
-  - ApplicationContext
-    - 빈이 생성되면 IoC컨테이너(ApplicationContext)에 저장이 되는데 여기서 직접 빈을 가져오기 위해 사용했다.    
+### 로컬, 서버에 있는 ignore 파일
+- main/resources/application-apikey.properties
+```java
+# 로컬 테스트용
+api_youtube=본인의 youtube api key
+```
 
-# 
+<br/>
 
-### form과 input 태그로 고생한 일
-- ajax로 api를 사용 하다가 고생을 해서 기록한다
-- 로직 설명
-  1. input의 값을 ajax를 통해 PathVariable로 컨트롤러에 전송  
-  ![form](https://user-images.githubusercontent.com/53487385/76988168-a94b3080-6987-11ea-85d4-d0adf2b213b4.PNG)  
-  
-  2. 엔터키 탕! -> api로 input 값 전송  
-  ![js](https://user-images.githubusercontent.com/53487385/76988173-ab14f400-6987-11ea-8a84-fc8e1f40db55.PNG)  
-  
-  3. input 값 PathVariable로 받아 처리  
-  ![apiController](https://user-images.githubusercontent.com/53487385/76988174-ab14f400-6987-11ea-8367-026d511da7de.PNG)  
-  
-  4. view Controller  
-  ![viewController](https://user-images.githubusercontent.com/53487385/76988175-abad8a80-6987-11ea-8693-73edb1b5592b.PNG)  
+- test/resources/appication-apikey.properties
+```java
+# 테스트용
+api_youtube=본인의 youtube api key
+```
 
-- 문제점  
-  - 엔터키 탕! -> ajax를 처리하다 말고 view url인 "/charts/search/**?**"가 로드 되어 ajax로 처리하던 것이 모두 초기화 되어 버림  
-    즉, api 사용 불가, 더욱 이상했던 점은 **다른 키 입력 시 정상작동 함**
-- 원인
-  - **from**태그는 디폴트로 action이 **자기자신**을 가지고 있고, **form**태그 안에 존재하는 **input**태그는 엔터 입력 시 submit을 하여,    
-    **queryString**을 action에 던지는 디폴트를 가지고 있다. 즉, 해당 화면에서 **input**태그에 name, value 속성이 없었으므로
-    "/charts/search/**?**"을 로드 해버린 것 이다. name=singer, value=IU 이런 식으로 **input** 태그에 넣어 준다면, 
-    "/charts/search/**?singer=IU**" 이런 식으로 로드 되며, 결과는 동일했다. 
-- 해결
-  - ajax 통신 중 "/charts/search/**?**"가 로드 되는 것이므로, event.preventDefault()로 기존에 걸려있던 submit을 중단 시킨다.
-- 정리
-  - **form**와 **form**태그 안에 **input**태그는 따로 이벤트를 지정하지 않으면 엔터키 탕! -> queryString을 현재 페이지에 보내어 로드하게 된다.  
-  - 의도치 않는 submit이 일어나게 된다. 이는 submit이란 **action**으로 **form**안에 있는 내용을 전송하는 것    
-  - <h3>위에 설명한 글은 input태그 type=text일 경우 임.</h3>
-  - input태그 type=checkbox일 경우 event.preventDefault()를 실행하면 check, uncheck가 안되는 것.
-    - **form**의 action은 아무런 의미가 없음.
-- [참고1](https://webisfree.com/2017-08-07/input-입력폼-엔터키-누를-경우-submit-막기-prevent)
-- [참고2](https://www.tjvantoll.com/2013/01/01/enter-should-submit-forms-stop-messing-with-that/)
-- [참고3](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault) 
+<br/>
 
-#
+- main/resources/application-oauth.properties
+```java
+# google oauth2 클라이언트 등록
+spring.security.oauth2.client.registration.google.client-id=[본인 클라이언트 ID]
+spring.security.oauth2.client.registration.google.client-secret=[본인 시크릿 ID]
+spring.security.oauth2.client.registration.google.scope=profile,email
 
-### 스프링 시큐리티와 스프링 스큐리티 Oauth2 클라이언트
-- 소셜 로그인 사용 이유 중 몇 가지만 추려 보자면 아래와 같다
-  - 로그인 시 보안
-  - 비밀번호 찾기/변경
-  - 회원가입 시 인증
-  - 회원정보 변경 
-
-- 스프링 부트 1.5의 Oauth2가 아니라, 스프링 부트 2.0을 쓸 것 인데 이유는 아래와 같다.
-  - 기존이 1.5가 물론 안정적일 수는 있지만 스프링 팀에서 더 이상 버그 수정 이외에 신규 기능은 나오지 않고,  
-    2.0에만 신규 기능이 나올 것 이라고 했기 때문이다.  
- 
-#### -> 구글 소셜 로그인
-- 도메인뒤에 붙게 되며 로그인 요청 시 해당 URI를 리디렉션 한다.
-![구글 리디렉션 URL](https://user-images.githubusercontent.com/53487385/78036422-40ab7d00-73a5-11ea-8f4d-b58c2d50e191.png)  
-
-- 리디렉션 후 리턴은 도메인이다. 이것을 확인하지 않아서 시간을 날렸다.. 계속 다른 페이지로 리턴을 받으려고 했었다..
-![구글OAuth2 리디렉션 후 요청](https://user-images.githubusercontent.com/53487385/78036427-41dcaa00-73a5-11ea-8aa5-fe0f9c974e7a.png)
+# naver oauth2 클라이언트 등록
+# nvaer는 스프링 시큐리티에서 지원하지 않기 때문에 google 보다 설정이 많음(provider설정을 해주어야 함)
+# registration
+spring.security.oauth2.client.registration.naver.client-id=[본인 클라이언트 ID]
+spring.security.oauth2.client.registration.naver.client-secret=[본인 시크릿 ID]
+spring.security.oauth2.client.registration.naver.redirect_uri_template={baseUrl}/{action}/oauth2/code/{registrationId}
+spring.security.oauth2.client.registration.naver.authorization_grant_type=authorization_code
+spring.security.oauth2.client.registration.naver.scope=name,email,profile_image
+spring.security.oauth2.client.registration.naver.client-name=Naver
+# provider
+spring.security.oauth2.client.provider.naver.authorization_uri=https://nid.naver.com/oauth2.0/authorize
+spring.security.oauth2.client.provider.naver.token_uri=https://nid.naver.com/oauth2.0/token
+spring.security.oauth2.client.provider.naver.user-info-uri=https://openapi.naver.com/v1/nid/me
+## 기준이 되는 user_name의 이름을 네이버에서는 response로 해야 함
+## 이유는 네이버의 회원 조회 시 반환되는 JSON 형태 때문(아래 참고)
+#{
+#    "resultcode": "00",
+#    "message": "success",
+#    "response": {
+#        "email": "openapi@naver.com",
+#        "nickname": "OpenAPI",
+#        "profile_iamge": "https://ssl.pstatic.net/static/pwe/address/nodata_33x33.gif",
+#        "age": "40-49",
+#        "gender": "F",
+#        "id": "32742776",
+#        "name": "오픈API",
+#        "brithday": "10-01"
+#    }
+#}
+spring.security.oauth2.client.provider.naver.user_name_attribute=response
+```
 
 #
 
-### 세션정보 DB에 저장
-- 설정이 간단하지만, 로그인 요청 마다 DB에 요청이 발생하여 성능상 이슈가 발생할 수 있지만,  
-  사용자가 적기 때문에 사용!
-- JPA에 의하여 **SPRING_SESSION, SPRING_SESSION-ATTRIBUTES** 테이블이 생성 된다.  
+### 서버에만 있는 파일
+- /home/ec2-user/app/monkey-music-service/application-real-db.properties
+# dll-auto는운영서버이기 때문에 create를 하지 않는다.
+spring.jpa.hibernate.ddl-auto=none
+spring.datasource.url=jdbc:mariadb:[rds주소]:3306/[db명]
+srping.datasource.username=[계정]
+spring.datasource.password=[비번]
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+<br/>
