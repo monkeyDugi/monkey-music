@@ -40,15 +40,12 @@ public class GoodChartController {
     }
 
     @DeleteMapping("api/charts/good/{goodVideoId}")
-    public Long deleteByGoodVideoId(@PathVariable("goodVideoId") String goodVideoId, @LoginMember SessionMember member) {
+    public Long deleteByGoodVideoId(@PathVariable("goodVideoId") String videoId, @LoginMember SessionMember member) {
         String email = "test@test.com";
 
         if(member != null) email = member.getEmail();
 
-        return goodChartService.deleteByGoodVideoId(RequestGoodChartDto.builder()
-                      .videoId(goodVideoId)
-                      .email(email)
-                      .build());
+        return goodChartService.deleteByGoodVideoId(videoId, email);
     }
 
     @GetMapping("api/charts/good")

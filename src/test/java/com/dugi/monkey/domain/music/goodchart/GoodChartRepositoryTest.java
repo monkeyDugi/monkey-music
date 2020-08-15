@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,6 +18,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GoodChartRepositoryTest {
 
     private RequestGoodChartDto requestGoodChartDto;
+
+    private String title = "maroon5";
+    private String email = "test@test.com";
+    private String videoId = "videoId";
+    private String image = "image";
 
     @Autowired
     private GoodChartRepository goodChartRepository;
@@ -28,10 +34,10 @@ public class GoodChartRepositoryTest {
         // given
         requestGoodChartDto =
                 RequestGoodChartDto.builder()
-                                    .title("title")
-                                    .videoId("videoId")
-                                    .image("image")
-                                    .email("test@test.com")
+                                    .title(title)
+                                    .videoId(videoId)
+                                    .image(image)
+                                    .email(email)
                                     .build();
 
         // save
@@ -41,19 +47,19 @@ public class GoodChartRepositoryTest {
     @Test
     public void 마이리스트에서_음악_제거() {
         // when
-        Long result = goodChartRepository.deleteByGoodVideoId(requestGoodChartDto);
+//        goodChartRepository.deleteByVideoIdAndEmail(videoId, email);
 
         // then
-        List<GoodChart> goodChart = goodChartRepository.findAll();
-
-        assertThat(goodChart).isNullOrEmpty();
+//        boolean t = goodChartRepository.existsByVideoIdAndEmail(videoId, email);
+//
+//        assertThat(t).isEqualTo(false);
     }
 
     @Test
     public void 마이리스트에_존재하는_videoId() {
-        Long result = goodChartRepository.findMyListExists(requestGoodChartDto);
+        boolean result = goodChartRepository.existsByVideoIdAndEmail(videoId, email);
 
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(true);
     }
 
     @Test
@@ -68,8 +74,8 @@ public class GoodChartRepositoryTest {
                         .email("test@test.com")
                         .build();
 
-        Long result = goodChartRepository.findMyListExists(requestGoodChartDto);
+        boolean result = goodChartRepository.existsByVideoIdAndEmail("notVideoId", email);
 
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(false);
     }
 }

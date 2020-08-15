@@ -1,5 +1,6 @@
 package com.dugi.monkey.domain.music.goodchart;
 
+import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,7 @@ import org.springframework.data.repository.query.Param;
  */
 
 public interface GoodChartRepository extends JpaRepository<GoodChart, Long>, GoodChartRepositoryCustom {
+
+    boolean existsByVideoIdAndEmail(String videoId, String email);
+    Long deleteByVideoIdAndEmail(String videoId, String email);
 }

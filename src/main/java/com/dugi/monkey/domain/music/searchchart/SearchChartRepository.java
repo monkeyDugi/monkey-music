@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
  * @date : 2020.07.19 22:16:01
  */
 
-public interface SearchChartRepository extends JpaRepository<SearchChart, Long>, SearchChartRepositoryCustom {
+public interface SearchChartRepository extends JpaRepository<SearchChart, Long> {
+    boolean existsByVideoId(String videoId);
 }
