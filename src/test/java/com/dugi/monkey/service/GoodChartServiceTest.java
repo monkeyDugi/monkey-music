@@ -46,8 +46,8 @@ public class GoodChartServiceTest {
 
     @Test
     public void 마이리스트에서_음악_제거() throws Exception{
-        goodChartService.deleteByGoodVideoId(requestGoodChartDto);
+        goodChartService.deleteByGoodVideoId(videoId, email);
 
-        verify(goodChartRepository).deleteByGoodVideoId(any());
+        verify(goodChartRepository).deleteByVideoIdAndEmail(any(), any());
     }
 }

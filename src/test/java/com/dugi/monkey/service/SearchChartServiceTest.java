@@ -5,6 +5,7 @@ import com.dugi.monkey.crawling.youtube.dto.ResponseYoutubeAPIDto;
 import com.dugi.monkey.domain.music.goodchart.GoodChartRepository;
 import com.dugi.monkey.domain.music.searchchart.SearchChartRepository;
 import com.dugi.monkey.web.goodchart.dto.RequestGoodChartDto;
+import com.dugi.monkey.web.searchchart.dto.ResponseSearchChartDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -48,12 +49,6 @@ public class SearchChartServiceTest {
                 .videoId(videoId)
                 .image(image)
                 .build());
-
-        requestGoodChartDto =
-                RequestGoodChartDto.builder()
-                        .videoId(videoId)
-                        .email(email)
-                        .build();
     }
 
     @Test
@@ -72,45 +67,45 @@ public class SearchChartServiceTest {
 
     @Test
     public void 마이리스트에_존재하는_videoId() {
-        given(goodChartRepository.findMyListExists(requestGoodChartDto)).willReturn(1L);
+        given(goodChartRepository.existsByVideoIdAndEmail(videoId, email)).willReturn(true);
 
-        assertThat(searchChartService.isGood(requestGoodChartDto)).isEqualTo(1L);
+        assertThat(searchChartService.isGood(videoId, email)).isEqualTo(true);
 
-        verify(goodChartRepository).findMyListExists(requestGoodChartDto);
+        verify(goodChartRepository).existsByVideoIdAndEmail(videoId, email);
     }
 
     @Test
     public void 마이리스트에_존재하지_않는_videoId() {
-        given(goodChartRepository.findMyListExists(requestGoodChartDto)).willReturn(0L);
+        given(goodChartRepository.existsByVideoIdAndEmail(videoId, email)).willReturn(false);
 
-        assertThat(searchChartService.isGood(requestGoodChartDto)).isEqualTo(0L);
+        assertThat(searchChartService.isGood(videoId, email)).isEqualTo(false);
 
-        verify(goodChartRepository).findMyListExists(requestGoodChartDto);
+        verify(goodChartRepository).existsByVideoIdAndEmail(videoId, email);
     }
 
     @Test
     public void 검색했던_차트일_경우() {
-        given(searchChartRepository.findByExistsVideoId(videoId)).willReturn(1L);
+        given(searchChartRepository.existsByVideoId(videoId)).willReturn(true);
 
-        assertThat(searchChartService.isSearch(videoId)).isEqualTo(1L);
+        assertThat(searchChartService.isSearch(videoId)).isEqualTo(true);
 
-        verify(searchChartRepository).findByExistsVideoId(videoId);
+        verify(searchChartRepository).existsByVideoId(videoId);
     }
 
     @Test
     public void 검색했던_차트가_아닐_경우() {
-        given(searchChartRepository.findByExistsVideoId(videoId)).willReturn(0L);
+        given(searchChartRepository.existsByVideoId(videoId)).willReturn(false);
 
-        assertThat(searchChartService.isSearch(videoId)).isEqualTo(0L);
+        assertThat(searchChartService.isSearch(videoId)).isEqualTo(false);
 
-        verify(searchChartRepository).findByExistsVideoId(videoId);
+        verify(searchChartRepository).existsByVideoId(videoId);
     }
 
     @Test
     public void 검색차트_반환() {
         given(youtubeSearchAPI.getSearchChartApiResult(word, 10)).willReturn(responseYoutubeAPIDtos);
-        given(goodChartRepository.findMyListExists(requestGoodChartDto)).willReturn(0L);
-        given(searchChartRepository.findByExistsVideoId(videoId)).willReturn(0L);
+        given(goodChartRepository.existsByVideoIdAndEmail(videoId, email)).willReturn(true);
+        given(searchChartRepository.existsByVideoId(videoId)).willReturn(true);
 
         assertThat(searchChartService.findSearchChartAll(word, email)).isNotEmpty();
     }

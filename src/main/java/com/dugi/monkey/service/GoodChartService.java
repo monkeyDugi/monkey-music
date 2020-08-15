@@ -29,8 +29,8 @@ public class GoodChartService {
 
     // 마이리스트 제거
     @Transactional
-    public Long deleteByGoodVideoId(RequestGoodChartDto requestGoodChartDto) {
-        return goodChartRepository.deleteByGoodVideoId(requestGoodChartDto);
+    public Long deleteByGoodVideoId(String videoId, String email) {
+        return goodChartRepository.deleteByVideoIdAndEmail(videoId, email);
     }
 
     // 마이리스트에서 이메일별로 검색

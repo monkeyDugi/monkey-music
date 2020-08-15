@@ -55,6 +55,6 @@ public class GoodChartControllerTest {
         mockMvc.perform(delete("/api/charts/good/" + goodVideoId))
                 .andExpect(status().isOk());
 
-        verify(goodChartService).deleteByGoodVideoId(any());
+        verify(goodChartService).deleteByGoodVideoId(any(), any());
     }
 }
