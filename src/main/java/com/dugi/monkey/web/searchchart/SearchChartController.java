@@ -20,7 +20,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class     SearchChartController {
+public class SearchChartController {
 
     private final SearchChartService searchChartService;
 
